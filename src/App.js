@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './components/navbar'
 import Header from './components/header'
 import Footer from './components/footer'
-import PopupButton from './components/popup/PopupButton'
-
-const imageRoute = './images/home.jpg'
+const imageRoute =  require('./images/home.jpg')
 
 class App extends Component {
   render() {
@@ -17,7 +15,6 @@ class App extends Component {
           image={imageRoute}
         >
         </Header>
-        <PopupButton>Como funciona?</PopupButton>
         <Footer />
       </div>
     );
