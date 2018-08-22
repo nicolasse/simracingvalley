@@ -1,12 +1,16 @@
 import style from 'styled-components'
 
-const Link = style.a`
+const Link = style.li`
+  float: ${props => props.login ? 'right' : 'left'}
+  text-align: center;
   color: white;
+  height: 30px;
   font-size: 15px;
-  padding: 0.5em 0.8em;
-  vertical-align: middle;
-  display: inline-block;
+  padding: 10px;
   transition: all .2s ease-in;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   &:hover {
   background-color: black;

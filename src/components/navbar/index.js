@@ -3,28 +3,28 @@ import style from 'styled-components'
 import Nav from './Nav'
 import Link from './Link'
 import Logo from './Logo'
-import Login from './Login'
-import SignUp from './SignUp'
-import Input from './Input'
 
-const home = require('../../images/logo.png')
+const logoWhite = require('../../images/logoWhite.png')
+const logoBlack = require('../../images/logoBlack.png')
 
 class NavBar extends Component {
+
+  handleSignIn(e){
+    e.preventDefault()
+
+  }
+
   render() {
     return(
       <Nav>
-        <Link><Logo alt='SIMRACING VALLEY' src={home} /></Link>
+        <Link><Logo alt='SIMRACING VALLEY' src={logoWhite} /></Link>
         <Link>Ranking</Link>
         <Link>Agenda</Link>
         <Link>Resultados</Link>
         <Link>Ligas e Copas</Link>
         <Link>Discord & Facebook</Link>
         <Link>Equipes</Link>
-        <Login>
-          <Input type='text' />
-          <Input type='password' />
-        </Login>
-        <SignUp />
+        <Link login>Sign In</Link>
       </Nav>
     )
   }
