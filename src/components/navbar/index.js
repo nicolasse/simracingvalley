@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import style from 'styled-components'
 import Nav from './Nav'
 import Link from './Link'
 import Logo from './Logo'
