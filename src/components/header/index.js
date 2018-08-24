@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     return(
       <Content>
-        <AnimatedText title>{this.props.title}</AnimatedText>
+        <AnimatedText small>{this.props.title}</AnimatedText>
         <AnimatedText>{this.props.text}</AnimatedText>
         <Image src={this.props.image} />
       </Content>
@@ -17,7 +17,7 @@ class Header extends Component {
 
 const AnimatedText = style.h1`
   position: absolute;
-  font-size: ${props => props.title ? '20px' : '70px'};
+  font-size: ${props => props.small ? '20px' : '70px'};
   color: white;
   text-align: center;
   left: 0;

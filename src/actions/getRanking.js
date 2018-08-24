@@ -4,13 +4,12 @@ export const FETCH_RANKING = 'FETCH_RANKING'
 export const FETCH_RANKING_SUCCESS = 'FETCH_RANKING_SUCCESS'
 export const FETCH_RANKING_FAILURE = 'FETCH_RANKING_FAILURE'
 
-const ROOT_URL = 'http://simracingvalley.com'
+const ROOT_URL = 'http://simracingvalley.us-east-2.elasticbeanstalk.com'
 
 export const fetchRanking = () => {
   const request = axios({
-    method: 'post', //API is wrong
+    method: 'POST', //API is wrong
     url: `${ROOT_URL}/getDriverList`,
-    headers: [],
   })
 
   return {

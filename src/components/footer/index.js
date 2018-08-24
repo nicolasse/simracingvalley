@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import style from 'styled-components'
+const logoSv = require('../../images/sv.png')
 
 class Footer extends Component {
   render() {
     return(
       <Foot>
         <Section>
-          <Logo src='../../images/sv.png' />
+          <Logo src={ logoSv } />
           <br />
           Simracing Valley
           Reunindo diversão e competição em um só lugar!
