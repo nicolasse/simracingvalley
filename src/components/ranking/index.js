@@ -7,7 +7,9 @@ import style from 'styled-components'
 class Ranking extends Component {
 
   componentWillMount() {
-    this.props.fetchRanking()
+    if(this.props.rank.length === 0) {
+      this.props.fetchRanking()
+    }
   }
 
   render() {
@@ -57,7 +59,7 @@ const mapDispatchToProps = dispatch => ({
   fetchRanking: () => {
     dispatch( fetchRanking() ).then((response) => {
       !response.error ?
-        dispatch(fetchRankingSuccess( response.payload.data ))
+        dispatch(fetchRankingSuccess( sortRank(response.payload.data )))
         : dispatch(fetchRankingFailure( response.payload.data ))
   })
     .catch(err => console.error(err))
@@ -84,4 +86,7 @@ const Tr = style.tr`
   background: #f2f2f2;
   }
 `
-
+//this must be deleted when api return us a ordered list
+const sortRank = rank => {
+  return rank.slice().sort((a, b) => b.Points - a.Points)
+}
