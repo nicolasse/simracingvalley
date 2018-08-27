@@ -10,12 +10,6 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <Header
-          title="Participe de corridas"
-          text="TODOS OS DIAS"
-          image={imageRoute}
-        >
-        </Header>
         <Footer />
       </div>
     );
