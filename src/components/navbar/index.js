@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Nav from './Nav'
 import StyledLink from './StyledLink'
 import Logo from './Logo'
+import styled from 'styled-components'
 
 import Ranking from '../ranking'
-import Home from '../header'
+import Home from '../home'
 
 const logoWhite = require('../../images/logoWhite.png')
 const logoBlack = require('../../images/logoBlack.png')
@@ -31,6 +32,7 @@ class NavBar extends Component {
         <StyledLink to={'/equipes'}>Equipes</StyledLink>
         <StyledLink login to={'./login'}>Sign In</StyledLink>
       </Nav>
+      <Content>
       <Switch>
         <Route exact path='/' component={ Home } />
         <Route path='/ranking' component={ Ranking } />
@@ -41,9 +43,15 @@ class NavBar extends Component {
         <Route path='/equipes' component={ Home } />
         <Route path='/login' component={ Home } />
       </Switch>
+      </Content>
       </div>
       </Router>
     )
   }
 }
+
+const Content = styled.div`
+  margin-top: 50px;
+`
+
 export default NavBar

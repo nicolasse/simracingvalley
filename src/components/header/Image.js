@@ -3,7 +3,7 @@ import style from 'styled-components'
 const Image = style.img`
   width: 100%;
   object-fit: cover;
-  height: 500px;
+  height: 100%;
 `
 
 
