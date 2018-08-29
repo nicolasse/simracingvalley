@@ -71,7 +71,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Ranking)
 
 const Table = style.table`
   border-collapse: collapse;
-  width: 80vw;
+  width: 90vw;
   margin: 0 auto;
 `
 

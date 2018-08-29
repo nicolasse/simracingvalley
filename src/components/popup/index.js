@@ -4,6 +4,7 @@ import style from 'styled-components'
 class Popup extends Component {
   state = {
     title: this.props.title,
+    text: this.props.text,
     visible: false,
   }
 
@@ -16,7 +17,7 @@ class Popup extends Component {
   }
 
   render(){
-    const popup = (this.state.visible ? <Container><Inner><Button onClick={this.closePopup}>X</Button></Inner></Container> : null)
+    const popup = (this.state.visible ? <Container><Inner><Button onClick={this.closePopup}>X</Button>{this.props.text}</Inner></Container> : null)
     return(
       <div>
       {popup}

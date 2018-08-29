@@ -15,44 +15,30 @@ class Home extends Component {
     </Header>
     <Wrapped>
       <Section>
-    <Title>O que é o Simracing Valley?</Title>
+      <Title big>
+        Nosso algoritmo reconhece as chances de vitória de cada piloto!
+      </Title>
     <P>
-    O SIMRACING VALLEY foi desenvolvido para aqueles que procuram um bom lugar
-    para correr virtualmente com os amigos após um longo dia de trabalho.
+      Estamos preparando o Simracing Valley para que ele seja capaz de posicionar os pilotos no grupo que melhor os comportam, sem interferência humana e baseado nos próprios resultados do piloto dentro da plataforma. Dessa forma, os pilotos poderão escolher entre ESCALAR os grupos até o topo do Ranking, ou se estabelecer em um grupo mais baixo e se DIVERTIR participando de corridas contra outros pilotos de mesmo nível! 
     </P>
-    <P>
-    O principal objetivo da plataforma é garantir um espaço virtual capaz de
-    reunir pessoas que desejam participar de corridas no GAME AUTOMOBILISTA
-    sem o apego a longas horas de treinos, bem como reunir pessoas que desejam
-    se aventurar no cenário competitivo brasileiro.
-    </P>
-    <P>
-    Garantimos a qualidade das corridas através de um sistema de ranqueamento
-    e de um sistema de "pontos na carteira" que sinalizam tanto os pilotos que
-    necessitam de monitoramento ou de moderação, quanto os pilotos que se
-    destacam em relação aos outros. Também, a própria comunidade pode reportar
-    qualquer conduta tóxica dentro da plataforma e manter as relações entre os
-    usuários em um nível sadio.
-    </P>
-    <P>
-    O SIMRACING VALLEY também é uma plataforma em desenvolvimento, e o meu
-    principal desejo é que a plataforma se transforme junto das necessidades
-    e demandas da comunidade.
-    </P>
-     <Signature href='https://www.facebook.com/ramalzin'>Ramon Barros</Signature>
       </Section>
-      <Section>
-    <Title>Como Funciona?</Title>
-    <P>
-Nossos servidores são aberto todos os dias às 19 horas para que os pilotos virtuais possam entrar, fazer treinos livres e se prepararem para a corrida que começa às 20 horas.
-    </P>
-	<P>
-Ao final da corrida todo o resultado gerado é processado e lançado no histórico dos pilotos que participaram da bateria.
-</P>
-<P>
-Definições do servidor como: "Carro utilizado", "Pista", "Dia/Noite", entre outras, também são modificadas diariamente para que a comunidade possa usufruir de todo o conteúdo do GAME AUTOMOBILISTA.
-</P>
+      <Section column>
+      <Title>
+        Alcance o TOPO!
+      </Title>
+      <P>
+      Corra contra os melhores dos melhores dentro da plataforma e estabeleça o seu lugar entre eles!
+      </P>
       </Section>
+      <Section column>
+      <Title>
+      Diversão SEMPRE!
+      </Title>
+      <P>
+      Utilize a plataforma para relaxar ao mesmo tempo que curte uma boa dose de adrenalina, enquanto disputa contra outros usuários!
+      </P>
+      </Section>
+      <iframe src="https://store.steampowered.com/widget/431600/" frameBorder="0" width="100%" height="190"></iframe>
     </Wrapped>
     </div>
     )
@@ -60,10 +46,12 @@ Definições do servidor como: "Carro utilizado", "Pista", "Dia/Noite", entre ou
 }
 
 const Title = style.h1`
-  text-align: center;
+  font-size: ${props => props.big ? '1.4em' : '1em'}
 `
 const P = style.p`
-  text-align: justify;
+  display: block;
+  line-height: 2em;
+  width: 100%;
 `
 
 const Signature = style.a`
@@ -74,16 +62,15 @@ const Signature = style.a`
 `
 
 const Wrapped = style.div`
-  width: 80vw;
-  margin: 0 auto;
+  width: 80%;
+  margin: 3em auto;
 `
 
 const Section = style.div`
+  background: #fff;
+  padding: 2em;
+  width: ${props => props.column ? '44%' : ''};
   float: left;
-  background: #f2f2f2;
-  width: 36vw;
-  margin: 0.5vw;
-  padding: 1vw;
 `
 
 export default Home

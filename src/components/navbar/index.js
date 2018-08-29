@@ -30,7 +30,7 @@ class NavBar extends Component {
         <StyledLink to={'/ligasecopas'}>Ligas e Copas</StyledLink>
         <StyledLink to={'/social'}>Discord & Facebook</StyledLink>
         <StyledLink to={'/equipes'}>Equipes</StyledLink>
-        <StyledLink login to={'./login'}>Sign In</StyledLink>
+        <StyledLink style={{float: 'right'}} to={'./login'}>Sign In</StyledLink>
       </Nav>
       <Content>
       <Switch>

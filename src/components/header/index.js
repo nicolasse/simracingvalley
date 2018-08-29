@@ -20,15 +20,14 @@ const AnimatedText = style.h1`
   font-size: ${props => props.small ? '20px' : '70px'};
   color: white;
   text-align: center;
-  left: 0;
-  right: 0;
-  top: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  left: 50%;
+  top: 50%;
+  transform: ${props => props.small ? 'translate(-50%, -350%)' : 'translate(-50%, -100%)'};
   z-index: 0;
 `
 const Content = style.div`
-  margin: 0 auto;
+  position: relative;
+  margin:  0vw auto 0 auto;
   width: 100%;
   height: 50vh;
 `

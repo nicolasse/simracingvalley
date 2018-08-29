@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import style from 'styled-components'
 import Popup from '../popup'
+
 const logoSv = require('../../images/sv.png')
 
 class Footer extends Component {
@@ -20,16 +21,13 @@ class Footer extends Component {
         <Section>
            <Title>Simracing Valley</Title>
         <Ul>
-          <Li><Popup title='Como Funciona?' /></Li>
+          <Li><Popup title='Como Funciona?' text='hola'/></Li>
           <Li><Popup title='Conduta' /></Li>
         </Ul>
         </Section>
-        <Section>
+        <CopyRight>
          © Simracing Valley - 2018
-        </Section>
-        <Section>
-         Facebook
-        </Section>
+        </CopyRight>
       </Foot>
     )
   }
@@ -38,10 +36,15 @@ class Footer extends Component {
 const Foot = style.footer`
   display: flex;
   background-color: #303036;
-  height: 250px;
   width: 100%;
   bottom: 0;
+  font-size: 0.9em;
 `
+const CopyRight = style.div`
+  color: white;
+  margin: auto 30px 30px auto;
+`
+
 const Ul = style.ul`
   list-style-type: none;
   display: table-cell;
@@ -57,6 +60,7 @@ const Title = style.h1`
 const Li = style.li`
   vertical-align: middle;
   cursor: pointer;
+  margin-top: 0.8em;
 `
 
 const Logo = style.img`
@@ -64,7 +68,7 @@ const Logo = style.img`
   height: 60px;
 `
 const Section = style.div`
-  width: 30%;
+  width: 17%;
   color: #6b6d6f;
   margin: 30px;
 `
