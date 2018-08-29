@@ -2,7 +2,7 @@ import style from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const StyledLink = style(Link)`
-  float: ${props => props.login ? 'right' : 'left'}
+  float: left;
   text-align: center;
   text-decoration: none;
   color: white;
