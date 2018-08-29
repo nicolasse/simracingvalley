@@ -5,6 +5,8 @@ const Nav = style.nav`
   background-color: #333;
   width: 100%;
   position: fixed;
+  z-index: 2;
+  height: 50px;
 `
 
 export default Nav

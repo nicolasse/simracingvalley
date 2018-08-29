@@ -7,15 +7,16 @@ import style from 'styled-components'
 class Ranking extends Component {
 
   componentWillMount() {
-    if(this.props.rank.length === 0) {
+    if(this.props.state.rank.length === 0) {
       this.props.fetchRanking()
     }
+    console.log(this.props.state)
   }
 
   render() {
     return(
       <Table>
-        <thead>
+        <Thead>
         <tr>
           <Th>#</Th>
           <Th>Nome</Th>
@@ -27,33 +28,33 @@ class Ranking extends Component {
           <Th>5</Th>
           <Th>Corridas</Th>
           <Th>Incidentes</Th>
-          <Th>Classe</Th>
+          <Th center>Classe</Th>
         </tr>
-        </thead>
-        <tbody>
-        { this.props.rank.map((driver, index) =>
+        </Thead>
+        <Tbody>
+        { this.props.state.rank.map((driver, index) =>
           <Tr key={ index }>
             <Td> { index + 1 }</Td>
             <Td> { driver.Name } </Td>
-            <Td> { driver.Points } </Td>
-            <Td> { driver.First } </Td>
-            <Td> { driver.Second } </Td>
-            <Td> { driver.Third } </Td>
-            <Td> { driver.Fourth } </Td>
-            <Td> { driver.Fifth } </Td>
-            <Td> { driver.Races } </Td>
-            <Td> { driver.Incidents } </Td>
+            <Td right> { driver.Points } </Td>
+            <Td right> { driver.First } </Td>
+            <Td right> { driver.Second } </Td>
+            <Td right> { driver.Third } </Td>
+            <Td right> { driver.Fourth } </Td>
+            <Td right> { driver.Fifth } </Td>
+            <Td right> { driver.Races } </Td>
+            <Td right> { driver.Incidents } </Td>
             <Td>  <img alt='classe' src={'data:image/png;base64,' + driver.Class} /> </Td>
           </Tr>
         )
         }
-        </tbody>
+        </Tbody>
       </Table>
     )
   }
 }
 
-const mapStateToProps = state => ({rank: state.rankingReducer.rank})
+const mapStateToProps = state => ({state: state.rankingReducer})
 
 const mapDispatchToProps = dispatch => ({
   fetchRanking: () => {
@@ -69,16 +70,32 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking)
 
 const Table = style.table`
- border-collapse: collapse;
- width: 80%;
- margin: 0 auto;
+  border-collapse: collapse;
+  width: 80vw;
+  margin: 0 auto;
+`
+
+const Thead = style.thead`
+  width: 100%
+  overflow: auto;
+  background: #fff;
+`
+
+const Tbody = style.tbody`
+  overflow: auto;
+  margin-top: 50px;
 `
 
 const Td = style.td`
-  text-align:left;
+  text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 1em;
+  vertical-align: top;
 `
-const Th = Td
+const Th = style.th`
+  text-align: ${props => props.center ? 'center' : 'left'};
+  padding: 0.8em 1em;
+
+`
 
 const Tr = style.tr`
   background: white;

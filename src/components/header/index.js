@@ -22,13 +22,15 @@ const AnimatedText = style.h1`
   text-align: center;
   left: 0;
   right: 0;
-  top: 25%;
+  top: 100px;
   margin-left: auto;
   margin-right: auto;
+  z-index: 0;
 `
 const Content = style.div`
+  margin: 0 auto;
   width: 100%;
-  height: 500px;
+  height: 50vh;
 `
 
 export default Header
