@@ -10,7 +10,6 @@ class Ranking extends Component {
     if(this.props.state.rank.length === 0) {
       this.props.fetchRanking()
     }
-    console.log(this.props.state)
   }
 
   render() {

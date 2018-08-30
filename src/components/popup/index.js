@@ -17,11 +17,12 @@ class Popup extends Component {
   }
 
   render(){
-    const popup = (this.state.visible ? <Container><Inner><Button onClick={this.closePopup}>X</Button>{this.props.text}</Inner></Container> : null)
+    const TextToShow = this.props.innerComponent
+    const popup = (this.state.visible ? <Container><Inner><Button onClick={this.closePopup}>X</Button><TextToShow /></Inner></Container> : null)
     return(
-      <div>
+      <div onClick={ this.handleClick }>
       {popup}
-      <li onClick={ this.handleClick }>{this.props.title}</li>
+      {this.props.title}
       </div>
     )
   }
@@ -65,6 +66,7 @@ const Inner = style.div`
   display: block;
   border: 1px grey solid;
   border-radius: 5px;
-
+  overflow-y: auto;
+  color: black;
 `
 export default Popup
