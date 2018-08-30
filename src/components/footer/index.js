@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import style from 'styled-components'
 import Popup from '../popup'
+import Conduta from './condutaContainer'
+import ComoFunciona from './comoFuncionaContainer'
 
 const logoSv = require('../../images/sv.png')
 
@@ -21,8 +23,8 @@ class Footer extends Component {
         <Section>
            <Title>Simracing Valley</Title>
         <Ul>
-          <Li><Popup title='Como Funciona?' text='hola'/></Li>
-          <Li><Popup title='Conduta' /></Li>
+          <Li><Popup title='Como Funciona?' innerComponent= { ComoFunciona }/></Li>
+          <Li><Popup title='Conduta' innerComponent={ Conduta } /></Li>
         </Ul>
         </Section>
         <CopyRight>
