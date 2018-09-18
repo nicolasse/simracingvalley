@@ -9,7 +9,7 @@ const ROOT_URL = 'http://simracingvalley.us-east-2.elasticbeanstalk.com'
 export const fetchRanking = () => {
   const request = axios({
     method: 'POST', //API is wrong
-    url: `${ROOT_URL}/getDriverList`,
+    url: `${ROOT_URL}/getDriverList`, //would be /users
   })
 
   return {

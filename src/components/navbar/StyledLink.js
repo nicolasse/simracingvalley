@@ -1,7 +1,7 @@
 import style from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const StyledLink = style(Link)`
+const StyledLink = style(NavLink)`
   float: left;
   text-align: center;
   text-decoration: none;
@@ -16,6 +16,10 @@ const StyledLink = style(Link)`
 
   &:hover {
   background-color: black;
+  }
+  &.active {
+  background: white;
+  color: black;
   }
 `
 export default StyledLink

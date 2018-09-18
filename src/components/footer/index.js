@@ -3,6 +3,7 @@ import style from 'styled-components'
 import Popup from '../popup'
 import Conduta from './condutaContainer'
 import ComoFunciona from './comoFuncionaContainer'
+import P from './P'
 
 const logoSv = require('../../images/sv.png')
 
@@ -15,10 +16,12 @@ class Footer extends Component {
     return(
       <Foot>
         <Section>
+          <P>
           <Logo src={ logoSv } />
-          <br />
           Simracing Valley
+          <br />
           Reunindo diversão e competição em um só lugar!
+          </P>
         </Section>
         <Section>
            <Title>Simracing Valley</Title>
