@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchRanking, fetchRankingSuccess, fetchRankingFailure } from '../../actions/getRanking'
 import style from 'styled-components'
@@ -32,9 +33,9 @@ class Ranking extends Component {
         </Thead>
         <Tbody>
         { this.props.state.rank.map((driver, index) =>
-          <Tr key={ index }>
+          <Tr key={ driver.id }>
             <Td> { index + 1 }</Td>
-            <Td> { driver.Name } </Td>
+            <Td><UserLink to={'users/' + driver.id}> { driver.Name }</UserLink> </Td>
             <Td right> { driver.Points } </Td>
             <Td right> { driver.First } </Td>
             <Td right> { driver.Second } </Td>
@@ -101,6 +102,11 @@ const Tr = style.tr`
   &:nth-child(odd){
   background: #f2f2f2;
   }
+`
+
+const UserLink = style(Link)`
+  color: black
+  text-decoration: none
 `
 //this must be deleted when api return us a ordered list
 const sortRank = rank => {
