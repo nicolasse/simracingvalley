@@ -1,10 +1,13 @@
 import axios from 'axios'
 
+import race from '../example.js' 
+
 export const FETCH_RACE = 'FETCH_RACE'
 export const FETCH_RACE_SUCCESS = 'FETCH_RACE_SUCCESS'
 export const FETCH_RACE_FAILURE = 'FETCH_RACE_FAILURE'
 export const SELECT_STATS = 'SELECT_STATS'
 export const CLEAR_STATS = 'CLEAR_STATS' 
+
 
 const ROOT_URL = 'http://localhost:8080'
 
@@ -15,7 +18,7 @@ export const fetchRace = ( id ) => {
   })
   return {
     type: FETCH_RACE,
-    payload: request,
+    payload: race,
   }
 }
 

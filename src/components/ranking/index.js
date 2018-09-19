@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchRanking, fetchRankingSuccess, fetchRankingFailure } from '../../actions/getRanking'
 import style from 'styled-components'
+import { device } from '../../device'
 
 
 class Ranking extends Component {
@@ -21,14 +22,14 @@ class Ranking extends Component {
           <Th>#</Th>
           <Th>Nome</Th>
           <Th>Pontos</Th>
-          <Th>1</Th>
-          <Th>2</Th>
-          <Th>3</Th>
-          <Th>4</Th>
-          <Th>5</Th>
+          <Th hide>1</Th>
+          <Th hide>2</Th>
+          <Th hide>3</Th>
+          <Th hide>4</Th>
+          <Th hide>5</Th>
           <Th>Corridas</Th>
           <Th>Incidentes</Th>
-          <Th center>Classe</Th>
+          <Th center hide>Classe</Th>
         </tr>
         </Thead>
         <Tbody>
@@ -37,14 +38,14 @@ class Ranking extends Component {
             <Td> { index + 1 }</Td>
             <Td><UserLink to={'users/' + driver.id}> { driver.Name }</UserLink> </Td>
             <Td right> { driver.Points } </Td>
-            <Td right> { driver.First } </Td>
-            <Td right> { driver.Second } </Td>
-            <Td right> { driver.Third } </Td>
-            <Td right> { driver.Fourth } </Td>
-            <Td right> { driver.Fifth } </Td>
+            <Td right hide> { driver.First } </Td>
+            <Td right hide> { driver.Second } </Td>
+            <Td right hide> { driver.Third } </Td>
+            <Td right hide> { driver.Fourth } </Td>
+            <Td right hide> { driver.Fifth } </Td>
             <Td right> { driver.Races } </Td>
             <Td right> { driver.Incidents } </Td>
-            <Td>  <img alt='classe' src={'data:image/png;base64,' + driver.Class} /> </Td>
+            <Td>  <Img hide alt='classe' src={'data:image/png;base64,' + driver.Class} /> </Td>
           </Tr>
         )
         }
@@ -69,10 +70,23 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking)
 
+const Img = style.img`
+  @media ${device.mobileS}{
+    display: ${props => props.hide ? 'none' : 'inline'}
+  }
+  @media ${device.laptop}{
+  display: block;
+  }
+`
 const Table = style.table`
   border-collapse: collapse;
-  width: 90vw;
   margin: 0 auto;
+  @media ${device.mobileS}{
+    width: 100%;
+  }
+  @media ${device.laptop}{
+    width: 75%;
+  }
 `
 
 const Thead = style.thead`
@@ -90,10 +104,27 @@ const Td = style.td`
   text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 1em;
   vertical-align: top;
+  @media ${device.mobileS}{
+    ${props => props.hide ? 'font-size: 0px' : 'font-size: 0.8em'};
+    padding: 0.3em 0.3em;
+  }
+  @media ${device.laptop}{
+    font-size: 1em;
+    padding: 0.5em 0.8em;
+  }
+
 `
 const Th = style.th`
   text-align: ${props => props.center ? 'center' : 'left'};
   padding: 0.8em 1em;
+  @media ${device.mobileS}{
+    ${props => props.hide ? 'font-size: 0px' : 'font-size: 0.8em'};
+    padding: 0.3em 0.3em;
+  }
+  @media ${device.laptop}{
+    font-size: 1em;
+    padding: 0.5em 0.8em;
+  }
 
 `
 

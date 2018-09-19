@@ -1,8 +1,9 @@
 import style from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import {device} from '../../device'
 
 const StyledLink = style(NavLink)`
-  float: left;
+  background: #333;
   text-align: center;
   text-decoration: none;
   color: white;
@@ -20,6 +21,13 @@ const StyledLink = style(NavLink)`
   &.active {
   background: white;
   color: black;
+  }
+  display: ${ props => props.home ? 'block' : 'flex' }
+  @media ${device.mobileM}{
+    
+  }
+  @media ${device.laptop}{
+  float: left;
   }
 `
 export default StyledLink

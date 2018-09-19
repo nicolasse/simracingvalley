@@ -69,7 +69,6 @@ const Thead = styled.thead`
 
 const Tbody = styled.tbody`
   overflow: auto;
-  margin-top: 50px;
 `
 
 const Td  = styled.td`

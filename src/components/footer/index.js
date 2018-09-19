@@ -5,6 +5,8 @@ import Conduta from './condutaContainer'
 import ComoFunciona from './comoFuncionaContainer'
 import P from './P'
 
+import { device } from '../../device'
+
 const logoSv = require('../../images/sv.png')
 
 class Footer extends Component {
@@ -43,7 +45,12 @@ const Foot = style.footer`
   background-color: #303036;
   width: 100%;
   bottom: 0;
-  font-size: 0.9em;
+  @media ${device.mobileS}{
+    font-size: 0.6em;
+  }
+  @media ${device.laptop}{
+    font-size: 0.9em;
+  }
 `
 const CopyRight = style.div`
   color: white;
