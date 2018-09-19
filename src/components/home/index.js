@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../header'
 import style from 'styled-components'
+import { device } from '../../device'
 
 let imageHead = null
 
@@ -67,7 +68,11 @@ const Iframe = style.iframe`
 `
 
 const Title = style.h1`
+  @media ${device.mobileS}{
+    font-size: 1.4em;
+  }
   font-size: ${props => props.big ? '1.4em' : '1em'}
+  line-height: 2em;
 `
 const P = style.p`
   display: block;
@@ -76,15 +81,27 @@ const P = style.p`
 `
 
 const Wrapped = style.div`
-  width: 80%;
-  margin: 3em auto;
+  @media ${device.mobileS}{
+    font-size: 0.8em;
+    width: 95%;
+    margin: 0 auto;
+  }
+  @media ${device.laptop}{
+    width: 80%;
+    margin: 3em auto;
+  }
 `
 
 const Section = style.div`
   background: #fff;
+  @media ${device.mobileS}{
+    width: 100%;
+  }
+  @media ${device.laptop}{
   padding: 2em;
   width: ${props => props.column ? '44%' : ''};
   float: left;
+  }
 `
 
 export default Home

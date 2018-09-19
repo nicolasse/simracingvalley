@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { clearStats } from '../../actions/getRace'
 import { connect } from 'react-redux'
+import { device } from '../../device'
 
 class Stats extends Component {
+  state = {
+    hide: true,
+  }
+
+  handleClose(){
+    this.setState({hide: true})
+  }
   render(){
     var stats = this.props.stats || []
     return(
-      <div style={{display: 'block'}}>
-      { stats.length === 0 ?  <Img>select a driver... <img alt='SIM RACING VALLEY' src={require('../../images/logoBlack.png')}/></Img>
+      <Content hide={stats.length === 0}>
+      <ButtonClose onClick={() => this.props.clearStats()}> Back </ButtonClose>
+      { stats.length === 0 ?  <Img><img style={{margin: '50% auto'}}alt='SIM RACING VALLEY' src={require('../../images/logoBlack.png')}/></Img>
       : <Table>
         <Thead>
           <tr>
             <Th>Pos</Th>
-            <Th>Carga</Th>
+            <Th hideOnMobile>Carga</Th>
             <Th>S1</Th>
             <Th>S2</Th>
             <Th>S3</Th>
@@ -23,7 +33,7 @@ class Stats extends Component {
           {stats.map((lap, index) =>
             <Tr key={index}>
               <Td>{lap.position}</Td>
-              <Td>{ lap.fuel }</Td>
+              <Td hideOnMobile>{ lap.fuel }</Td>
               <Td best={lap.bests1}> { lap.s1 }</Td>
               <Td best={lap.bests2}> { lap.s2 }</Td>
               <Td best={lap.bests3}> { lap.s3 }</Td>
@@ -33,7 +43,7 @@ class Stats extends Component {
         </Tbody>
       </Table>
       }
-      </div>
+      </Content>
     )
   }
 }
@@ -42,47 +52,96 @@ const getString = time => {
   return time.search('ALERTA') === -1 ? time :  '--:--:--:---'
 }
 
-const Img = styled.div`
-  float: left;
+const ButtonClose = styled.button`
+  border: 1px solid black;
+  @media ${device.mobileS}{
+    display: block;
+    background: white;
+  }
+  @media ${device.laptop}{
+    display: none;
+  }
+`
+
+const Content = styled.div`
+  @media ${device.mobileS}{
+    display: ${props => props.hide ? 'none' : 'block'}
+    position: absolute;
+  }
+  @media ${device.laptop}{
+    display: block;
+    position: relative
+  }
+  height: 100%;
   width: 100%;
-  margin: auto;
-  background: #7FFFD4
-  display: inline-block;
+  background: white;
+`
+
+const Img = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #7FFFD4;
+  box-sizing: border-box;
+
+  @media ${device.mobileS}{
+    border-left: 0;
+  }
+  @media ${device.laptop}{
+    border-left: 5px solid black;
+  }
 
 `
 const Table = styled.table`
-  display: block;
-  width: 50%;
-  float: left;
-  margin: 0 auto;
   border-collapse: collapse;
+  width: 100%;
+  @media ${device.mobileS}{
+    border-left: 0;
+  }
+  @media ${device.laptop}{
+    border-left: 5px solid black;
+  }
+  box-sizing: border-box;
 `
 const Thead = styled.thead`
-  width: 100%;
   overflow: auto;
   background: #fff;
 `
 
 const Tbody = styled.tbody`
   overflow: auto;
-  margin-top: 50px;
 `
 const Td = styled.td`
   text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 0.5em;
   vertical-align: top;
   color: ${props => props.best ? 'green' : 'black'}
+  font-weight: ${props => props.best ? 'bold' : 'normal'}
+  @media ${device.mobileS}{
+    font-size: ${props => props.hideOnMobile ? '0px' : '1em'};
+  }
+  @media ${device.laptop}{
+    font-size: 1em;
+  }
 `
 const Th = styled.th`
   text-align: ${props => props.center ? 'center' : 'left'};
   padding: 0.8em 0.5em;
+  @media ${device.mobileS}{
+    font-size: ${props => props.hideOnMobile ? '0px' : '1em'}
+  }
+  @media ${device.laptop}{
+    font-size: 1em;
+  }
 
 `
 
 const Tr = styled.tr`
   background: white;
-  border: 1px solid grey;
 `
 const mapStateToProps = state => ({ stats: state.raceReducer.stats })
 
-export default connect(mapStateToProps, null)(Stats)
+const mapDispatchToProps = dispatch => ({
+  clearStats: () => dispatch(clearStats())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stats)

@@ -10,32 +10,44 @@ import Home from '../home'
 import Profile from '../profile'
 import Race from '../race'
 
+import { device } from '../../device'
+
 const logoWhite = require('../../images/logoWhite.png')
 const logoBlack = require('../../images/logoBlack.png')
 
 class NavBar extends Component {
 
   state = {
-    pathname: window.location.pathname
+    visible: false,
+    path: window.location.pathname,
   }
   handleSignIn(e){
     e.preventDefault()
   }
 
+  handleMenu(){
+    this.setState({visible: !this.state.visible})
+  }
+
+  handleChange(){
+    this.setState({path: window.location.pathname, visible: false})
+  }
+
   render() {
-    var logo = this.state.pathname === '/' ? logoBlack : logoWhite
+    var logo = this.state.path === '/' ? logoBlack : logoWhite
     return(
       <Router>
       <div>
-      <Nav>
-        <StyledLink exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
+      <Menu onClick={() => this.handleMenu()}>Menu</Menu>
+      <Nav onClick={() => this.handleChange()} visible={this.state.visible}>
+        <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
         <StyledLink to='/ranking'>Ranking</StyledLink>
-        <StyledLink to='/agenda'>Agenda</StyledLink>
-        <StyledLink to='/resultados'>Resultados</StyledLink>
-        <StyledLink to='/ligasecopas'>Ligas e Copas</StyledLink>
-        <StyledLink to='/social'>Discord & Facebook</StyledLink>
-        <StyledLink to='/equipes'>Equipes</StyledLink>
-        <Steam href='http://localhost:8080/auth/steam'><img alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam>
+      {/*<StyledLink to='/agenda'>Agenda</StyledLink>*/}
+        <StyledLink to='/races/123'>Resultados</StyledLink>
+      {/* <StyledLink to='/ligasecopas'>Ligas e Copas</StyledLink>*/}
+      {/* <StyledLink to='/social'>Discord & Facebook</StyledLink>*/}
+      {/*  <StyledLink to='/equipes'>Equipes</StyledLink>*/}
+        <Steam href='http://localhost:8080/auth/steam'><img style={{float: 'right'}}alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam>
       { /*<StyledLink style={{float: 'right'}} to='/users/19'>Sign In</StyledLink> */ }
       </Nav>
       <Content>
@@ -57,14 +69,36 @@ class NavBar extends Component {
   }
 }
 
+const Menu = styled.button`
+  text-align: right;
+  border: 0;
+  z-index: 2;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 50px;
+  background: #333;
+  color: white;
+  @media ${device.mobileS}{
+  display: block;
+  }
+  @media ${device.laptop}{
+  display: none;
+  }
+`
 const Content = styled.div`
   margin-top: 50px;
-  min-height: 90vh;
+  @media ${device.mobileS}{
+    display: flex;
+  }
 `
 
 const Steam = styled.a`
-  float: right;
-  margin: 8px;
+  float: rigth;
+  display: block;
+  width: 100%;
+  height: 50px;
+  background: #333;
 `
 
 export default NavBar

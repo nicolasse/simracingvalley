@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import style from 'styled-components'
 import Image from './Image'
+import { device } from '../../device'
 
 class Header extends Component {
 
@@ -17,7 +18,12 @@ class Header extends Component {
 
 const AnimatedText = style.h1`
   position: absolute;
-  font-size: ${props => props.small ? '20px' : '70px'};
+  @media ${device.mobileS}{
+    font-size: ${props => props.small ? '0.9em' : '1.2em'};
+  }
+  @media ${device.laptop}{
+    font-size: ${props => props.small ? '20px' : '70px'};
+  }
   color: white;
   text-align: center;
   left: 50%;
@@ -29,7 +35,12 @@ const Content = style.div`
   position: relative;
   margin:  0vw auto 0 auto;
   width: 100%;
-  height: 50vh;
+  @media ${device.mobileS}{
+    height: 30vh;
+  }
+  @media ${device.laptop}{
+    height: 50vh;
+  }
 `
 
 export default Header
