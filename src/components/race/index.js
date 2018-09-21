@@ -118,6 +118,7 @@ const mapDispatchToProps = dispatch => ({
 })
 */
 const mapDispatchToProps = dispatch => ({
-  fetchRace: (id) => dispatch(fetchRace(id))
+  fetchRace: (id) => dispatch(fetchRace(id)),
+  clearStats: () => dispatch(clearStats()),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Race)

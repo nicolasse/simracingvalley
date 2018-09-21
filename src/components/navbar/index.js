@@ -47,7 +47,7 @@ class NavBar extends Component {
       {/* <StyledLink to='/ligasecopas'>Ligas e Copas</StyledLink>*/}
       {/* <StyledLink to='/social'>Discord & Facebook</StyledLink>*/}
       {/*  <StyledLink to='/equipes'>Equipes</StyledLink>*/}
-        <Steam href='http://localhost:8080/auth/steam'><img style={{float: 'right'}}alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam>
+        <Steam href='http://localhost:8080/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam>
       { /*<StyledLink style={{float: 'right'}} to='/users/19'>Sign In</StyledLink> */ }
       </Nav>
       <Content>
@@ -94,11 +94,18 @@ const Content = styled.div`
 `
 
 const Steam = styled.a`
-  float: rigth;
-  display: block;
+  @media ${device.mobileS}{
   width: 100%;
-  height: 50px;
+  text-align: center;
+  }
+  @media ${device.laptop}{
+    float: right;
+    width: 180px; 
+  }
+  display: inline-block;
+  height: 30px;
   background: #333;
+  padding: 10px;
 `
 
 export default NavBar
