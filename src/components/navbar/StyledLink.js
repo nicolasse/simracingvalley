@@ -23,9 +23,6 @@ const StyledLink = style(NavLink)`
   color: black;
   }
   display: ${ props => props.home ? 'block' : 'flex' }
-  @media ${device.mobileM}{
-    
-  }
   @media ${device.laptop}{
   float: left;
   }
