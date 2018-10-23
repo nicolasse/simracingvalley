@@ -12,7 +12,8 @@ class Race extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchRace( 123 )
+    let raceId = this.props.id
+    this.props.fetchRace( raceId )
   }
 
   eventFilter(e){
@@ -104,21 +105,17 @@ const Wrapper = styled.div`
 `
 const mapStateToProps = state => ({ race: state.raceReducer.race })
 
-/*
+
 const mapDispatchToProps = dispatch => ({
   fetchRace: ( id ) => {
     dispatch( fetchRace( id )).then((response) => {
       !response.error ?
-        dispatch(fetchRaceSuccess( response.payload.data.race ))
+        dispatch(fetchRaceSuccess( response.payload.data ))
         : dispatch( fetchRaceFailure( response.payload.data ) )
     })
     .catch( err => console.error(err) )
   },
   clearStats: () => dispatch(clearStats())
 })
-*/
-const mapDispatchToProps = dispatch => ({
-  fetchRace: (id) => dispatch(fetchRace(id)),
-  clearStats: () => dispatch(clearStats()),
-})
+
 export default connect(mapStateToProps, mapDispatchToProps)(Race)

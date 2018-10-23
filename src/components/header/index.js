@@ -33,8 +33,8 @@ const AnimatedText = style.h1`
 `
 const Content = style.div`
   position: relative;
+  width: 100%
   margin:  0vw auto 0 auto;
-  width: 100%;
   @media ${device.mobileS}{
     height: 30vh;
   }

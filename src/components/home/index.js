@@ -12,7 +12,7 @@ class Home extends Component {
 
   render (){
     return(
-    <div>
+    <div style={{width: '100%', background: 'white'}}>
       <Header
         title='Participe de corridas'
         text='TODOS OS DIAS'

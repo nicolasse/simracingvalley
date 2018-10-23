@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchRanking, fetchRankingSuccess, fetchRankingFailure } from '../../actions/getRanking'
+import { toggleLoading } from '../../actions/navbarActions'
 import style from 'styled-components'
 import { device } from '../../device'
 
@@ -11,6 +12,12 @@ class Ranking extends Component {
   componentWillMount() {
     if(this.props.state.rank.length === 0) {
       this.props.fetchRanking()
+    }
+  }
+
+  componentDidMount(){
+    if(this.props.state.rank.length > 0){
+      this.props.toggleLoading()
     }
   }
 
@@ -36,7 +43,7 @@ class Ranking extends Component {
         { this.props.state.rank.map((driver, index) =>
           <Tr key={ driver.id }>
             <Td> { index + 1 }</Td>
-            <Td><UserLink to={'users/' + driver.id}> { driver.Name }</UserLink> </Td>
+            <Td><UserLink to={'drivers/' + driver.id}> { driver.Name }</UserLink> </Td>
             <Td right> { driver.Points } </Td>
             <Td right hide> { driver.First } </Td>
             <Td right hide> { driver.Second } </Td>
@@ -66,6 +73,7 @@ const mapDispatchToProps = dispatch => ({
   })
     .catch(err => console.error(err))
   },
+  toggleLoading: () => dispatch(toggleLoading())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking)

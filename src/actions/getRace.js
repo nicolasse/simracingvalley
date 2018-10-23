@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import race from '../example.js' 
+//import race from '../example.js' 
 
 export const FETCH_RACE = 'FETCH_RACE'
 export const FETCH_RACE_SUCCESS = 'FETCH_RACE_SUCCESS'
@@ -18,7 +18,7 @@ export const fetchRace = ( id ) => {
   })
   return {
     type: FETCH_RACE,
-    payload: race,
+    payload: request,
   }
 }
 

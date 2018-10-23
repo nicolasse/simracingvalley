@@ -20,9 +20,8 @@ const raceReducer = (state = INITIAL_STATE, action) => {
   let error
   switch(action.type) {
     case FETCH_RACE:
-      console.log(action.payload)
-      //return { ...state, race: {practice: [], }, error: null, loading: true }
-      return{...state, race: action.payload.race, error: null, loading: false}
+      return { ...state, error: null, loading: true }
+      //return{...state, race: action.payload.race, error: null, loading: false}
     case FETCH_RACE_SUCCESS:
       return { ...state, race: action.payload, error: null, loading: false }
     case FETCH_RACE_FAILURE:
