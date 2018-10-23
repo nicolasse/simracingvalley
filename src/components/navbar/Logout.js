@@ -1,9 +1,9 @@
 import style from 'styled-components'
 
-const Login = style.div`
+const Logout = style.a`
   float: right;
   display: inline-block;
   vertical-align: middle;
 `
 
-export default Login
+export default Logout

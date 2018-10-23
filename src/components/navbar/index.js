@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { toggleLoading } from '../../actions/navbarActions'
+import { logout } from '../../actions/userActions'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Nav from './Nav'
 import StyledLink from './StyledLink'
 import Logo from './Logo'
+import Logout from './Logout'
 import styled from 'styled-components'
 
 import Ranking from '../ranking'
 import Home from '../home'
 import Profile from '../profile'
+import RaceContainer from '../raceContainer'
 import Race from '../race'
+import UserForm from '../userForm'
 
 import { device } from '../../device'
 
@@ -21,8 +27,18 @@ class NavBar extends Component {
     visible: false,
     path: window.location.pathname,
   }
+
+  componentWillMount() {
+    this.props.toggleLoading()
+  }
+
   handleSignIn(e){
     e.preventDefault()
+  }
+
+  handleLogout(){
+    this.props.logout()
+    window.location.assign('/')
   }
 
   handleMenu(){
@@ -31,10 +47,12 @@ class NavBar extends Component {
 
   handleChange(){
     this.setState({path: window.location.pathname, visible: false})
+    this.props.toggleLoading()
   }
 
   render() {
-    var logo = this.state.path === '/' ? logoBlack : logoWhite
+    let logo = this.state.path === '/' ? logoBlack : logoWhite
+    let isHide = this.props.user.logged ? 'none' : 'block'
     return(
       <Router>
       <div>
@@ -42,25 +60,34 @@ class NavBar extends Component {
       <Nav onClick={() => this.handleChange()} visible={this.state.visible}>
         <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
         <StyledLink to='/ranking'>Ranking</StyledLink>
-      {/*<StyledLink to='/agenda'>Agenda</StyledLink>*/}
-        <StyledLink to='/races/123'>Resultados</StyledLink>
-      {/* <StyledLink to='/ligasecopas'>Ligas e Copas</StyledLink>*/}
-      {/* <StyledLink to='/social'>Discord & Facebook</StyledLink>*/}
-      {/*  <StyledLink to='/equipes'>Equipes</StyledLink>*/}
-        <Steam href='http://localhost:8080/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam>
-      { /*<StyledLink style={{float: 'right'}} to='/users/19'>Sign In</StyledLink> */ }
+        <StyledLink to='/races'>Resultados</StyledLink>
+        { this.props.user.logged ?
+          <React.Fragment>
+            <StyledLink to={'/drivers/' + this.props.user.userId}> {this.props.user.username}</StyledLink>
+            <StyledLink
+              style={{ float: 'right' }}
+              to='/'
+              onClick={() => this.handleLogout()}
+            >
+                Logout
+            </StyledLink>
+          </React.Fragment>
+        :
+          <Steam href='http://localhost:8080/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam> 
+        }
       </Nav>
       <Content>
       <Switch>
         <Route exact path='/' component={ Home } />
         <Route path='/ranking' component={ Ranking } />
-        <Route path='/agenda' component={ Home } />
         <Route path='/resultados' component={ Home } />
         <Route path='/ligasecopas' component={ Home } />
         <Route path='/social' component={ Home } />
         <Route path='/equipes' component={ Home } />
-        <Route path='/users/:id' component={ Profile } />
-        <Route path='/races/123' component={Race} />
+        <Route path='/drivers/:id' render={({match}) => (<Profile id={match.params.id}/>) } />
+        <Route exact path='/races' component={ RaceContainer } />
+        <Route path='/races/:id' render={({match}) => (<Race id={match.params.id} />)} />
+        <Route path='/users/:id' render={() => (this.props.user.logged ? <UserForm /> : <Home />)} />
       </Switch>
       </Content>
       </div>
@@ -100,7 +127,7 @@ const Steam = styled.a`
   }
   @media ${device.laptop}{
     float: right;
-    width: 180px; 
+    width: 180px;
   }
   display: inline-block;
   height: 30px;
@@ -108,4 +135,11 @@ const Steam = styled.a`
   padding: 10px;
 `
 
-export default NavBar
+const mapStateToProps = state => ({ loading: state.navbarReducer.loading, user: state.userReducer })
+
+const mapDispatchToProps = dispatch => ({
+  toggleLoading: () => dispatch(toggleLoading()),
+  logout: () => dispatch(logout())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

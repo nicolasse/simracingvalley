@@ -49,7 +49,7 @@ const Foot = style.footer`
     font-size: 0.6em;
   }
   @media ${device.laptop}{
-    font-size: 0.9em;
+    font-size: 0.75em;
   }
 `
 const CopyRight = style.div`

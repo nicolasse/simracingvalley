@@ -9,7 +9,7 @@ class Popup extends Component {
   }
 
   handleClick = event => {
-    this.setState({visible: !this.state.visible})
+    this.setState({visible: true})
   }
 
   closePopup = event => {
@@ -18,11 +18,11 @@ class Popup extends Component {
 
   render(){
     const TextToShow = this.props.innerComponent
-    const popup = (this.state.visible ? <Container><Inner><Button onClick={this.closePopup}>X</Button><TextToShow /></Inner></Container> : null)
+    const popup = (this.state.visible ? <Container><Inner><Button onClick={() => this.closePopup()}>X</Button><TextToShow /></Inner></Container> : null)
     return(
-      <div onClick={ this.handleClick }>
+      <div>
       {popup}
-      {this.props.title}
+      <span onClick={this.handleClick}>{this.props.title}</span>
       </div>
     )
   }
@@ -52,7 +52,8 @@ const Container = style.div`
   margin:  auto;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.5)
+  background: rgba(0, 0, 0, 0.5);
+  cursor: default;
 `
 const Inner = style.div`
   position: absolute;
