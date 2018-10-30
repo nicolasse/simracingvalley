@@ -9,7 +9,8 @@ export const SELECT_STATS = 'SELECT_STATS'
 export const CLEAR_STATS = 'CLEAR_STATS' 
 
 
-const ROOT_URL = 'http://localhost:8080'
+//const ROOT_URL = 'http://localhost:8080'
+const ROOT_URL = 'HTTP://192.168.0.12:8080'
 
 export const fetchRace = ( id ) => {
   const request = axios({

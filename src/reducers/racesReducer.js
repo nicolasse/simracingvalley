@@ -5,6 +5,7 @@ import {
 } from '../actions/getRaces'
 
 const INITIAL_STATE = {
+  pages: 0,
   races: [],
   error: null,
   loading: false,
@@ -16,7 +17,7 @@ const racesReducer = (state = INITIAL_STATE, action) => {
     case FETCH_RACES:
       return { ...state, races: [], error: null, loading: true }
     case FETCH_RACES_SUCCESS:
-      return { ...state, races: action.payload, error: null, loading: false }
+      return { ...state, races: action.payload.races, pages: action.payload.pages, error: null, loading: false }
     case FETCH_RACES_FAILURE:
       error = action.payload || { message: action.payload.message }
       return { ...state, races: [], error: error, loading: false }

@@ -108,9 +108,11 @@ const Thead = styled.thead`
 `
 
 const Tbody = styled.tbody`
+
   overflow: auto;
 `
 const Td = styled.td`
+  box-sizing: border-box;
   text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 0.5em;
   vertical-align: top;

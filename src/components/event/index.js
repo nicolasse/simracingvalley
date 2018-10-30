@@ -6,12 +6,20 @@ import styled from 'styled-components'
 
 class Event extends Component {
 
+  getQualyPos = (steamID) => {
+    let player = this.props.race.qualify.find( player => {
+      return player.steamID === steamID
+    } )
+    return player ? player.position : ''
+  }
+
   render() {
     return(
       <Table>
         <Thead>
           <tr>
             <Th>Pos</Th>
+            <Th hide={!this.props.isRace}>Grid</Th>
             <Th>Piloto</Th>
             <Th>Voltas</Th>
             <Th hide={!this.props.isRace}>Incidents</Th>
@@ -23,7 +31,8 @@ class Event extends Component {
        {this.props.event.map((result, index) =>
          <Tr key={index} onClick={() => this.props.selectStats(result.laps)} >
           <Td>{ result.position }</Td>
-          <Td><UserLink to={'../users/' + result.userid}>{ result.driver }</UserLink></Td>
+          <Td hide={!this.props.isRace}>{ this.getQualyPos(result.steamID) }</Td>
+          <Td><UserLink to={'../drivers/' + result.userid}>{ result.driver }</UserLink></Td>
           <Td>{ result.laps.length }</Td>
           <Td hide={!this.props.isRace}> {result.incidents}</Td>
          {this.props.isRace ? <Td> { result.fulltime } </Td>

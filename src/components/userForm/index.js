@@ -60,8 +60,6 @@ class UserForm extends Component {
     for(let key in STATES){
       arr[key] = STATES[key]
     }
-    console.log(STATES)
-    console.log(arr)
     return arr
   }
 
@@ -71,38 +69,50 @@ class UserForm extends Component {
       <h1>Bem vindo {this.props.user.username}!</h1>
         <Inner>
           <Form onSubmit= {this.handleSubmit}>
-              <Field>Email
-            *<Input name='email' placeholder='example@my-email.com' type='text' required onChange={this.handleChange} />
+              <Field>
+             <Text> Email*</Text>
+            <Input name='email' placeholder='example@my-email.com' type='text' required onChange={this.handleChange} />
               </Field>
-              <Field>Nome
-            *<Input name='name' type='text' required onChange={this.handleChange}/>
+              <Field>
+              <Text>Nome*</Text>
+            <Input name='name' type='text' required onChange={this.handleChange}/>
               </Field>
-              <Field>Sobrenome
-            *<Input name='lastname' type='text' required onChange={this.handleChange}/>
+              <Field>
+             <Text>Sobrenome*</Text>
+            <Input name='lastname' type='text' required onChange={this.handleChange}/>
               </Field>
-              <Field>Sobre Você
+              <Field>
+              <Text>Sobre Você</Text>
              <Input name='about' type='text' onChage={this.handleChange} />
               </Field>
-              <Field>Frase do Perfil
-            <Input name='phrase' type='text' onChange={this.handleChange}/>
+              <Field>
+              <Text>Frase do Perfil</Text>
+              <Input name='phrase' type='text' onChange={this.handleChange}/>
               </Field>
-              <Field>Sexo
-            <Input name='sex' type='text' onChange={this.handleChange}/>
+              <Field>
+              <Text>Sexo</Text>
+            <Select name='sex' onChange={this.handleChange}>
+              <option key='m' value='M'>Homem</option>
+              <option key='f' value='F'>Mulher</option>
+            </Select>
               </Field>
-              <Field>Data de Nascimento
+              <Field>
+              <Text>Data de Nascimento</Text>
             <Input name='birthday' type='date' onChange={this.handleChange}/>
               </Field>
-              <Field>Estado
+              <Field>
+              <Text>Estado</Text>
               <Select name='state' onChange={this.handleChange}>
                 {
                   
-                  STATES.map(state => {
-                    return <option value={state.value} >{state.name}</option>
+                  STATES.map((state, index) => {
+                    return <option key={index} value={state.value} >{state.name}</option>
                   })
                 }
               </Select>
               </Field>
-              <Field>Cidade
+              <Field>
+              <Text>Cidade</Text>
             <Input name='city' type='text' onChange={this.handleChange}/>
               </Field>
             <Button  value='Entrar'/>
@@ -113,56 +123,59 @@ class UserForm extends Component {
   }
 }
 
-const Field = style.label`
-  text-size: 1em;
+const Field = style.div`
+  margin: 0.5em;
+  display: flex;
+  flex: 30%;
+  flex-direction: column;
+`
+const Text = style.label`
+  text-size: 20px;
   color: black;
-  flex: 40%;
 `
 
 const Wrapper = style.div`
   margin: 0;
   width: 100%;
-  heigth: 100%;
   top: 0;
 `
 
 const Inner = style.div`
   margin: 0 auto;
-  display: flex;
 `
 
 const Form = style.form`
   padding: 5em;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 `
 const Input = style.input`
-  font-size: 1.2em;
-  padding: 0.5em;
+  font-size: 20px;
+  padding: 10px;
   margin: 0.5em;
   color: #333;
   border: 1px solid black;
   border-radius: 3px;
 `
 const Select = style.select`
-  font-size: 1.2em;
-  padding: 0.5em;
+  font-size: 20px;
+  padding: 10px;
   margin: 0.5em
   color: #333;
   background: white;
   border: 1px solid black;
   border-radius: 3px;
-  flex: 30%;
+
 `
 const Button = style.input.attrs({type: 'submit'})`
   color: #fff;
   background: #337ab7;
   border: 1px solid black;
-  padding: 0.5em;
-  margin: 0.5em;
+  padding: 10px;
+  margin: 0.5em auto;;
   border-radius: 3px;
   font-size: 1.2em;
-  flex: 30%;
+  width: 200px;
 `
 const mapStateToProps = state => ({ user: state.userReducer })
 
