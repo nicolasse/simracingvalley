@@ -5,27 +5,39 @@ import { fetchRanking, fetchRankingSuccess, fetchRankingFailure } from '../../ac
 import { toggleLoading } from '../../actions/navbarActions'
 import style from 'styled-components'
 import { device } from '../../device'
+import Paginator from '../paginator'
+import { Table, Thead, Tbody, Td, Th, Tr  } from '../commons/table/index.js'
 
 
 class Ranking extends Component {
-
-  componentWillMount() {
-    if(this.props.state.rank.length === 0) {
-      this.props.fetchRanking()
-    }
+  state= {
+    actualPage: 0,
   }
 
+  componentWillMount() {
+    /*if(this.props.state.rank.length === 0) {
+      this.props.fetchRanking()
+    }*/
+    this.props.fetchRanking(0)
+  }
+
+  handleClick = page => {
+    this.props.fetchRanking(page)
+    this.setState({actualPage: page})
+  }
+/*
   componentDidMount(){
     if(this.props.state.rank.length > 0){
       this.props.toggleLoading()
     }
   }
-
+*/
   render() {
     return(
+      <React.Fragment>
       <Table>
         <Thead>
-        <tr>
+        <Tr style={{background: 'white'}}>
           <Th>#</Th>
           <Th>Nome</Th>
           <Th>Pontos</Th>
@@ -37,12 +49,12 @@ class Ranking extends Component {
           <Th>Corridas</Th>
           <Th>Incidentes</Th>
           <Th center hide>Classe</Th>
-        </tr>
+        </Tr>
         </Thead>
         <Tbody>
         { this.props.state.rank.map((driver, index) =>
           <Tr key={ driver.id }>
-            <Td> { index + 1 }</Td>
+            <Td> { (this.state.actualPage * 20) + index + 1 }</Td>
             <Td><UserLink to={'drivers/' + driver.id}> { driver.Name }</UserLink> </Td>
             <Td right> { driver.Points } </Td>
             <Td right hide> { driver.First } </Td>
@@ -58,6 +70,8 @@ class Ranking extends Component {
         }
         </Tbody>
       </Table>
+      <Paginator selectPage={this.handleClick} pages={this.props.state.pages} />
+</React.Fragment>
     )
   }
 }
@@ -65,10 +79,10 @@ class Ranking extends Component {
 const mapStateToProps = state => ({state: state.rankingReducer})
 
 const mapDispatchToProps = dispatch => ({
-  fetchRanking: () => {
-    dispatch( fetchRanking() ).then((response) => {
+  fetchRanking: (page) => {
+    dispatch( fetchRanking(page) ).then((response) => {
       !response.error ?
-        dispatch(fetchRankingSuccess( sortRank(response.payload.data )))
+        dispatch(fetchRankingSuccess(response.payload.data ))
         : dispatch(fetchRankingFailure( response.payload.data ))
   })
     .catch(err => console.error(err))
@@ -79,6 +93,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking)
 
 const Img = style.img`
+  width: 300px;
   @media ${device.mobileS}{
     display: ${props => props.hide ? 'none' : 'inline'}
   }
@@ -86,68 +101,7 @@ const Img = style.img`
   display: block;
   }
 `
-const Table = style.table`
-  border-collapse: collapse;
-  margin: 0 auto;
-  @media ${device.mobileS}{
-    width: 100%;
-  }
-  @media ${device.laptop}{
-    width: 75%;
-  }
-`
-
-const Thead = style.thead`
-  width: 100%
-  overflow: auto;
-  background: #fff;
-`
-
-const Tbody = style.tbody`
-  overflow: auto;
-  margin-top: 50px;
-`
-
-const Td = style.td`
-  text-align: ${props => props.right ? 'right' : 'left'};
-  padding: 0.8em 1em;
-  vertical-align: top;
-  @media ${device.mobileS}{
-    ${props => props.hide ? 'font-size: 0px' : 'font-size: 0.8em'};
-    padding: 0.3em 0.3em;
-  }
-  @media ${device.laptop}{
-    font-size: 1em;
-    padding: 0.5em 0.8em;
-  }
-
-`
-const Th = style.th`
-  text-align: ${props => props.center ? 'center' : 'left'};
-  padding: 0.8em 1em;
-  @media ${device.mobileS}{
-    ${props => props.hide ? 'font-size: 0px' : 'font-size: 0.8em'};
-    padding: 0.3em 0.3em;
-  }
-  @media ${device.laptop}{
-    font-size: 1em;
-    padding: 0.5em 0.8em;
-  }
-
-`
-
-const Tr = style.tr`
-  background: white;
-  &:nth-child(odd){
-  background: #f2f2f2;
-  }
-`
-
 const UserLink = style(Link)`
   color: black
   text-decoration: none
 `
-//this must be deleted when api return us a ordered list
-const sortRank = rank => {
-  return rank.slice().sort((a, b) => b.Points - a.Points)
-}

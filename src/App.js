@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import cookie from 'react-cookies'
-import NavBar from './components/navbar'
+import Content from './components/content'
 import Footer from './components/footer'
 import { login } from './actions/userActions'
 
@@ -22,10 +22,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <NavBar />
+      <React.Fragment>
+        <Content />
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }

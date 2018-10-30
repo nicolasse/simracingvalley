@@ -11,7 +11,7 @@ class Race extends Component {
     filter: 'practice',
   }
 
-  componentWillMount(){
+  componentDidMount(){
     let raceId = this.props.id
     this.props.fetchRace( raceId )
   }
@@ -30,7 +30,8 @@ class Race extends Component {
       <Content>
         <Col>
        <Title>{ this.state.filter.toUpperCase() }</Title>
-       <Event event={sortGrid(this.props.race[this.state.filter])} isRace={this.state.filter === 'race'}/>
+
+      <Event event={sortGrid(this.props.race[this.state.filter])} isRace={this.state.filter === 'race'}/>
         </Col>
         <Col>
           <Title hideOnMobile>STATS</Title>
@@ -43,7 +44,7 @@ class Race extends Component {
 }
 
 const sortGrid = (event) => {
-  return event.slice().sort(( a, b ) => a.position > b.position)
+  return event.slice().sort(( a, b ) => a.position - b.position)
 }
 
 const Content = styled.div`
@@ -103,7 +104,7 @@ const Wrapper = styled.div`
   }
   margin: 0 auto;
 `
-const mapStateToProps = state => ({ race: state.raceReducer.race })
+const mapStateToProps = state => ({ race: state.raceReducer.race, loading: state.raceReducer.loading })
 
 
 const mapDispatchToProps = dispatch => ({

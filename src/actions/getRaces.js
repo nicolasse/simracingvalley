@@ -5,12 +5,13 @@ export const FETCH_RACES_SUCCESS = 'FETCH_RACES_SUCCESS'
 export const FETCH_RACES_FAILURE = 'FETCH_RACES_FAILURE'
 
 //const ROOT_URL = 'http://simracingvalley.us-east-2.elasticbeanstalk.com'
-const ROOT_URL = 'http://localhost:8080'
+//const ROOT_URL = 'http://localhost:8080'
+const ROOT_URL = 'HTTP://192.168.0.12:8080'
 
-export const fetchRaces = () => {
+export const fetchRaces = (page) => {
   const request = axios({
     method: 'GET',
-    url: `${ROOT_URL}/races`
+    url: `${ROOT_URL}/races/page/${page}`
   })
   return {
     type: FETCH_RACES,

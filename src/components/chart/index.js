@@ -1,13 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import {
-  fetchHistoric,
-  fetchHistoricSuccess,
-  fetchHistoricFailure,
-  fetchIncidents,
-  fetchIncidentsSuccess,
-  fetchIncidentsFailure,
-} from '../../actions/driverActions'
 import { Radar, Line } from 'react-chartjs-2'
 import styled from 'styled-components'
 
@@ -15,12 +6,6 @@ import styled from 'styled-components'
 const radarLabels = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', 'Poles']
 
 class Chart extends Component {
-
-  componentDidMount(){
-    let steamID = this.props.steamID
-    this.props.fetchHistoric(steamID)
-    this.props.fetchIncidents(steamID)
-  }
 
   datasetKeyProvider(){ return Math.random();  }
 
@@ -54,7 +39,7 @@ class Chart extends Component {
               />
               <br />
               <br />
-              <Line 
+                 <Line 
                 data={
                   {
                     labels: driver.ratingHistoric.labels,
@@ -75,7 +60,6 @@ class Chart extends Component {
                     yAxes: [{
                       ticks: {
                         beginAtZero: true,
-                        stepSize: 1,
                       }
                     }]
                   }
@@ -99,7 +83,6 @@ class Chart extends Component {
                     yAxes: [{
                       ticks: {
                         beginAtZero: true,
-                        stepSize: 1,
                       }
                     }]
                   }
@@ -126,19 +109,4 @@ const jsonToArray = obj => {
   return arr
 }
 
-const mapStateToProps = state => ({ driver: state.driverReducer.driver })
-const mapDispatchToProps = dispatch => ({
-  fetchHistoric: (steamID) => { dispatch(fetchHistoric(steamID)).then((response) => {
-    !response.error ?
-      dispatch(fetchHistoricSuccess(response.payload.data))
-      :dispatch(fetchHistoricFailure(response.payload.data))
-  })
-  .catch(err => console.error(err))},
-  fetchIncidents: (steamID) => { dispatch(fetchIncidents(steamID)).then((response) => {
-    !response.error ?
-      dispatch(fetchIncidentsSuccess(response.payload.data))
-      :dispatch(fetchIncidentsFailure(response.payload.data))
-  }).catch(err => console.error(err)) }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Chart)
+export default Chart

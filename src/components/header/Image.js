@@ -4,6 +4,8 @@ const Image = style.img`
   width: 100%;
   object-fit: cover;
   height: 100%;
+  
+
 `
 
 

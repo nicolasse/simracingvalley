@@ -10,6 +10,7 @@ const Nav = style.nav`
   @media ${device.mobileS}{
     display: ${props => props.visible ? 'block' : 'none'}
     top: 50px;
+
   }
   @media ${device.laptop}{
     display: block;

@@ -2,19 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { toggleLoading } from '../../actions/navbarActions'
 import { logout } from '../../actions/userActions'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Nav from './Nav'
 import StyledLink from './StyledLink'
 import Logo from './Logo'
-import Logout from './Logout'
 import styled from 'styled-components'
-
-import Ranking from '../ranking'
-import Home from '../home'
-import Profile from '../profile'
-import RaceContainer from '../raceContainer'
-import Race from '../race'
-import UserForm from '../userForm'
 
 import { device } from '../../device'
 
@@ -52,13 +43,11 @@ class NavBar extends Component {
 
   render() {
     let logo = this.state.path === '/' ? logoBlack : logoWhite
-    let isHide = this.props.user.logged ? 'none' : 'block'
     return(
-      <Router>
       <div>
       <Menu onClick={() => this.handleMenu()}>Menu</Menu>
       <Nav onClick={() => this.handleChange()} visible={this.state.visible}>
-        <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
+      <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
         <StyledLink to='/ranking'>Ranking</StyledLink>
         <StyledLink to='/races'>Resultados</StyledLink>
         { this.props.user.logged ?
@@ -76,22 +65,7 @@ class NavBar extends Component {
           <Steam href='http://localhost:8080/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam> 
         }
       </Nav>
-      <Content>
-      <Switch>
-        <Route exact path='/' component={ Home } />
-        <Route path='/ranking' component={ Ranking } />
-        <Route path='/resultados' component={ Home } />
-        <Route path='/ligasecopas' component={ Home } />
-        <Route path='/social' component={ Home } />
-        <Route path='/equipes' component={ Home } />
-        <Route path='/drivers/:id' render={({match}) => (<Profile id={match.params.id}/>) } />
-        <Route exact path='/races' component={ RaceContainer } />
-        <Route path='/races/:id' render={({match}) => (<Race id={match.params.id} />)} />
-        <Route path='/users/:id' render={() => (this.props.user.logged ? <UserForm /> : <Home />)} />
-      </Switch>
-      </Content>
       </div>
-      </Router>
     )
   }
 }
@@ -113,13 +87,6 @@ const Menu = styled.button`
   display: none;
   }
 `
-const Content = styled.div`
-  margin-top: 50px;
-  @media ${device.mobileS}{
-    display: flex;
-  }
-`
-
 const Steam = styled.a`
   @media ${device.mobileS}{
   width: 100%;
