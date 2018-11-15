@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { clearStats, fetchRace, fetchRaceSuccess, fetchRaceFailure } from '../../actions/getRace'
+import { clearStats, fetchRace } from '../../actions/getRace'
 import Event from '../event'
 import Stats from '../stats'
 import { device } from '../../device'
 
 class Race extends Component {
   state = {
-    filter: 'practice',
+    filter: 'race',
+    loading: true,
   }
 
   componentDidMount(){
@@ -21,17 +22,24 @@ class Race extends Component {
     this.props.clearStats()
   }
 
+  sortGrid = (event) => {
+    return event.slice().sort(( a, b ) => a.position - b.position)
+  }
+
   render() {
+    let state = this.props.state
     return(
       <Wrapper>
-      <ButtonEvent onClick={() => this.eventFilter('practice')}>Practice</ButtonEvent>
-      <ButtonEvent onClick={() => this.eventFilter('qualify')}>Qualify</ButtonEvent>
-      <ButtonEvent onClick={() => this.eventFilter('race')}>Race</ButtonEvent>
-      <Content>
+        <ButtonEvent onClick={() => this.eventFilter('race')}>Race</ButtonEvent>
+        <ButtonEvent onClick={() => this.eventFilter('qualify')}>Qualify</ButtonEvent>
+        <ButtonEvent onClick={() => this.eventFilter('practice')}>Practice</ButtonEvent>
+        <Content>
         <Col>
        <Title>{ this.state.filter.toUpperCase() }</Title>
 
-      <Event event={sortGrid(this.props.race[this.state.filter])} isRace={this.state.filter === 'race'}/>
+      { state.loading ? 'loading':
+      <Event event={this.sortGrid(state.race[this.state.filter])} isRace={this.state.filter === 'race'}/>
+      }
         </Col>
         <Col>
           <Title hideOnMobile>STATS</Title>
@@ -43,9 +51,6 @@ class Race extends Component {
   }
 }
 
-const sortGrid = (event) => {
-  return event.slice().sort(( a, b ) => a.position - b.position)
-}
 
 const Content = styled.div`
   width: 100%;
@@ -99,22 +104,17 @@ const Wrapper = styled.div`
     font-size: 0.7em;
   }
   @media ${device.laptop}{
-    width: 75%;
+    width: 100%;
     font-size: 1em;
   }
   margin: 0 auto;
 `
-const mapStateToProps = state => ({ race: state.raceReducer.race, loading: state.raceReducer.loading })
+const mapStateToProps = state => ({ state: state.raceReducer })
 
 
 const mapDispatchToProps = dispatch => ({
   fetchRace: ( id ) => {
-    dispatch( fetchRace( id )).then((response) => {
-      !response.error ?
-        dispatch(fetchRaceSuccess( response.payload.data ))
-        : dispatch( fetchRaceFailure( response.payload.data ) )
-    })
-    .catch( err => console.error(err) )
+    dispatch( fetchRace( id ))
   },
   clearStats: () => dispatch(clearStats())
 })

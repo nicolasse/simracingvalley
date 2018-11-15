@@ -1,5 +1,5 @@
 import {
-  FETCH_DRIVER,
+  FETCH_DRIVER_STARTED,
   FETCH_DRIVER_SUCCESS,
   FETCH_DRIVER_FAILURE,
 } from '../actions/driverActions'
@@ -30,7 +30,11 @@ const INITIAL_STATE = {
     incidentsHistoric: {
       labels: [],
       datasets: []
-    }
+    },
+    rankingHistoric: {
+      labels: [],
+      datasets: [],
+    },
   },
   error: null,
   loading: false,
@@ -39,7 +43,7 @@ const INITIAL_STATE = {
 const driverReducer = ( state = INITIAL_STATE, action ) => {
   let error
   switch(action.type) {
-    case FETCH_DRIVER:
+    case FETCH_DRIVER_STARTED:
       return { ...state, error: null, loading: true }
     case FETCH_DRIVER_SUCCESS:
       return {  driver:{...action.payload.driverStats}, error: null, loading: false}

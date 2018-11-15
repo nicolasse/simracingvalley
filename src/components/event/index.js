@@ -3,8 +3,14 @@ import { connect } from 'react-redux'
 import { selectStats } from '../../actions/getRace'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { device } from '../../device'
+import { mainColor, boldColor } from '../commons/style'
 
 class Event extends Component {
+
+  state = {
+    hide: false,
+  }
 
   getQualyPos = (steamID) => {
     let player = this.props.race.qualify.find( player => {
@@ -12,6 +18,7 @@ class Event extends Component {
     } )
     return player ? player.position : ''
   }
+
 
   render() {
     return(
@@ -84,12 +91,12 @@ const Td  = styled.td`
   text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 0.5em;
   vertical-align: top;
-  display: ${props => props.hide ? 'none' :  ''}
+  ${props => props.hide ? 'display: none' :  ''}
 `
 const Th = styled.th`
   text-align: ${props => props.center ? 'center' : 'left'};
   padding: 0.8em 0.5em;
-  display: ${props => props.hide ? 'none' :  ''}
+  ${props => props.hide ? 'display: none' :  ''}
 
 `
 
@@ -99,7 +106,7 @@ const Tr = styled.tr`
   background: #f2f2f2;
   }
   &:hover{
-  background: #7FFFD4;
+  background: ${ mainColor };
   color: white;
   }
 `

@@ -4,24 +4,32 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import {
   fetchDriver,
-  fetchDriverSuccess,
-  fetchDriverFailure,
 } from '../../actions/driverActions'
 import Chart from '../chart'
 import { STATES } from '../../statesBr'
+import { device } from '../../device'
+import { mainColor } from '../commons/style'
 
+const gender = {
+  M: 'Homem',
+  F: 'Mulher'
+}
 
 class Profile extends Component{
 
-  componentDidMount(){
-    let driverId = this.props.id
-    this.props.fetchDriver(driverId)
+  componentWillMount(){
+    this.props.fetchDriver(this.props.id)
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.id !== prevProps.id){
+      this.props.fetchDriver(this.props.id)
+    }
   }
 
   render(){
     let driver = this.props.driver
     let user = this.props.user
-    console.log(driver)
     return(
       <Wrapper>
         <ProfileBox>
@@ -42,7 +50,7 @@ class Profile extends Component{
               <Tbody>
                 <tr>
                   <Td>{ driver.points }</Td> 
-                  <Td> {driver.incidents}</Td>
+                  <Td> {driver.incident_ave}</Td>
                   <Td> {driver.pole}</Td>
                   <Td> {driver.races_done}</Td>
                   <Td> {driver.top10[1] + driver.top10[2] + driver.top10[3]}</Td>
@@ -53,19 +61,21 @@ class Profile extends Component{
             <Title>Informação</Title>
             <Information>
               <Li><Data>Nome, Sobrenome:</Data> {driver.name}, {driver.lastname}</Li>
-              <Li><Data>Sexo:</Data> {driver.gender === 'M' ? 'Homem' : 'Mulher'}</Li>
+              <Li><Data>Sexo:</Data> { gender[driver.gender] }</Li>
               <Li><Data>Data de Nascimento:</Data> {driver.birthday}</Li>
               <Li><Data>Classe:</Data> <ImgClass alt='classImg' src={'data:image/png;base64,' + driver.classimg}/></Li>
               <Li><Data>Estado, Cidade:</Data> {STATES.map(state => { return state.value === driver.state ? state.name : '' })}, {driver.city}</Li>
               <Li><Data>Cadastrou-se em:</Data> {driver.email_confirmed}</Li>
               <Li><Data>Sobre mim:</Data> {driver.about}</Li>
             </Information>
-        <Phrase>{driver.phrase}</Phrase>
-      {
-        user.logged && user.userId === this.props.id ?
-      <Button to={'/users/' + user.userId}>Edit</Button>
-        : <Button type='warning'to='/'>Report User</Button>
-      }
+        <Phrase hide={!driver.phrase}>{driver.phrase}</Phrase>
+        {
+          user.logged  ? 
+            user.userId === this.props.id ?
+            <Button to={'/users/' + user.userId}>Edit</Button>
+            : <Button type='warning'to='/'>Report User</Button>
+          :<div></div>
+        }
           </StatsSection>
         </ProfileBox>
         {driver.steam_id ? <Chart driver={driver}/>: 'LOADING..' }
@@ -79,12 +89,16 @@ const Data = styled.span`
   font-size: 0.85em
 `
 const Phrase = styled.p`
+ ${props => props.hide ? 'display: none': ''} 
+  padding: 0.3em 2em;
   margin-left: 5px;
   margin-top: auto;
   margin-bottom: 0;
   background: #f5e6b5;
   color: #665723;
   text-align: center;
+  border-radius: 5px;
+
 `
 
 const Button = styled(NavLink)`
@@ -142,17 +156,23 @@ const Table = styled.table`
   padding: 5px;
   font-size: 1em;
   width: 100%;
-  background: #7FFFD4
+  background: ${mainColor}
   color: black;
 
 `
 
 const StatsSection = styled.div`
-  font-size: 1em;
+  @media ${device.mobileS}{
+   font-size: 0.8em;
+   flex-flow: row wrap;
+  }
+  @media ${device.laptop}{
+    font-size: 1em;
+    flex-direction: row wrap;
+  }
   border-radius: 5px;
   margin-left: 5px;
   display: flex;
-  flex-flow: row wrap;
 `
 
 const Information = styled.ul`
@@ -162,40 +182,63 @@ const Information = styled.ul`
   margin-top: 5px;
 `
 const Li = styled.li`
-  flex: 1 2 40%;
+  @media ${device.mobileS}{
+    flex: 1 0 100% 
+  }
+  @media ${device.mobileL}{
+    flex: 1 2 40%;
+  }
   padding: 5px;
   font-size: 0.9em;
 `
 
 const Wrapper = styled.div`
-  width: 77%;
+  @media ${device.mobileS}{
+  }
+  @media ${device.laptop}{
+    margin-top: 90px
+    margin: 0 auto;
+  }
   background: #f4f4f4
-  margin: 0 auto;
-  margin-top: 90px
 `
 
 const ProfileBox = styled.div`
+  @media ${device.mobileS}{
+    flex-direction: column;
+    height: 100%;
+  }
+  @media ${device.mobileL}{
+    flex-flox: row wrap;
+  }
+  @media ${device.laptop}{
+    flex-direction: row;
+    max-height: 350px;
+  }
   box-shadow:  0 0 10px 5px rgba(0, 0, 0, 0.19);
   background: white
   padding: 5px
   border-radius: 5px
   display: flex;
-  max-height: 350px;
 `
 const Avatar = styled.img`
+  @media ${device.mobileS}{
+  width: 200px;
+  margin: 0 auto;
+  }
+  @media ${device.mobileM}{
+    width: 100px;
+    height: 100px;
+  }
+  @media ${device.laptop}{
+  width: auto;
   height: 300px;
+  }
   border-radius: 5px
 `
 const mapStateToProps = state => ({ driver: state.driverReducer.driver, user: state.userReducer })
 const mapDispatchToProps = dispatch => ({
   fetchDriver: (id) => {
     dispatch( fetchDriver(id) )
-      .then((response) => {
-        !response.error ?
-          dispatch(fetchDriverSuccess( response.payload.data ))
-        : dispatch(fetchDriverFailure(response.payload.data))
-      })
-      .catch( err => console.error(err) )
   }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

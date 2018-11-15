@@ -8,7 +8,8 @@ const Nav = style.nav`
   z-index: 2;
   height: 50px;
   @media ${device.mobileS}{
-    display: ${props => props.visible ? 'block' : 'none'}
+    display: ${props => props.visible ? 'flex' : 'none'}
+    flex-flow: row wrap;
     top: 50px;
 
   }

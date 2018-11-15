@@ -5,9 +5,10 @@ import raceReducer from './raceReducer'
 import navbarReducer from './navbarReducer'
 import userReducer from './userReducer'
 import driverReducer from './driverReducer'
+import recordsReducer from './recordsReducer'
 
 const rootReducer = combineReducers({
-  rankingReducer, racesReducer, raceReducer, navbarReducer, userReducer, driverReducer
+  rankingReducer, racesReducer, raceReducer, navbarReducer, userReducer, driverReducer, recordsReducer
 })
 
 export default rootReducer

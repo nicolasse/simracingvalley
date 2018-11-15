@@ -19,22 +19,24 @@ class Header extends Component {
 const AnimatedText = style.h1`
   position: absolute;
   @media ${device.mobileS}{
-    font-size: ${props => props.small ? '0.9em' : '1.2em'};
+    font-size: ${props => props.small ? '0.5em' : '1.5em'};
   }
   @media ${device.laptop}{
-    font-size: ${props => props.small ? '20px' : '70px'};
+    font-size: ${props => props.small ? '1.5em' : '3em'};
   }
   color: white;
   text-align: center;
   left: 50%;
   top: 50%;
-  transform: ${props => props.small ? 'translate(-50%, -350%)' : 'translate(-50%, -100%)'};
+  transform: ${props => props.small ? 'translate(-55%, -250%)' : 'translate(-50%, -50%)'};
   z-index: 0;
 `
 const Content = style.div`
-  position: relative;
-  width: 100%
-  margin:  0vw auto 0 auto;
+  position: sticky;
+  z-index:0;
+  width: 100%;
+  margin: 100px auto 0 auto;
+  top: 50px;
   @media ${device.mobileS}{
     height: 30vh;
   }

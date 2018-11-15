@@ -3,27 +3,32 @@ import { withRouter } from 'react-router-dom'
 import style from 'styled-components'
 import { connect } from 'react-redux'
 import { STATES } from '../../statesBr'
+import { fetchUser } from '../../actions/userActions'
+
 class UserForm extends Component {
-  constructor(props){
-    super(props)
-  this.state={
-    email: '',
-    name:'',
-    lastname:'',
-    about:'',
-    phrase: '',
-    gender:'',
-    city:'',
-    state:'',
-    birthday:''
 
+    email = React.createRef()
+    name = React.createRef()
+    lastname= React.createRef()
+    about = React.createRef()
+    phrase = React.createRef()
+    gender = React.createRef()
+    city = React.createRef()
+    state = React.createRef()
+    birthday = React.createRef()
 
-  }
-  this.handleChange = this.handleChange.bind(this)
-  this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleSubmit(e){
+  handleSubmit = (e) =>{
+    let userData = {
+      email: this.email.current.value,
+      name: this.name.current.value,
+      lastname: this.lastname.current.value,
+      about: this.about.current.value,
+      phrase: this.phrase.current.value,
+      gender: this.gender.current.value,
+      city: this.city.current.value,
+      state: this.state.current.value,
+      birthday: this.birthday.current.value,
+    }
     e.preventDefault()
     fetch('http://localhost:8080/users/' + this.props.user.userId , {
       method: 'PUT',
@@ -32,8 +37,8 @@ class UserForm extends Component {
             'x-access-token': this.props.user.token
       },
       mode:'cors',
-      body: JSON.stringify(this.state),
-    }).then(res =>
+      body: JSON.stringify(userData)
+    }).then(res => 
       res.json()
     )
     .then(response => {
@@ -45,15 +50,6 @@ class UserForm extends Component {
 
   }
 
-  handleChange(e){
-    const target = e.target
-    const value = target.value //  'text' ? target.value : target.checked
-    const name = target.name
-
-    this.setState({
-      [name]:value
-    })
-  }
 
   selectState(){
     let arr = []
@@ -63,46 +59,66 @@ class UserForm extends Component {
     return arr
   }
 
+  dateInputFormat =(oldFormat) =>{
+    try{
+      let newFormat =  oldFormat.substring(6,10)+'-'+oldFormat.substring(3,5)+'-'+oldFormat.substring(0,2)
+      return newFormat
+    }
+    catch(err){
+      return ''
+    }
+  }
+
+  componentWillMount(){
+      let id = this.props.user.userId
+      this.props.fetchUser( id )
+  }
+
   render() {
+    let user = this.props.user.user
     return(
       <Wrapper>
-      <h1>Bem vindo {this.props.user.username}!</h1>
+      {
+        this.props.user.email_confirmed ?
+          <h1>Editar Perfil</h1>
+          : <h1>Bem vindo {this.props.user.username}!</h1>
+      }
         <Inner>
           <Form onSubmit= {this.handleSubmit}>
               <Field>
              <Text> Email*</Text>
-            <Input name='email' placeholder='example@my-email.com' type='text' required onChange={this.handleChange} />
+            <Input name='email' innerRef={this.email} placeholder='example@my-email.com' defaultValue={user.email} type='text' required  />
               </Field>
               <Field>
               <Text>Nome*</Text>
-            <Input name='name' type='text' required onChange={this.handleChange}/>
+            <Input name='name' innerRef={this.name} type='text' defaultValue={user.name} required />
               </Field>
               <Field>
              <Text>Sobrenome*</Text>
-            <Input name='lastname' type='text' required onChange={this.handleChange}/>
+            <Input name='lastname' innerRef={this.lastname} type='text' defaultValue={user.lastname} required />
               </Field>
               <Field>
               <Text>Sobre Você</Text>
-             <Input name='about' type='text' onChage={this.handleChange} />
+             <Input name='about' innerRef={this.about} type='text' defaultValue={user.name} />
               </Field>
               <Field>
               <Text>Frase do Perfil</Text>
-              <Input name='phrase' type='text' onChange={this.handleChange}/>
+              <Input name='phrase' innerRef={this.phrase} type='text' defaultValue={user.phrase} />
               </Field>
               <Field>
               <Text>Sexo</Text>
-            <Select name='sex' onChange={this.handleChange}>
+            <Select defaultValue={user.gender} innerRef={this.gender} name='gender' >
               <option key='m' value='M'>Homem</option>
               <option key='f' value='F'>Mulher</option>
             </Select>
               </Field>
               <Field>
               <Text>Data de Nascimento</Text>
-            <Input name='birthday' type='date' onChange={this.handleChange}/>
+            <Input name='birthday' type='date' innerRef={this.birthday} defaultValue={this.dateInputFormat(user.birthday)}/>
               </Field>
               <Field>
               <Text>Estado</Text>
-              <Select name='state' onChange={this.handleChange}>
+              <Select name='state' value={user.state} innerRef={this.state} >
                 {
                   
                   STATES.map((state, index) => {
@@ -113,7 +129,7 @@ class UserForm extends Component {
               </Field>
               <Field>
               <Text>Cidade</Text>
-            <Input name='city' type='text' onChange={this.handleChange}/>
+            <Input name='city' type='text' defaultValue={user.city} innerRef={this.city}/>
               </Field>
             <Button  value='Entrar'/>
           </Form>
@@ -179,4 +195,10 @@ const Button = style.input.attrs({type: 'submit'})`
 `
 const mapStateToProps = state => ({ user: state.userReducer })
 
-export default connect(mapStateToProps, null)(withRouter(UserForm))
+const mapDispatchToProps = dispatch => ({
+  fetchUser: ( id ) => {
+    dispatch( fetchUser( id ) )
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserForm))

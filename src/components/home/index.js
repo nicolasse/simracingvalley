@@ -12,12 +12,13 @@ class Home extends Component {
 
   render (){
     return(
-    <div style={{perspective: '2px','overflow-y': 'auto', width: '100%', background: 'white'}}>
+      <React.Fragment>
       <Header
         title='Participe de corridas'
         text='TODOS OS DIAS'
         image={ imageHead }>
       </Header>
+      <div style={{height: '100%', width: '100%'}}>
       <Wrapped>
         <Section>
           <Title big>
@@ -55,16 +56,22 @@ class Home extends Component {
             src="https://store.steampowered.com/widget/431600/"
         />
       </Wrapped>
-    </div>
+      </div>
+      </React.Fragment>
     )
   }
 }
 
 const Iframe = style.iframe`
   margin-top: 5em;
-  width: 100%;
   height: 190px;
   border: 0;
+  margin: 5em auto;
+  @media ${device.mobileS}{
+  width: 100%
+  }
+  @media ${device.laptop}{
+  width: 80%;}
 `
 
 const Title = style.h1`
@@ -81,26 +88,37 @@ const P = style.p`
 `
 
 const Wrapped = style.div`
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
   @media ${device.mobileS}{
     font-size: 0.8em;
-    width: 95%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 50px auto 0 auto;
+    #margin: 0 auto;
+    #top: 35vh;
   }
   @media ${device.laptop}{
-    width: 80%;
-    margin: 3em auto;
+    width: 100%;
+    margin: 0vh auto 0 auto; 
+    #margin: 3em auto;
+    #top: 55vh;
   }
+  align-items: center;
+  background: white;
 `
 
 const Section = style.div`
   background: #fff;
   @media ${device.mobileS}{
-    width: 100%;
+    width: 95%;
+    margin: 0 auto;
   }
   @media ${device.laptop}{
   padding: 2em;
-  width: ${props => props.column ? '44%' : ''};
-  float: left;
+  width: ${props => props.column ? '30%' : '80%'};
+  margin: 0 auto;
+  float: left
   }
 `
 
