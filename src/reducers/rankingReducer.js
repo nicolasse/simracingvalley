@@ -1,5 +1,5 @@
 import {
-  FETCH_RANKING,
+  FETCH_RANKING_STARTED,
   FETCH_RANKING_SUCCESS,
   FETCH_RANKING_FAILURE,
 } from '../actions/getRanking'
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 const rankingReducer = (state = INITIAL_STATE, action) => {
   let error
   switch(action.type) {
-    case FETCH_RANKING:
+    case FETCH_RANKING_STARTED:
       return {...state, rank: [], error: null, loading:true}
     case FETCH_RANKING_SUCCESS:
       return {...state, pages: action.payload.pages, rank: action.payload.driversStats, error:null, loading: false }

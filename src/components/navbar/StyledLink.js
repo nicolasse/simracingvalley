@@ -1,30 +1,32 @@
 import style from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import {device} from '../../device'
+import {mainColor, boldColor} from '../commons/style'
 
 const StyledLink = style(NavLink)`
-  background: #333;
+  ${props => props.dropdown
+  ? 'background: ' +mainColor+'; color: white; float: none;'
+  : 'background: #333; color: white; float: left'
+  }
   text-align: center;
   text-decoration: none;
-  color: white;
   height: 30px;
   font-size: 15px;
   padding: 10px;
   transition: all .2s ease-in;
-  display: flex;
+  display: block;
   justify-content: center;
   flex-direction: column;
-
+  flex: 1 0.5 100%
   &:hover {
-  background-color: black;
+    background-color: ${props => props.dropdown ? boldColor : boldColor};
   }
   &.active {
-  background: white;
-  color: black;
+    background: white;
+    color: black;
   }
   display: ${ props => props.home ? 'block' : 'flex' }
-  @media ${device.laptop}{
-  float: left;
+    @media ${device.laptop}{
   }
 `
 export default StyledLink

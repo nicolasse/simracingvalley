@@ -5,6 +5,7 @@ import { logout } from '../../actions/userActions'
 import Nav from './Nav'
 import StyledLink from './StyledLink'
 import Logo from './Logo'
+import Dropdown from './Dropdown'
 import styled from 'styled-components'
 
 import { device } from '../../device'
@@ -44,12 +45,12 @@ class NavBar extends Component {
   render() {
     let logo = this.state.path === '/' ? logoBlack : logoWhite
     return(
-      <div>
+      <React.Fragment>
       <Menu onClick={() => this.handleMenu()}>Menu</Menu>
       <Nav onClick={() => this.handleChange()} visible={this.state.visible}>
       <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
         <StyledLink to='/ranking'>Ranking</StyledLink>
-        <StyledLink to='/races'>Resultados</StyledLink>
+      <Dropdown name='Resultados' />
         { this.props.user.logged ?
           <React.Fragment>
             <StyledLink to={'/drivers/' + this.props.user.userId}> {this.props.user.username}</StyledLink>
@@ -65,10 +66,11 @@ class NavBar extends Component {
           <Steam href='http://localhost:8080/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam> 
         }
       </Nav>
-      </div>
+      </React.Fragment>
     )
   }
 }
+
 
 const Menu = styled.button`
   text-align: right;
@@ -91,6 +93,7 @@ const Steam = styled.a`
   @media ${device.mobileS}{
   width: 100%;
   text-align: center;
+  position: relative
   }
   @media ${device.laptop}{
     float: right;

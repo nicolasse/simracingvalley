@@ -1,5 +1,5 @@
 import {
-  FETCH_RACE,
+  FETCH_RACE_STARTED,
   FETCH_RACE_SUCCESS,
   FETCH_RACE_FAILURE,
   SELECT_STATS,
@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 const raceReducer = (state = INITIAL_STATE, action) => {
   let error
   switch(action.type) {
-    case FETCH_RACE:
+    case FETCH_RACE_STARTED:
       return { ...state, error: null, loading: true }
       //return{...state, race: action.payload.race, error: null, loading: false}
     case FETCH_RACE_SUCCESS:

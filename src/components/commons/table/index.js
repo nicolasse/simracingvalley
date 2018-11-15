@@ -1,15 +1,16 @@
 import { device } from '../../../device'
 import styled from 'styled-components'
+import {mainColor} from '../style'
 
 export const Table = styled.table`
   border-collapse: collapse;
-  border: 1px solid black;
-  margin: 50px auto;
   @media ${device.mobileS}{
     width: 100%;
+    margin: 10px auto 15px auto;
   }
   @media ${device.laptop}{
-    width: 75%;
+    width: 100%;
+    margin: 10px auto 50px auto;
   }
 `
 
@@ -60,7 +61,7 @@ export const Tr = styled.tr`
   background: #f2f2f2;
   }
   &:hover{
-    ${props => props.hover ? 'background: #7fffde; color: white;' : ''}
+    ${props => props.hover ? 'background:'+ mainColor +'; color: white;' : ''}
 
   }
 

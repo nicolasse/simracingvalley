@@ -4,17 +4,21 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap-less": "^3.3.8",
     "chart.js": "^2.7.2",
+    "rc-pagination": "^1.17.3",
     "react": "^16.4.2",
     "react-chartjs-2": "^2.7.4",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.4.2",
     "react-icons": "^3.0.5",
+    "react-js-pagination": "^3.0.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.1.1",
     "redux": "^4.0.0",
     "redux-promise": "^0.6.0",
+    "redux-thunk": "^2.3.0",
     "serve": "^10.0.0",
     "styled-components": "^3.4.2"
   },
@@ -25,5 +29,12 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
-  }
+  },
+  "proxy": "http://localhost:8080",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

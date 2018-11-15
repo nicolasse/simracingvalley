@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { clearStats } from '../../actions/getRace'
 import { connect } from 'react-redux'
 import { device } from '../../device'
+import { mainColor, boldColor } from '../commons/style'
 
 class Stats extends Component {
   state = {
@@ -80,7 +81,7 @@ const Content = styled.div`
 const Img = styled.div`
   width: 100%;
   height: 100%;
-  background: #7FFFD4;
+  background: ${ mainColor };
   box-sizing: border-box;
 
   @media ${device.mobileS}{

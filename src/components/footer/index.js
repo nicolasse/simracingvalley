@@ -42,6 +42,8 @@ class Footer extends Component {
 
 const Foot = style.footer`
   display: flex;
+  width: 100%;
+  margin-top: 50px;
   background-color: #303036;
   @media ${device.mobileS}{
     font-size: 0.6em;
