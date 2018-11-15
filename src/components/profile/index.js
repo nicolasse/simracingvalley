@@ -12,7 +12,7 @@ import { mainColor } from '../commons/style'
 
 const gender = {
   M: 'Homem',
-  F: 'Mulher'
+  F: 'Mulher',
 }
 
 class Profile extends Component{
@@ -108,11 +108,17 @@ const Button = styled(NavLink)`
   font-size: 0.8em;
   font-weight: bold;
   text-decoration: none;
-  background: ${props => props.type === 'warning' ? '#DC143C' : '#337ab7'}
+  background: white;
+  color: black;
+  transition: all 0.3s linear;
   border: 1px solid black;
+  &:hover{
+    background: ${props => props.type === 'warning' ? '#DC143C' : '#337ab7'}
+    color: white;
+    transition: all 0.3s linear;
+  }
   padding: 0.5em;
   border-radius: 3px;
-  color: white;
 `
 
 const Title = styled.h1`

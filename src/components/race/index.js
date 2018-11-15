@@ -5,6 +5,7 @@ import { clearStats, fetchRace } from '../../actions/getRace'
 import Event from '../event'
 import Stats from '../stats'
 import { device } from '../../device'
+import { mainColor } from '../commons/style'
 
 class Race extends Component {
   state = {
@@ -30,9 +31,21 @@ class Race extends Component {
     let state = this.props.state
     return(
       <Wrapper>
-        <ButtonEvent onClick={() => this.eventFilter('race')}>Race</ButtonEvent>
-        <ButtonEvent onClick={() => this.eventFilter('qualify')}>Qualify</ButtonEvent>
-        <ButtonEvent onClick={() => this.eventFilter('practice')}>Practice</ButtonEvent>
+        <ButtonEvent
+          activated = {this.state.filter === 'race'} 
+          onClick={() => this.eventFilter('race')}>
+            Race
+        </ButtonEvent>
+        <ButtonEvent
+          activated = {this.state.filter === 'qualify'} 
+          onClick={() => this.eventFilter('qualify')}>
+            Qualify
+        </ButtonEvent>
+        <ButtonEvent
+          activated = {this.state.filter === 'practice'} 
+          onClick={() => this.eventFilter('practice')}>
+            Practice
+        </ButtonEvent>
         <Content>
         <Col>
        <Title>{ this.state.filter.toUpperCase() }</Title>
@@ -73,15 +86,19 @@ const Title = styled.h1`
 `
 
 const ButtonEvent = styled.button`
-  color: black;
-  background: white;
+  ${ props => props.activated
+  ? 'color: white; background:' +mainColor 
+  : 'color: black; background: white' };
   border: 1px solid black;
   margin: 10px 10px 10px 0;
   font-size: 1.2em;
+  padding: 1em;
+
   &:active, &:hover {
-   background: #7FFFD4;
+   background: ${ mainColor };
    color: white;
   }
+
 `
 
 const Col = styled.div`

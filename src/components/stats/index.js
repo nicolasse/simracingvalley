@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { device } from '../../device'
 import { mainColor, boldColor } from '../commons/style'
 
+const logoBlack = require('../../images/logoBlack.png')
 class Stats extends Component {
   state = {
     hide: true,
@@ -18,7 +19,7 @@ class Stats extends Component {
     return(
       <Content hide={stats.length === 0}>
       <ButtonClose onClick={() => this.props.clearStats()}> Back </ButtonClose>
-      { stats.length === 0 ?  <Img><img style={{margin: '50% auto'}}alt='SIM RACING VALLEY' src={require('../../images/logoBlack.png')}/></Img>
+      { stats.length === 0 ?  <Img><img style={{margin: '50% auto'}}alt='SIM RACING VALLEY' src={ logoBlack }/></Img>
       : <Table>
         <Thead>
           <tr>
@@ -62,6 +63,7 @@ const ButtonClose = styled.button`
   @media ${device.laptop}{
     display: none;
   }
+  padding: 1em;
 `
 
 const Content = styled.div`
