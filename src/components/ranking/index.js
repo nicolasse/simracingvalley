@@ -8,6 +8,8 @@ import { device } from '../../device'
 import Paginator from '../paginator'
 import { Table, Thead, Tbody, Td, Th, Tr  } from '../commons/table/index.js'
 import Loading from '../commons/loading'
+import {selectImg} from '../../helpers/switchClassImage' 
+import FilterName from './filter'
 
 
 const campeao = require('../../images/classes/campeao.png')
@@ -15,6 +17,7 @@ const campeao = require('../../images/classes/campeao.png')
 class Ranking extends Component {
   state= {
     actualPage: 0,
+    showFilter: false,
   }
 
   componentDidMount() {
@@ -26,16 +29,15 @@ class Ranking extends Component {
     this.props.fetchRanking(page)
   }
 
-  /*
-  shouldComponentUpdate(nextProps, nextState){
-    if(nextState.actualPage !== this.state.actualPage)
-      return false
-    return true
+  filterToggle = ( show ) => {
+    this.setState( { showFilter: show })
   }
-  */
+
   render() {
+    let ranking = this.state.showFilter ? this.props.state.found : this.props.state.rank
     return(
       <Wrapper>
+      <FilterName filterToggle= {this.filterToggle}/>
       { this.props.state.loading
         ? <Loading /> 
         : <Table>
@@ -55,7 +57,7 @@ class Ranking extends Component {
             </Tr>
           </Thead>
           <Tbody>
-            { this.props.state.rank.map((driver, index) =>
+            { ranking.map((driver, index) =>
               <Tr key={ driver.id }>
                 <Td> {driver.Position }</Td>
                 <Td><UserLink to={'drivers/' + driver.id}> { driver.Name }</UserLink> </Td>
@@ -74,32 +76,20 @@ class Ranking extends Component {
           </Tbody>
         </Table>
       }
-      <Paginator selectPage={this.handleClick} pages={this.props.state.pages} />
+        <Paginator selectPage={this.handleClick} pages={this.props.state.pages} />
       </Wrapper>
     )
-  }
-}
-
-const selectImg = (img) => {
-  switch(img){
-    case 'campeao.png': return require('../../images/classes/campeao.png')
-    case 'amador.png': return require('../../images/classes/amador.png')
-    case 'aprendiz.png': return require('../../images/classes/aprendiz.png')
-    case 'desafiante.png': return require('../../images/classes/desafiante.png')
-    case 'junior.png': return require('../../images/classes/junior.png')
-    case 'nao_ranqueado.png': return require('../../images/classes/nao_ranqueado.png')
-    default: return
   }
 }
 
 const Wrapper = styled.div`
   @media ${device.mobileS}{
     width: 100%;
-  margin: 0 auto 0 auto;
+    margin: 0 auto 0 auto;
   }
   @media ${device.laptop}{
     width: 100%;
-  margin: 2vh auto 0 auto;
+    margin: 2vh auto 0 auto;
   }
 `
 const mapStateToProps = state => ({state: state.rankingReducer})

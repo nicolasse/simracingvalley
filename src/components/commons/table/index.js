@@ -12,6 +12,7 @@ export const Table = styled.table`
     width: 100%;
     margin: 10px auto 50px auto;
   }
+  overflow-y: auto;
 `
 
 export const Thead = styled.thead`

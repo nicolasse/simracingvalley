@@ -56,7 +56,15 @@ class Records extends Component {
     let records = this.props.state.records
     if(records){
        return records.map((record, index) => {
-        return <Tr key={index}><Td>{record.racedate}</Td><Td><UserLink to={'drivers/'+ record.userid}> {record.username}</UserLink></Td><Td> {record.s1}</Td><Td> { record.s2 }</Td><Td> {record.s3}</Td><Td>{record.laptime}</Td></Tr>
+        return(
+            <Tr key={index}>
+              <Td>{record.racedate}</Td>
+              <Td><UserLink to={'drivers/'+ record.userid}> {record.username}</UserLink></Td>
+              <Td> {record.s1}</Td><Td> { record.s2 }</Td>
+              <Td> {record.s3}</Td>
+              <Td>{record.laptime}</Td>
+            </Tr>
+        )
       })
     }
   }

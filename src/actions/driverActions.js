@@ -3,6 +3,8 @@ import axios from 'axios'
 export const FETCH_DRIVER_STARTED = 'FETCH_DRIVER_STARTED'
 export const FETCH_DRIVER_SUCCESS = 'FETCH_DRIVER_SUCCESS'
 export const FETCH_DRIVER_FAILURE = 'FETCH_DRIVER_FAILURE'
+
+
 const ROOT_URL = 'HTTP://localhost:8080'
 
 
@@ -35,3 +37,4 @@ const fetchDriverFailure = ( error ) => ({
     type: FETCH_DRIVER_FAILURE,
     payload: error,
 })
+
