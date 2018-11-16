@@ -17,7 +17,7 @@ export const fetchRanking = (page) => {
     dispatch(fetchRankingStarted()) 
     axios({
       method: 'GET',
-      url: '/drivers/page/' + page
+      url: '/api/drivers/page/' + page
     })
      .then( res => {
       dispatch( fetchRankingSuccess(res.data) )

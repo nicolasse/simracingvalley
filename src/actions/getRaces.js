@@ -13,7 +13,7 @@ export const fetchRaces = (page) => {
     dispatch(fetchRacesStarted())
     axios({
       method: 'GET',
-      url: '/races/page/' + page
+      url: '/api/races/page/' + page
     })
       .then( res => {
         dispatch(fetchRacesSuccess( res.data ))

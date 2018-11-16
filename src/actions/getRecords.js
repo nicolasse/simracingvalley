@@ -20,7 +20,7 @@ export const fetchTracks = () => {
     dispatch(fetchTracksStarted())
     axios({
       method: 'GET',
-      url: `${ROOT_URL}/records`
+      url: `/api/records`
     })
       .then( res => {
         dispatch(fetchTracksSuccess(res.data))

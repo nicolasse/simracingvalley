@@ -15,7 +15,7 @@ export const fetchUser = (id) => {
     dispatch(fetchUserStarted())
     axios({
       method: 'GET',
-      url: '/users/' + id
+      url: '/api/users/' + id
     })
       .then( res => {
         dispatch(fetchUserSuccess(res.data))
