@@ -53,7 +53,7 @@ export const fetchCars = ( track ) => {
     let trackEncoded = encodeURIComponent(track)
     axios({
       method: 'GET',
-      url: `${ROOT_URL}/records/${trackEncoded}`
+      url: `/api/records/${trackEncoded}`
     })
       .then( res => {
         dispatch(fetchCarsSuccess(res.data))
@@ -87,7 +87,7 @@ export const fetchRecords = ( track, car ) => {
     let carEncoded = encodeURIComponent( car)
     axios({
       method: 'GET',
-      url: `${ROOT_URL}/records/${trackEncoded}/${carEncoded}`
+      url: `/api/records/${trackEncoded}/${carEncoded}`
     })
       .then( res => {
         dispatch(fetchRecordsSuccess(res.data))

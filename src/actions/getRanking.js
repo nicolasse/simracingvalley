@@ -50,7 +50,7 @@ export const searchDriver = ( name ) => {
     dispatch(searchDriverStarted())
     axios({
       method: 'GET',
-      url: '/drivers/search/' + name
+      url: '/api/drivers/search/' + name
     })
       .then( res => {
         dispatch(searchDriverSuccess(res.data))
