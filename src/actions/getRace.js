@@ -17,7 +17,7 @@ export const fetchRace = ( id ) => {
     dispatch( fetchRaceStarted() )
     axios({
       method: 'GET',
-      url: '/races/' + id
+      url: '/api/races/' + id
     })
       .then( res => {
         dispatch( fetchRaceSuccess( res.data ) )

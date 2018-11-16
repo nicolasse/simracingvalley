@@ -13,7 +13,7 @@ export const fetchDriver = (id) => {
     dispatch(fetchDriverStarted())
     axios({
       method: 'GET',
-      url: '/drivers/' + id
+      url: '/api/drivers/' + id
     })
       .then( res => {
         dispatch(fetchDriverSuccess(res.data))
