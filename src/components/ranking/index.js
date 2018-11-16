@@ -12,7 +12,6 @@ import {selectImg} from '../../helpers/switchClassImage'
 import FilterName from './filter'
 
 
-const campeao = require('../../images/classes/campeao.png')
 
 class Ranking extends Component {
   state= {

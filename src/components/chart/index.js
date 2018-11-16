@@ -13,7 +13,6 @@ class Chart extends Component {
 
   render(){
     let driver = this.props.driver
-    console.log(driver)
     return(
       <Wrapper>
         <br />

@@ -9,6 +9,7 @@ import Chart from '../chart'
 import { STATES } from '../../statesBr'
 import { device } from '../../device'
 import { mainColor } from '../commons/style'
+import { selectImg } from '../../helpers/switchClassImage'
 
 const gender = {
   M: 'Homem',
@@ -63,7 +64,7 @@ class Profile extends Component{
               <Li><Data>Nome, Sobrenome:</Data> {driver.name}, {driver.lastname}</Li>
               <Li><Data>Sexo:</Data> { gender[driver.gender] }</Li>
               <Li><Data>Data de Nascimento:</Data> {driver.birthday}</Li>
-              <Li><Data>Classe:</Data> <ImgClass alt='classImg' src={'data:image/png;base64,' + driver.classimg}/></Li>
+              <Li><Data>Classe:</Data> <ImgClass alt='classImg' src={selectImg( driver.classimg )}/></Li>
               <Li><Data>Estado, Cidade:</Data> {STATES.map(state => { return state.value === driver.state ? state.name : '' })}, {driver.city}</Li>
               <Li><Data>Cadastrou-se em:</Data> {driver.email_confirmed}</Li>
               <Li><Data>Sobre mim:</Data> {driver.about}</Li>

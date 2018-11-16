@@ -1,12 +1,12 @@
 import style from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import {device} from '../../device'
-import {mainColor, boldColor} from '../commons/style'
+import {mainColor, boldColor, lightColor} from '../commons/style'
 
 const StyledLink = style(NavLink)`
-  ${props => props.dropdown
-  ? 'background: ' +mainColor+'; color: white; float: none;'
-  : 'background: #333; color: white; float: left'
+  @media ${device.mobileS}{
+   background: #333;
+   color: white;
   }
   text-align: center;
   text-decoration: none;
@@ -19,14 +19,18 @@ const StyledLink = style(NavLink)`
   flex-direction: column;
   flex: 1 0.5 100%
   &:hover {
-    background-color: ${props => props.dropdown ? boldColor : boldColor};
+    background: ${props => props.dropdown ? boldColor : boldColor};
   }
   &.active {
-    background: white;
+    background: #bed0d1;
     color: black;
   }
   display: ${ props => props.home ? 'block' : 'flex' }
     @media ${device.laptop}{
+  ${props => props.dropdown
+  ? 'background: ' +lightColor+'; color: black; float: none;'
+  : 'background: #333; color: white; float: left'
+  }
   }
 `
 export default StyledLink

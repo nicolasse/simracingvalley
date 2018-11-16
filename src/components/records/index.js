@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { fetchTracks, fetchCars, fetchRecords } from '../../actions/getRecords'
 import { device } from '../../device'
 import { Table, Thead, Tbody, Td, Th, Tr } from '../commons/table'
+import { mainColor } from '../commons/style'
 import { Link } from 'react-router-dom'
 
 class Records extends Component {
@@ -55,15 +56,16 @@ class Records extends Component {
   showRecords(){
     let records = this.props.state.records
     if(records){
-       return records.map((record, index) => {
+       return records.reverse().map((record, index) => {
+         let color = index === 0 ? mainColor : 'white'
         return(
-            <Tr key={index}>
+            <tr key={index} style={{ background: color }}>
               <Td>{record.racedate}</Td>
               <Td><UserLink to={'drivers/'+ record.userid}> {record.username}</UserLink></Td>
               <Td> {record.s1}</Td><Td> { record.s2 }</Td>
               <Td> {record.s3}</Td>
               <Td>{record.laptime}</Td>
-            </Tr>
+            </tr>
         )
       })
     }

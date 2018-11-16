@@ -56,16 +56,16 @@ const Title = styled.a`
   cursor: default;
   flex-direction: column;
 
+  display: ${ props => props.home ? 'block' : 'flex' }
+  @media ${ device.mobileS }{
+    display: none;
+  }
+  @media ${device.laptop}{
+  display: flex;
+  float: left;
   &:hover {
   background: ${boldColor};
   }
-  #&.active {
-  background: white;
-  color: ${boldColor};
-  }
-  display: ${ props => props.home ? 'block' : 'flex' }
-  @media ${device.laptop}{
-  float: left;
   }
 `
 
