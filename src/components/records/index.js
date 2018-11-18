@@ -37,7 +37,6 @@ class Records extends Component {
 
   handleTrackChange = (e) => {
     let track = e.target.value
-
     if(track !== ''){
       this.setState({trackSelected: track, carSelected: ''})
       this.props.fetchCars( track )
@@ -81,7 +80,7 @@ class Records extends Component {
       <Select onChange= {this.handleTrackChange}>
       {this.showTracks()}
       </Select>
-      <Select defaultValue='' onChange={ this.handleCarChange } >
+      <Select value={this.state.carSelected} onChange={ this.handleCarChange } >
       {this.showCars()}
       </Select>
         
@@ -97,7 +96,7 @@ class Records extends Component {
             </Tr>
           </Thead>
           <Tbody>
-      {this.showRecords()}
+            {this.showRecords()}
           </Tbody>
         </Table>
       </Wrapper>

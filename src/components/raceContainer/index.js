@@ -14,7 +14,8 @@ class RaceContainer extends Component {
     this.props.fetchRaces( 0 )
   }
 
-  handleClickPage = page => {
+  handleClickPage = paginatorObj => {
+    let page = paginatorObj.selected
     this.props.fetchRaces(page)
   }
 
@@ -45,7 +46,12 @@ class RaceContainer extends Component {
       )} 
       </Tbody>
       </Table>
-      <Paginator selectPage={this.handleClickPage} pages={totalPages} />
+      <Paginator 
+        pageCount={ this.props.pages }
+        pageRangeDisplayed={ 3 }
+        marginPagesDisplayed={ 1 }
+        onPageChange={this.handleClickPage}
+      />
       </Wrapper>
 
     )

@@ -29,8 +29,13 @@ class Profile extends Component{
   }
 
   render(){
+    console.log(this.props.loading)
     let driver = this.props.driver
     let user = this.props.user
+    if(this.props.loading){
+      return(<div>LOADING</div>)
+    }
+    else
     return(
       <Wrapper>
         <ProfileBox>
@@ -242,7 +247,7 @@ const Avatar = styled.img`
   }
   border-radius: 5px
 `
-const mapStateToProps = state => ({ driver: state.driverReducer.driver, user: state.userReducer })
+const mapStateToProps = state => ({loading: state.driverReducer.loading, driver: state.driverReducer.driver, user: state.userReducer })
 const mapDispatchToProps = dispatch => ({
   fetchDriver: (id) => {
     dispatch( fetchDriver(id) )

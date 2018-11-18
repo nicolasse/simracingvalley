@@ -3,28 +3,34 @@
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
-  width:100%;
-  height: 50px;
+  padding: 1em;
 }
 
 .pageLi{
-  display: flex;
+  cursor: default;
   color: black;
-  border: 1px solid black;
+  display: flex;
+  border: none;
+  border-right: 1px solid black;
   width: 40px;
   list-style-type: none;
-  align-items: center;
-  margin: 0 auto;
+  justify-content: center;
 
+}
+.pageLi:last-child{
+    border-right: none;
+}
+.pageLi:hover{
+
+    background: #a2cdf8;
 }
 
 .linkA{
+  display: flex;
   justify-content: center;
   font-size: 1.4em;
   width: 100%;
-  :hover{
-    background: black;
-  }
+
 }
 
 .activeCss{
