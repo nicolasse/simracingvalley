@@ -29,7 +29,8 @@ const recordsReducer = ( state = INITIAL_STATE, action ) => {
       return {
         ...state,
         loading: false,
-        tracks: action.payload
+        tracks: action.payload,
+        records: [],
       }
     case FETCH_TRACKS_FAILURE:
       return {
@@ -46,7 +47,8 @@ const recordsReducer = ( state = INITIAL_STATE, action ) => {
       return {
         ...state,
         loading: false,
-        cars: action.payload
+        cars: action.payload,
+        records: [],
       }
     case FETCH_CARS_FAILURE:
       return {

@@ -23,7 +23,8 @@ class Ranking extends Component {
     this.props.fetchRanking(0)
   }
 
-  handleClick = page => {
+  handleClick = paginatorObj => {
+    let page = paginatorObj.selected
     this.setState({actualPage: page})
     this.props.fetchRanking(page)
   }
@@ -75,7 +76,12 @@ class Ranking extends Component {
           </Tbody>
         </Table>
       }
-        <Paginator selectPage={this.handleClick} pages={this.props.state.pages} />
+      <Paginator 
+        pageCount={ this.props.state.pages }
+        pageRangeDisplayed={ 3 }
+        marginPagesDisplayed={ 1 }
+        onPageChange={this.handleClick}
+      />
       </Wrapper>
     )
   }

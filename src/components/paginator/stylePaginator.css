@@ -1,0 +1,42 @@
+
+.containerCss{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+.pageLi{
+  cursor: default;
+  color: black;
+  display: flex;
+  border: none;
+  border-right: 1px solid black;
+  width: 40px;
+  list-style-type: none;
+  justify-content: center;
+
+}
+.pageLi:last-child{
+    border-right: none;
+}
+.pageLi:hover{
+
+    background: #a2cdf8;
+}
+
+.linkA{
+  display: flex;
+  justify-content: center;
+  font-size: 1.4em;
+  width: 100%;
+
+}
+
+.activeCss{
+  color: white;
+  background: #007aba;
+}
+
+
+
