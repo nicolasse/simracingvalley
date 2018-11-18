@@ -1,66 +1,28 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { mainColor, boldColor } from '../commons/style'
+import ReactPaginate from 'react-paginate'
+import stylePaginator from './stylePaginator.css'
 
 class Paginator extends Component {
-  state={
-    currentPage: 0
-  }
-  showPages(){
-    let pages= []
-    for( let page= 0; page < this.props.pages; page++ ){
-      pages.push( <NumberPage current={this.state.currentPage === page} key={page} onClick={() => {this.props.selectPage(page); this.setState({currentPage: page})}} >{ page + 1 }</NumberPage> )
-    }
-    return pages
-  }
-
-  prevPage = () => {
-    let current = this.state.currentPage
-    if(this.state.currentPage > 0){
-      this.setState({ currentPage: current -1 })
-      this.props.selectPage( current - 1 )
-    }
-  }
-  nextPage = () => {
-    let current = this.state.currentPage
-    if( current < (this.props.pages - 1)){
-      this.setState({ currentPage: current + 1 })
-      this.props.selectPage( current + 1 )
-    }
-  }
-
-  selectPages = ( max ) => {
-    let middle = Math.round(this.props.pages / 2)
-    let allPages = this.showPages()
-    if(this.props.pages <= max){
-      return allPages
-    }
-    let selected = allPages.filter( (page, index) => {
-       if(index < middle -1 && index < max / 2) {
-         return page
-      }
-      else return null
-    } )
-    selected.push(<NoPage key={'dotsPages'}>...</NoPage>)
-    let lastPart = allPages.filter((page, index) => {
-      if(index > middle && index > max / 2){
-        return page
-      }
-      else return null
-    })
-    return selected.concat(lastPart)
-  }
-
   render() {
     return(
-      <Container hide={this.props.pages === 0 }>
-      <NumberPage onClick={ this.prevPage }>{'<'}</NumberPage>
-      { this.selectPages( 6 ) }
-      <NumberPage onClick={ this.nextPage }>{'>'}</NumberPage>
-      </Container>
+      <ReactPaginate
+       {...this.props }
+        containerClassName={ 'containerCss' } 
+        pageClassName= { 'pageLi' }
+        pageLinkClassName= { 'linkA' }
+        activeClassName= { 'activeCss' }
+        activeLinkClassName= { 'activeLinkCss' }
+      nextClassName={ 'pageLi' }
+      previousClassName={ 'pageLi' }
+      previousLinkClassName={ 'linkA' }
+      nextLinkClassName= { 'linkA' }
+      />
     )
   }
 }
+
 
 const Container = styled.div`
   margin-bottom: 30px;
@@ -74,7 +36,9 @@ const NumberPage = styled.button`
   ${props => props.current
   ? 'background:' + mainColor
   : 'background: white;'}
-  display: flex;
+  ${props => props.hide
+  ? 'display: none'
+  : 'display: flex'}
   color: black;
   font-size: 0.9em;
   border: none;

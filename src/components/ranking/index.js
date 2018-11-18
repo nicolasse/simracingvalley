@@ -10,6 +10,7 @@ import { Table, Thead, Tbody, Td, Th, Tr  } from '../commons/table/index.js'
 import Loading from '../commons/loading'
 import {selectImg} from '../../helpers/switchClassImage' 
 import FilterName from './filter'
+import Pagination from 'react-paginate'
 
 
 
@@ -75,7 +76,8 @@ class Ranking extends Component {
           </Tbody>
         </Table>
       }
-        <Paginator selectPage={this.handleClick} pages={this.props.state.pages} />
+      {/*<Paginator selectPage={this.handleClick} pages={this.props.state.pages} />*/}
+      <Paginator pageCount={ 7 } pageRangeDisplayed={ 3 } marginPagesDisplayed={ 3 } onPageChange={this.handleClick} />
       </Wrapper>
     )
   }

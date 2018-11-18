@@ -1,0 +1,36 @@
+
+.containerCss{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  width:100%;
+  height: 50px;
+}
+
+.pageLi{
+  display: flex;
+  color: black;
+  border: 1px solid black;
+  width: 40px;
+  list-style-type: none;
+  align-items: center;
+  margin: 0 auto;
+
+}
+
+.linkA{
+  justify-content: center;
+  font-size: 1.4em;
+  width: 100%;
+  :hover{
+    background: black;
+  }
+}
+
+.activeCss{
+  color: white;
+  background: #007aba;
+}
+
+
+
