@@ -23,7 +23,8 @@ const recordsReducer = ( state = INITIAL_STATE, action ) => {
     case FETCH_TRACKS_STARTED:
       return {
         ...state,
-        loading: true
+        loading: true,
+        records: []
       }
     case FETCH_TRACKS_SUCCESS:
       return {
