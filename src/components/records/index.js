@@ -59,8 +59,8 @@ class Records extends Component {
          let color = index === 0 ? mainColor : 'white'
         return(
             <tr key={index} style={{ background: color }}>
-              <Td>{record.racedate}</Td>
-              <Td><UserLink to={'drivers/'+ record.userid}> {record.username}</UserLink></Td>
+              <Td><StyledLink to={'races/'+ record.resultid}>{record.racedate}</StyledLink></Td>
+              <Td><StyledLink to={'drivers/'+ record.userid}> {record.username}</StyledLink></Td>
               <Td> {record.s1}</Td><Td> { record.s2 }</Td>
               <Td> {record.s3}</Td>
               <Td>{record.laptime}</Td>
@@ -104,9 +104,12 @@ class Records extends Component {
   }
 }
 
-const UserLink = styled(Link)`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
+  &:hover{
+    color: white;
+  }
 
 `
 const Wrapper = styled.div`

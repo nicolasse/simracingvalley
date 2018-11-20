@@ -127,8 +127,13 @@ class Chart extends Component {
                   scales: {
                     yAxes: [{
                       ticks: {
-                        beginAtZero: false,
+                        maxTicksLimit: 20,
+                        stepSize:1,
+			 callback: function(tickValue, index, ticks) {
+                          if(!(index % parseInt(ticks.length / 5))) {
+                          return tickValue
                       }
+                    }                    }
                     }]
                   }
                 }}

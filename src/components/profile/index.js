@@ -10,6 +10,7 @@ import { STATES } from '../../statesBr'
 import { device } from '../../device'
 import { mainColor } from '../commons/style'
 import { selectImg } from '../../helpers/switchClassImage'
+import Achievements from './achievements'
 
 const gender = {
   M: 'Homem',
@@ -29,7 +30,6 @@ class Profile extends Component{
   }
 
   render(){
-    console.log(this.props.loading)
     let driver = this.props.driver
     let user = this.props.user
     if(this.props.loading){
@@ -45,6 +45,7 @@ class Profile extends Component{
             <Table>
               <Thead>
                 <tr>
+                  <Th>Pos</Th>
                   <Th>Points</Th>
                   <Th>Incidents</Th>
                   <Th>Poles</Th>
@@ -55,6 +56,7 @@ class Profile extends Component{
               </Thead>
               <Tbody>
                 <tr>
+                  <Td>{ driver.rank_pos }</Td> 
                   <Td>{ driver.points }</Td> 
                   <Td> {driver.incident_ave}</Td>
                   <Td> {driver.pole}</Td>
@@ -80,10 +82,13 @@ class Profile extends Component{
             user.userId === this.props.id ?
             <Button to={'/users/' + user.userId}>Edit</Button>
             : <Button type='warning'to='/'>Report User</Button>
-          :<div></div>
+          : null
         }
           </StatsSection>
         </ProfileBox>
+      { driver.achievements 
+        ? <Achievements achievements={driver.achievements}/>
+        : null }
         {driver.steam_id ? <Chart driver={driver}/>: 'LOADING..' }
       </Wrapper>
     )
@@ -159,13 +164,13 @@ const Td = styled.td`
 `
 
 const Th = styled.th`
-  margin: 10px;
-  padding: 5px;
+  margin: 1vw auto;
+  padding: 0.5vw;
 `
 
 const Table = styled.table`
   margin: 0;
-  padding: 5px;
+  padding: 0.5vw;
   font-size: 1em;
   width: 100%;
   background: ${mainColor}
@@ -195,7 +200,7 @@ const Information = styled.ul`
 `
 const Li = styled.li`
   @media ${device.mobileS}{
-    flex: 1 0 100% 
+    flex: 1 0 90% 
   }
   @media ${device.mobileL}{
     flex: 1 2 40%;
