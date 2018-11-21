@@ -8,9 +8,6 @@ import { mainColor, boldColor } from '../commons/style'
 
 class Event extends Component {
 
-  state = {
-    hide: false,
-  }
 
   getQualyPos = (steamID) => {
     let player = this.props.race.qualify.find( player => {
@@ -19,10 +16,9 @@ class Event extends Component {
     return player ? player.position : ''
   }
 
-
   render() {
     return(
-      <Table>
+      <Table hide={this.props.shouldMobileHide}>
         <Thead>
           <tr>
             <Th>Pos</Th>
@@ -36,7 +32,9 @@ class Event extends Component {
         </Thead>
         <Tbody>
        {this.props.event.map((result, index) =>
-         <Tr key={index} onClick={() => this.props.selectStats(result.laps)} >
+         <Tr
+           key={index}
+           onClick={() => this.props.selectStats(result.laps)} >
           <Td>{ result.position }</Td>
           <Td hide={!this.props.isRace}>{ this.getQualyPos(result.steamID) }</Td>
           <Td><UserLink to={'../drivers/' + result.userid}>{ result.driver }</UserLink></Td>
@@ -71,6 +69,12 @@ const UserLink = styled(Link)`
 `
 
 const Table = styled.table`
+  @media${device.mobileS}{
+  ${props => props.hide ? 'display:none' : 'display: table'}
+  }
+  @media${device.laptop}{
+    display: table; 
+  }
   border-collapse: collapse;
   width: 100%;
   float: left;
@@ -91,23 +95,22 @@ const Td  = styled.td`
   text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 0.5em;
   vertical-align: top;
-  ${props => props.hide ? 'display: none' :  ''}
+  ${props => props.hide ? 'display: none' : null}
 `
 const Th = styled.th`
   text-align: ${props => props.center ? 'center' : 'left'};
   padding: 0.8em 0.5em;
-  ${props => props.hide ? 'display: none' :  ''}
-
+  ${props => props.hide ? 'display: none' : null}
 `
 
 const Tr = styled.tr`
   background: white;
   &:nth-child(odd){
-  background: #f2f2f2;
+    background: #f2f2f2;
   }
   &:hover{
-  background: ${ mainColor };
-  color: white;
+    background: ${ mainColor };
+    color: white;
   }
 `
 

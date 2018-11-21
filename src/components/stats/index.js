@@ -69,7 +69,6 @@ const ButtonClose = styled.button`
 const Content = styled.div`
   @media ${device.mobileS}{
     display: ${props => props.hide ? 'none' : 'block'}
-    position: absolute;
   }
   @media ${device.laptop}{
     display: block;
