@@ -13,6 +13,7 @@ export const Table = styled.table`
     margin: 10px auto 50px auto;
   }
   overflow-y: auto;
+  ${props => props.hide ? 'display: none' : null}
 `
 
 export const Thead = styled.thead`
@@ -62,7 +63,7 @@ export const Tr = styled.tr`
   background: #f2f2f2;
   }
   &:hover{
-    ${props => props.hover ? 'background:'+ mainColor +'; color: white;' : ''}
+    ${props => props.hover ? 'background:'+ mainColor +'; color: white;' : null}
 
   }
 

@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   },
   error: null,
   loading: false,
+  stats:[]
 }
 
 const raceReducer = (state = INITIAL_STATE, action) => {
