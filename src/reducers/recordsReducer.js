@@ -24,6 +24,7 @@ const recordsReducer = ( state = INITIAL_STATE, action ) => {
       return {
         ...state,
         loading: true,
+        cars: [],
         records: []
       }
     case FETCH_TRACKS_SUCCESS:
