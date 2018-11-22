@@ -7,6 +7,7 @@ const Nav = style.nav`
   position: fixed;
   z-index: 2;
   height: 50px;
+  justify-content: center;
   @media ${device.mobileS}{
     display: ${props => props.visible ? 'flex' : 'none'}
     flex-flow: row wrap;

@@ -33,10 +33,12 @@ export const Td = styled.td`
   padding: 0.8em 1em;
   vertical-align: top;
   @media ${device.mobileS}{
-    ${props => props.hide ? 'font-size: 0px' : 'font-size: 0.8em'};
+    font-size: 0.8em;
+    ${props => props.hide ? 'visibility: collapse' : 'visibility: visible'};
     padding: 0.3em 0.3em;
   }
   @media ${device.laptop}{
+    visibility: visible;
     font-size: 1em;
     padding: 0.5em 0.8em;
   }
@@ -46,10 +48,12 @@ export const Th = styled.th`
   text-align: ${props => props.center ? 'center' : 'left'};
   padding: 0.8em 1em;
   @media ${device.mobileS}{
-    ${props => props.hide ? 'font-size: 0px' : 'font-size: 0.8em'};
+    font-size: 0.8em;
+    ${props => props.hide ? 'visibility: collapse' : 'visibility: visible'};
     padding: 0.3em 0.3em;
   }
   @media ${device.laptop}{
+    visibility: visible;
     font-size: 1em;
     padding: 0.5em 0.8em;
   }
