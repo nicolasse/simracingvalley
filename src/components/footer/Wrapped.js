@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 const Wrapped = styled.div`
-  width: 85%;
-  margin: 2em auto;
+  display: flex;
+  flex: 1 2 85%;
+  flex-flow: column;
+
 `
 
 export default Wrapped

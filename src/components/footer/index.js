@@ -17,7 +17,7 @@ class Footer extends Component {
   render() {
     return(
       <Foot>
-        <Section>
+        <Section primary>
           <P>
           <Logo src={ logoSv } />
           Simracing Valley
@@ -32,29 +32,42 @@ class Footer extends Component {
           <Li><Popup title='Conduta' innerComponent={ Conduta } /></Li>
         </Ul>
         </Section>
-        <CopyRight>
+        <Section>
+          <Title>Contato</Title> <MailTo href="mailto:contato@simracingvalley.com">contato@simracingvalley.com</MailTo>
+        </Section>
+        <Section>
+          <Title>Parceiros</Title> <MailTo href="mailto:contato@simracingvalley.com">SEJA UM PARCEIRO!</MailTo>
+        </Section>
+        <Section>
          © Simracing Valley - 2018
-        </CopyRight>
+        </Section>
       </Foot>
     )
   }
 }
 
+const MailTo = style.a`
+  text-decoration: none;
+  color: grey;
+`
+
 const Foot = style.footer`
   display: flex;
-  width: 100%;
   margin-top: 50px;
   background-color: #303036;
+  justify-content: flex-start;
   @media ${device.mobileS}{
-    font-size: 0.6em;
+    font-size: 0.7em;
+    flex-flow: column nowrap;
   }
   @media ${device.laptop}{
     font-size: 0.75em;
+    flex-flow: row wrap;
   }
 `
 const CopyRight = style.div`
+  self-align: flex-end;
   color: white;
-  margin: auto 30px 30px auto;
 `
 
 const Ul = style.ul`
@@ -80,7 +93,19 @@ const Logo = style.img`
   height: 60px;
 `
 const Section = style.div`
-  width: 17%;
+  @media${device.mobileS}{
+  ${props => props.primary
+  ? 'display: none'
+  : 'flex: 1 0 auto;'}
+  }
+  @media${device.laptop}{
+  display: block;
+  ${props => props.primary 
+  ? 'flex: 0 0 20%'
+  :'flex: 0 0 auto;'
+  }
+
+  }
   color: #6b6d6f;
   margin: 30px;
 `

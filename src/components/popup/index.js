@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import style from 'styled-components'
+import { device } from '../../device'
 
 class Popup extends Component {
   state = {
@@ -33,7 +34,6 @@ const Button = style.button`
   text-align: center;
   padding: 0;
   font-weight: bold;
-  position: fixed;
   width: 30px;
   height: 30px;
   border: 3px black solid;
@@ -47,6 +47,8 @@ const Button = style.button`
 const Container = style.div`
   z-index: 2;
   position: fixed;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
   margin:  auto;
@@ -56,15 +58,18 @@ const Container = style.div`
   cursor: default;
 `
 const Inner = style.div`
-  position: absolute;
-  left: 0;
-  right: 0;
+  position: relative
+  @media${device.mobileS}{
+  flex: 1 0 50%;
+  }
+  @media${device.laptop}{
+  flex: 0 0 50%;
   top: 15%;
-  width: 750px;
+
+  }
+  display: flex;
   height: 500px;
-  margin: 0 auto;
   background: white;
-  display: block;
   border: 1px grey solid;
   border-radius: 5px;
   overflow-y: auto;
