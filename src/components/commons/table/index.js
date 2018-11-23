@@ -3,15 +3,8 @@ import styled from 'styled-components'
 import {mainColor} from '../style'
 
 export const Table = styled.table`
+  width: 100%;
   border-collapse: collapse;
-  @media ${device.mobileS}{
-    width: 100%;
-    margin: 10px auto 15px auto;
-  }
-  @media ${device.laptop}{
-    width: 100%;
-    margin: 10px auto 50px auto;
-  }
   overflow-y: auto;
   ${props => props.hide ? 'display: none' : null}
 `
@@ -29,7 +22,6 @@ export const Tbody = styled.tbody`
 `
 
 export const Td = styled.td`
-  text-align: ${props => props.right ? 'right' : 'left'};
   padding: 0.8em 1em;
   vertical-align: top;
   @media ${device.mobileS}{
@@ -42,10 +34,10 @@ export const Td = styled.td`
     padding: 0.5em 0.8em;
     display: table-cell;
   }
+  text-align: center;
 
 `
 export const Th = styled.th`
-  text-align: ${props => props.center ? 'center' : 'left'};
   padding: 0.8em 1em;
   @media ${device.mobileS}{
     font-size: 0.8em;
@@ -57,6 +49,8 @@ export const Th = styled.th`
     font-size: 1em;
     padding: 0.5em 0.8em;
   }
+  vertical-align: top;
+  text-align: center;
 
 `
 

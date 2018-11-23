@@ -12,14 +12,13 @@ class Home extends Component {
 
   render (){
     return(
-      <React.Fragment>
+      <Wrapped>
       <Header
         title='Participe de corridas'
         text='TODOS OS DIAS'
         image={ imageHead }>
       </Header>
-      <div style={{height: '100%', width: '100%'}}>
-      <Wrapped>
+      <Content>
         <Section>
           <Title big>
             Nosso algoritmo reconhece as chances de vitória de cada piloto!
@@ -55,9 +54,8 @@ class Home extends Component {
         <Iframe
             src="https://store.steampowered.com/widget/431600/"
         />
+      </Content>
       </Wrapped>
-      </div>
-      </React.Fragment>
     )
   }
 }
@@ -88,21 +86,16 @@ const P = style.p`
 `
 
 const Wrapped = style.div`
-  position: relative;
   display: flex;
   flex-flow: row wrap;
   @media ${device.mobileS}{
     font-size: 0.8em;
     width: 100%;
     margin: 50px auto 0 auto;
-    #margin: 0 auto;
-    #top: 35vh;
   }
   @media ${device.laptop}{
     width: 100%;
     margin: 0vh auto 0 auto; 
-    #margin: 3em auto;
-    #top: 55vh;
   }
   align-items: center;
   background: white;
@@ -120,6 +113,13 @@ const Section = style.div`
   margin: 0 auto;
   float: left
   }
+`
+const Content = style.div`
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 0 100%;
+  background: white;
+  z-index: 1;
 `
 
 export default Home

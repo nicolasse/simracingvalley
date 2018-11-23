@@ -118,13 +118,12 @@ const Wrapper = styled.div`
   @media ${device.mobileS}{
     font-size: 0.7em;
     width: 100%;
-    margin: 15vh auto 0 auto;
   }
   @media ${device.laptop}{
     font-size: 1em;
     width: 75%;
-    margin: 10vh auto 0 auto;
   }
+  margin: 0 auto;
   min-height: 80vh;
   
 `

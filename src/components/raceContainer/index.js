@@ -59,13 +59,13 @@ class RaceContainer extends Component {
 } 
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
   @media ${device.mobileS}{
-  margin: 50px auto;
-  width: 100%;
+    flex: 0 0 100%;
   }
   @media ${device.laptop}{
-  margin: 2vh auto;
-  width: 100%;
+    flex: 0 0  auto;
   }
 `
 

@@ -55,7 +55,7 @@ const Foot = style.footer`
   display: flex;
   margin-top: 5em;
   background-color: #303036;
-  justify-content: flex-start;
+  flex: 1;
   @media ${device.mobileS}{
     font-size: 0.7em;
     flex-flow: column nowrap;

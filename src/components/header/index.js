@@ -34,9 +34,9 @@ const AnimatedText = style.h1`
 const Content = style.div`
   position: sticky;
   z-index:0;
-  width: 100%;
-  margin: 100px auto 0 auto;
-  top: 50px;
+  top: 0;
+  display: flex;
+  flex: 1 1 100%;
   @media ${device.mobileS}{
     height: 30vh;
   }

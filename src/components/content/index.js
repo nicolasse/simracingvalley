@@ -46,17 +46,15 @@ class Content extends Component {
 
 
 const Wrapper = styled.div`
-position: relative;
+  margin: 0 auto;
   @media ${device.mobileS}{
-    margin: 50px auto;
-   width: 100%;
+    width: 100%;
   }
   @media ${device.laptop}{
-    margin: 100px auto 0 auto;
     width: 75%;
   }
   min-height: 60vh;
-  align-items:center;
+  padding-top: 4em;
 `
 
 const mapStateToProps = state => ({user: state.userReducer})

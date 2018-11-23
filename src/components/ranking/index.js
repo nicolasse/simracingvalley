@@ -88,13 +88,13 @@ class Ranking extends Component {
 }
 
 const Wrapper = styled.div`
-  @media ${device.mobileS}{
-    width: 100%;
-    margin: 0 auto 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  @media${device.mobileS }{
+    flex: 0 0 100%;
   }
-  @media ${device.laptop}{
-    width: 100%;
-    margin: 2vh auto 0 auto;
+  @media${device.laptop }{
+    flex: 0 0 auto;
   }
 `
 const mapStateToProps = state => ({state: state.rankingReducer})
