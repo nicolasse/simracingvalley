@@ -34,8 +34,8 @@ class App extends Component {
 }
 
 const Wrapper = styled.div`
-width: 100%
-margin: 0 auto
+  display: flex;
+  flex-flow: column nowrap;
 `
 
 const mapStateToProps = state => ({ user: state.userReducer })

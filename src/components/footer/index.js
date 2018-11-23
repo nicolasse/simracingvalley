@@ -53,7 +53,7 @@ const MailTo = style.a`
 
 const Foot = style.footer`
   display: flex;
-  margin-top: 50px;
+  margin-top: 5em;
   background-color: #303036;
   justify-content: flex-start;
   @media ${device.mobileS}{

@@ -64,7 +64,7 @@ const Wrapper = styled.div`
   width: 100%;
   }
   @media ${device.laptop}{
-  margin: 20vh auto;
+  margin: 2vh auto;
   width: 100%;
   }
 `
