@@ -34,13 +34,13 @@ export const Td = styled.td`
   vertical-align: top;
   @media ${device.mobileS}{
     font-size: 0.8em;
-    ${props => props.hide ? 'visibility: collapse' : 'visibility: visible'};
+    ${props => props.hide ? 'display: none' : 'display: table-cell'};
     padding: 0.3em 0.3em;
   }
   @media ${device.laptop}{
-    visibility: visible;
     font-size: 1em;
     padding: 0.5em 0.8em;
+    display: table-cell;
   }
 
 `
@@ -49,11 +49,11 @@ export const Th = styled.th`
   padding: 0.8em 1em;
   @media ${device.mobileS}{
     font-size: 0.8em;
-    ${props => props.hide ? 'visibility: collapse' : 'visibility: visible'};
+    ${props => props.hide ? 'display: none' : 'display: table-cell'};
     padding: 0.3em 0.3em;
   }
   @media ${device.laptop}{
-    visibility: visible;
+    display: table-cell;
     font-size: 1em;
     padding: 0.5em 0.8em;
   }
