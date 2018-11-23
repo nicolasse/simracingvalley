@@ -59,10 +59,10 @@ class Records extends Component {
          let color = index === 0 ? mainColor : 'white'
         return(
             <tr key={index} style={{ background: color }}>
-              <Td><StyledLink to={'races/'+ record.resultid}>{record.racedate}</StyledLink></Td>
-              <Td><StyledLink to={'drivers/'+ record.userid}> {record.username}</StyledLink></Td>
-              <Td> {record.s1}</Td><Td> { record.s2 }</Td>
-              <Td> {record.s3}</Td>
+              <Td><StyledLink record={index === 0} to={'races/'+ record.resultid}>{record.racedate}</StyledLink></Td>
+              <Td><StyledLink record={ index === 0 } to={'drivers/'+ record.userid}> {record.username}</StyledLink></Td>
+              <Td hide> {record.s1}</Td><Td hide> { record.s2 }</Td>
+              <Td hide> {record.s3}</Td>
               <Td>{record.laptime}</Td>
             </tr>
         )
@@ -89,9 +89,9 @@ class Records extends Component {
             <Tr style={{background: 'white'}}>
               <Th>Data</Th>
               <Th>Piloto</Th>
-              <Th>Parcial 1</Th>
-              <Th>Parcial 2</Th>
-              <Th>Parcial 3</Th>
+              <Th hide>Parcial 1</Th>
+              <Th hide>Parcial 2</Th>
+              <Th hide>Parcial 3</Th>
               <Th>Tempo total</Th>
             </Tr>
           </Thead>
@@ -107,20 +107,18 @@ class Records extends Component {
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  &:hover{
-    color: white;
-  }
+  ${props => props.record
+  ?'&:hover{color: white; }'
+  : '&:hover{ color:'+ mainColor}
 
 `
 const Wrapper = styled.div`
   position: relative;
   text-align: center;
   @media ${device.mobileS}{
-    font-size: 0.7em;
     width: 100%;
   }
   @media ${device.laptop}{
-    font-size: 1em;
     width: 75%;
   }
   margin: 0 auto;

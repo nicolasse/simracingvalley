@@ -52,9 +52,9 @@ const Wrapper = styled.div`
   }
   @media ${device.laptop}{
     width: 75%;
+    padding-top: 4em;
   }
   min-height: 60vh;
-  padding-top: 4em;
 `
 
 const mapStateToProps = state => ({user: state.userReducer})

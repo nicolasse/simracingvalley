@@ -59,6 +59,7 @@ class Race extends Component {
       { state.loading ? 'Loading':
         this.state.filter === 'info'
         ? <Info>
+          { srvsettings.cdc ? <Config style={{ background: 'goldenrod', 'border-radius': '5px', 'text-align': 'center' }}> Corrida dos Campeões</Config>: null }
           <Config> <Span rated={state.race.rated}>{ state.race.rated ? 'CORRIDA RANQUEADA': 'CORRIDA NÃO RANQUEADA' }</Span></Config>
           <Config>Largada: {srvsettings.starttypes[0]}</Config>
           <Config>Fim corrida: {srvsettings.racefinishes[0]}</Config>
@@ -139,9 +140,15 @@ const ButtonEvent = styled.button`
   ${ props => props.activated
   ? 'color: white; background:' +mainColor 
   : 'color: black; background: white' };
+  @media${device.mobileS}{
+    font-size: 1em;
+  }
+  @media${device.laptop}{
+    font-size: 1.2em;
+  
+  }
   border: 1px solid black;
   margin: 10px 10px 10px 0;
-  font-size: 1.2em;
   padding: 1em;
 
   &:active, &:hover {
@@ -168,11 +175,9 @@ const Col = styled.div`
 const Wrapper = styled.div`
   @media ${device.mobileS}{
     width: 100%;
-    font-size: 0.7em;
   }
   @media ${device.laptop}{
     width: 100%;
-    font-size: 1em;
   }
   margin: 0 auto;
 `

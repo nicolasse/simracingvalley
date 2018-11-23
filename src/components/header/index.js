@@ -19,7 +19,7 @@ class Header extends Component {
 const AnimatedText = style.h1`
   position: absolute;
   @media ${device.mobileS}{
-    font-size: ${props => props.small ? '0.5em' : '1.5em'};
+    font-size: ${props => props.small ? '1.1em' : '2.2em'};
   }
   @media ${device.laptop}{
     font-size: ${props => props.small ? '1.5em' : '3em'};

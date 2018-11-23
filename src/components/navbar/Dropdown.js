@@ -24,8 +24,10 @@ class Dropdown extends Component {
       <Dropbutton onMouseLeave={this.handleLeave} onMouseOver={this.handleOver} onClick={this.handleClick}> 
           <Title> {this.props.name} </Title>
         <Links hide={this.state.hide}> 
-          <StyledLink dropdown={'true'} to='/races'>Carreras</StyledLink>
-          <StyledLink dropdown={'true'} to='/records'>Records</StyledLink>
+          { this.props.links.map((link, index) => (
+            <StyledLink dropdown to={link.path}>{link.name}</StyledLink>
+            )
+          )}
         </Links>
       </Dropbutton>
 
@@ -55,6 +57,7 @@ const Title = styled.a`
   justify-content: center;
   cursor: default;
   flex-direction: column;
+  min-width: 5em;
 
   display: ${ props => props.home ? 'block' : 'flex' }
   @media ${ device.mobileS }{

@@ -71,9 +71,11 @@ const UserLink = styled(Link)`
 const Table = styled.table`
   @media${device.mobileS}{
   ${props => props.hide ? 'display:none' : 'display: table'}
+  font-size: 0.8em;
   }
   @media${device.laptop}{
     display: table; 
+  font-size: 1em;
   }
   border-collapse: collapse;
   width: 100%;
@@ -93,14 +95,24 @@ const Tbody = styled.tbody`
 
 const Td  = styled.td`
   text-align: ${props => props.right ? 'right' : 'left'};
-  padding: 0.8em 0.5em;
   vertical-align: top;
   ${props => props.hide ? 'display: none' : null}
+  @media${device.mobileS}{
+    padding: 0.8em 0.1em;
+  }
+  @media${device.laptop}{
+    padding: 0.8em 0.5em;
+  }
 `
 const Th = styled.th`
   text-align: ${props => props.center ? 'center' : 'left'};
-  padding: 0.8em 0.5em;
   ${props => props.hide ? 'display: none' : null}
+  @media${device.mobileS}{
+    padding: 0.8em 0.1em;
+  }
+  @media${device.laptop}{
+    padding: 0.8em 0.5em;
+  }
 `
 
 const Tr = styled.tr`

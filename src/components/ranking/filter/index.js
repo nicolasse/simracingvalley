@@ -6,7 +6,7 @@ import Input from './Input'
 class FilterName extends Component {
 
   handleChange = ( e ) => {
-    let name = e.target.value
+    let name = (e.target.value).replace(/[^a-z0-9]*$/gi, '')
     if( name.length > 2){
       this.props.searchDriver( name )
       this.props.filterToggle( true )

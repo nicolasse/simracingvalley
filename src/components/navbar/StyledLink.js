@@ -8,6 +8,7 @@ const StyledLink = style(NavLink)`
    background: #333;
    color: white;
   }
+  min-width: 5em;
   text-align: center;
   text-decoration: none;
   height: 30px;

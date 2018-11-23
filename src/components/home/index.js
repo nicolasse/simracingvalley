@@ -91,13 +91,12 @@ const Wrapped = style.div`
   @media ${device.mobileS}{
     font-size: 0.8em;
     width: 100%;
-    margin: 50px auto 0 auto;
+    margin: 20px auto 0 auto;
   }
   @media ${device.laptop}{
     width: 100%;
     margin: 0vh auto 0 auto; 
   }
-  align-items: center;
   background: white;
 `
 

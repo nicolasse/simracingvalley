@@ -24,21 +24,21 @@ class RaceContainer extends Component {
     this.props.history.push('/races/' + raceId)
   }
 
-  render (){
-    let totalPages = this.props.pages
-    return(
-      <Wrapper>
-      <Table>
-        <Thead>
-          <Tr style={{background: 'white'}}>
-            <Th>Car</Th>
-            <Th>Track</Th>
-            <Th>Date</Th>
-          </Tr>
-        </Thead>
-      <Tbody>
-      {this.props.races.map((race) => 
-        <Tr onClick={() => this.handleClickRace(race._id)} hover={true} key={race._id}>
+render (){
+  let totalPages = this.props.pages
+  return(
+    <Wrapper>
+    <Table>
+      <Thead>
+        <Tr style={{background: 'white'}}>
+          <Th>Car</Th>
+          <Th>Track</Th>
+          <Th>Date</Th>
+        </Tr>
+      </Thead>
+    <Tbody>
+    {this.props.races.map((race) => 
+        <Tr onClick={() => this.handleClickRace(race._id)} hover key={race._id} cdc={race.srvsettings.cdc} >
           <Td> {race.srvsettings.cars[0]} </Td>
           <Td>{race.srvsettings.tracks[0]} </Td>
           <Td>{race.srvsettings.date}</Td>
@@ -63,9 +63,12 @@ const Wrapper = styled.div`
   flex-flow: column nowrap;
   @media ${device.mobileS}{
     flex: 0 0 100%;
+    font-size: 0.8em;
   }
   @media ${device.laptop}{
     flex: 0 0  auto;
+
+    font-size: 1em;
   }
 `
 
