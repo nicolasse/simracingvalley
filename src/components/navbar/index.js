@@ -50,12 +50,18 @@ class NavBar extends Component {
       <Nav onClick={() => this.handleChange()} visible={this.state.visible}>
       <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
         <StyledLink to='/ranking'>Ranking</StyledLink>
-      <Dropdown name='Resultados' links={[{path: '/races', name:'Races'}, {path:'/records', name:'Records'}]} />
+      <Dropdown
+        name='Resultados'
+        links={[
+          {path: '/races', name:'Races', external: false},
+          {path:'/records', name:'Records', external: false}
+        ]}
+      />
       <Dropdown
         name='Outros'
         links={[
-          {path: '/static/others/Manual_SV.pdf', name:'Manual'},
-          {path:'/static/others/Automobilista_DAQ.rar', name:'Plugin'}
+          {path: '/static/others/Manual_SV.pdf', name:'Manual', external: true},
+          {path:'/static/others/Automobilista_DAQ.rar', name:'Plugin', external: true}
         ]} />
         { this.props.user.logged ?
           <React.Fragment>

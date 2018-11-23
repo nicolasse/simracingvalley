@@ -20,7 +20,7 @@ const StyledLink = style(NavLink)`
   flex-direction: column;
   flex: 1 0.5 100%
   &:hover {
-    background: ${props => props.dropdown ? boldColor : boldColor};
+    background: ${boldColor};
   }
   &.active {
     background: #bed0d1;

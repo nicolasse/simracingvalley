@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { device } from '../../device'
 import styled from 'styled-components'
 import StyledLink from './StyledLink'
-import {boldColor} from '../commons/style'
+import {boldColor, lightColor} from '../commons/style'
 class Dropdown extends Component {
   state={
     hide: true
@@ -24,9 +24,14 @@ class Dropdown extends Component {
       <Dropbutton onMouseLeave={this.handleLeave} onMouseOver={this.handleOver} onClick={this.handleClick}> 
           <Title> {this.props.name} </Title>
         <Links hide={this.state.hide}> 
-          { this.props.links.map((link, index) => (
-            <StyledLink dropdown to={link.path}>{link.name}</StyledLink>
-            )
+          { this.props.links.map((link, index) => {
+            if(link.external){
+             return <ExternalLink dropdown={1} key={index} href={link.path}>{link.name}</ExternalLink>
+            }
+            else{
+              return <StyledLink dropdown={1} key={index} to={link.path}>{link.name}</StyledLink>
+            }
+          }
           )}
         </Links>
       </Dropbutton>
@@ -35,14 +40,45 @@ class Dropdown extends Component {
   }
 }
 
+const ExternalLink = styled.a`
+  @media ${device.mobileS}{
+   background: #333;
+   color: white;
+  }
+  min-width: 5em;
+  text-align: center;
+  text-decoration: none;
+  height: 30px;
+  font-size: 15px;
+  padding: 10px;
+  transition: all .2s ease-in;
+  display: block;
+  justify-content: center;
+  flex-flow: column nowrap;
+  flex: 1 0.5 100%
+  &:hover {
+    background: ${boldColor};
+  }
+  &.active {
+    background: #bed0d1;
+    color: black;
+  }
+  display: ${ props => props.home ? 'block' : 'flex' }
+    @media ${device.laptop}{
+  ${props => props.dropdown
+  ? 'background: ' +lightColor+'; color: black; float: none;'
+  : 'background: #333; color: white; float: left'
+  }
+  }
+`
 const Links = styled.div`
   @media ${device.mobileS}{
-    flex-direction: column
+    flex-flow: column nowrap
     width: 100%;
   }
   @media ${device.laptop}{
   ${props => props.hide ? 'visibility: hidden; opacity: 0;   transition:all 0.3s linear;' : 'transition:all 0.3s linear;opacity: 1; visibility: visible'}
-  flex-direction: column
+  flex-flow: column nowrap;
     width: auto;
   }
 `
