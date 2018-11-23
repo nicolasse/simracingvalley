@@ -55,7 +55,7 @@ export const Th = styled.th`
     font-size: 1em;
     padding: 0.5em 0.8em;
   }
-  vertical-align: top;
+  vertical-align: bottom;
   text-align: center;
 
 `
@@ -63,7 +63,7 @@ export const Th = styled.th`
 export const Tr = styled.tr`
   cursor: default;
   ${props => props.cdc
-  ? 'background: goldenrod'
+  ? 'background: #CFB53B'
   : 'background: white;&:nth-child(odd){ background: #f2f2f2; }'
   }
   &:hover{
