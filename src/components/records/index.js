@@ -123,7 +123,7 @@ const Wrapper = styled.div`
   @media ${device.laptop}{
     font-size: 1em;
     width: 75%;
-    margin: 25vh auto 0 auto;
+    margin: 10vh auto 0 auto;
   }
   min-height: 80vh;
   
