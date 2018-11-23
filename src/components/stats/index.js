@@ -98,9 +98,11 @@ const Table = styled.table`
   width: 100%;
   @media ${device.mobileS}{
     border-left: 0;
+    font-size: 0.77em;
   }
   @media ${device.laptop}{
     border-left: 5px solid black;
+    font-size: 1em;
   }
   box-sizing: border-box;
 `
@@ -116,25 +118,27 @@ const Tbody = styled.tbody`
 const Td = styled.td`
   box-sizing: border-box;
   text-align: ${props => props.right ? 'right' : 'left'};
-  padding: 0.8em 0.5em;
   vertical-align: top;
   color: ${props => props.best ? 'green' : 'black'}
   font-weight: ${props => props.best ? 'bold' : 'normal'}
   @media ${device.mobileS}{
     font-size: ${props => props.hideOnMobile ? '0px' : '1em'};
+    padding: 0.8em 0.1em;
   }
   @media ${device.laptop}{
     font-size: 1em;
+  padding: 0.8em 0.5em;
   }
 `
 const Th = styled.th`
   text-align: ${props => props.center ? 'center' : 'left'};
-  padding: 0.8em 0.5em;
   @media ${device.mobileS}{
     font-size: ${props => props.hideOnMobile ? '0px' : '1em'}
+    padding: 0.8em 0.1em;
   }
   @media ${device.laptop}{
     font-size: 1em;
+  padding: 0.8em 0.5em;
   }
 
 `

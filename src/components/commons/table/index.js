@@ -6,6 +6,14 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   overflow-y: auto;
+  font-size: 4vw;
+  @media${device.mobileS}{
+    font-size: 1.2em;
+
+  }
+  @media${device.laptop}{
+     font-size: 1em;
+  }
   ${props => props.hide ? 'display: none' : null}
 `
 
@@ -22,12 +30,11 @@ export const Tbody = styled.tbody`
 `
 
 export const Td = styled.td`
-  padding: 0.8em 1em;
   vertical-align: top;
   @media ${device.mobileS}{
     font-size: 0.8em;
     ${props => props.hide ? 'display: none' : 'display: table-cell'};
-    padding: 0.3em 0.3em;
+    padding: 0.3em 0.1em;
   }
   @media ${device.laptop}{
     font-size: 1em;
@@ -38,11 +45,10 @@ export const Td = styled.td`
 
 `
 export const Th = styled.th`
-  padding: 0.8em 1em;
   @media ${device.mobileS}{
     font-size: 0.8em;
     ${props => props.hide ? 'display: none' : 'display: table-cell'};
-    padding: 0.3em 0.3em;
+    padding: 0.3em 0.1em;
   }
   @media ${device.laptop}{
     display: table-cell;
@@ -55,14 +61,13 @@ export const Th = styled.th`
 `
 
 export const Tr = styled.tr`
-  background: white;
   cursor: default;
-  &:nth-child(odd){
-  background: #f2f2f2;
+  ${props => props.cdc
+  ? 'background: goldenrod'
+  : 'background: white;&:nth-child(odd){ background: #f2f2f2; }'
   }
   &:hover{
     ${props => props.hover ? 'background:'+ mainColor +'; color: white;' : null}
-
   }
 
 `
