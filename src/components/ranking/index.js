@@ -12,6 +12,11 @@ import {selectImg} from '../../helpers/switchClassImage'
 import FilterName from './filter'
 
 
+const first = require('../../images/position/1st.png')
+const second = require('../../images/position/2nd.png')
+const third = require('../../images/position/3rd.png')
+const fourth = require('../../images/position/4th.png')
+const fifth = require('../../images/position/5th.png')
 
 class Ranking extends Component {
   state= {
@@ -46,11 +51,11 @@ class Ranking extends Component {
               <Th>#</Th>
               <Th>Nome</Th>
               <Th>Pontos</Th>
-              <Th hide>1</Th>
-              <Th hide>2</Th>
-              <Th hide>3</Th>
-              <Th hide>4</Th>
-              <Th hide>5</Th>
+              <Th hide><img src={first}/></Th>
+              <Th hide><img src={second}/></Th>
+              <Th hide><img src={third}/></Th>
+              <Th hide><img src={fourth}/></Th>
+              <Th hide><img src={fifth}/></Th>
               <Th>Corridas</Th>
               <Th>Incidentes</Th>
               <Th center hide>Classe</Th>
