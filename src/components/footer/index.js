@@ -38,7 +38,7 @@ class Footer extends Component {
         <Section>
           <Title>Parceiros</Title> <MailTo href="mailto:contato@simracingvalley.com">SEJA UM PARCEIRO!</MailTo>
         </Section>
-        <Section style={{ 'align-self': 'flex-end', 'margin-left': 'auto' }}>
+        <Section style={{ 'alignSelf': 'flex-end', 'marginLeft': 'auto' }}>
          © Simracing Valley - 2018
         </Section>
       </Foot>
