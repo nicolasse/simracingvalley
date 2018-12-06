@@ -51,7 +51,7 @@ const Wrapper = styled.div`
     width: 100%;
   }
   @media ${device.laptop}{
-    width: 75%;
+    width: 83.3%;
     padding-top: 4em;
   }
   min-height: 60vh;

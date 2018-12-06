@@ -85,7 +85,12 @@ class Race extends Component {
           <Config>Retorno Pits: {srvsettings.pitreturns[0]}</Config>
           <Config>Escala Tempo: {srvsettings.timescales[0]}</Config>
         </Info>
-        : <Event shouldMobileHide={state.stats.length > 0 ? true : false} event={this.sortGrid(state.race[this.state.filter])} isRace={this.state.filter === 'race'}/>
+        : <Event 
+          shouldMobileHide={state.stats.length > 0 ? true : false}
+          event={this.sortGrid(state.race[this.state.filter])}
+          isRace={this.state.filter === 'race'}
+          raceId={state.race._id}
+          />
       }
         </Col>
         <Col>

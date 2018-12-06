@@ -38,8 +38,10 @@ class NavBar extends Component {
   }
 
   handleChange(){
-    this.setState({path: window.location.pathname, visible: false})
-    this.props.toggleLoading()
+    if( this.state.path !== window.location.pathname ){
+      this.setState({path: window.location.pathname, visible: false})
+      this.props.toggleLoading()
+    }
   }
 
   render() {
@@ -87,9 +89,9 @@ class NavBar extends Component {
 const Menu = styled.button`
   text-align: right;
   border: 0;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 50px;
   background: #333;

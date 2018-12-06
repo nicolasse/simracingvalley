@@ -30,7 +30,7 @@ class UserForm extends Component {
       birthday: this.birthday.current.value,
     }
     e.preventDefault()
-    fetch('http://localhost:8080/users/' + this.props.user.userId , {
+    fetch('/api/users/' + this.props.user.userId , {
       method: 'PUT',
       headers: {
             'Content-Type': 'application/json',

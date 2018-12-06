@@ -39,7 +39,7 @@ class Profile extends Component{
     return(
       <Wrapper>
         <ProfileBox>
-          <Avatar src={driver.avatar} alt='avatar' />
+          <Avatar src={driver.avatar} alt='Avatar not loaded' />
           <StatsSection>
             <Name>{driver.unique_name}</Name>
             <Table>
@@ -238,6 +238,7 @@ const ProfileBox = styled.div`
   display: flex;
 `
 const Avatar = styled.img`
+  background: #f0f0f0;
   @media ${device.mobileS}{
   width: 200px;
   margin: 0 auto;
@@ -247,7 +248,7 @@ const Avatar = styled.img`
     height: 100px;
   }
   @media ${device.laptop}{
-  width: auto;
+  min-width: 300px;
   height: 300px;
   }
   border-radius: 5px

@@ -6,9 +6,17 @@ import navbarReducer from './navbarReducer'
 import userReducer from './userReducer'
 import driverReducer from './driverReducer'
 import recordsReducer from './recordsReducer'
+import voteReducer from './voteReducer'
 
 const rootReducer = combineReducers({
-  rankingReducer, racesReducer, raceReducer, navbarReducer, userReducer, driverReducer, recordsReducer
+  rankingReducer,
+  racesReducer,
+  raceReducer,
+  navbarReducer,
+  userReducer,
+  driverReducer,
+  recordsReducer,
+  voteReducer
 })
 
 export default rootReducer

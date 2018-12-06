@@ -58,13 +58,13 @@ class Records extends Component {
        return records.reverse().map((record, index) => {
          let color = index === 0 ? mainColor : 'white'
         return(
-            <tr key={index} style={{ background: color }}>
+            <Tr key={index} style={{ background: color }}>
               <Td><StyledLink record={index === 0} to={'races/'+ record.resultid}>{record.racedate}</StyledLink></Td>
               <Td><StyledLink record={ index === 0 } to={'drivers/'+ record.userid}> {record.username}</StyledLink></Td>
               <Td hide> {record.s1}</Td><Td hide> { record.s2 }</Td>
               <Td hide> {record.s3}</Td>
               <Td>{record.laptime}</Td>
-            </tr>
+            </Tr>
         )
       })
     }
@@ -105,6 +105,7 @@ class Records extends Component {
 }
 
 const StyledLink = styled(Link)`
+  font-weight: bold;
   text-decoration: none;
   color: black;
   ${props => props.record

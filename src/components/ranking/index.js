@@ -74,7 +74,7 @@ class Ranking extends Component {
                 <Td right hide> { driver.Fifth } </Td>
                 <Td right> { driver.Races } </Td>
                 <Td right> { driver.Incidents } </Td>
-                <Td>  <Img hide alt='classe' src={selectImg(driver.Class)} /> </Td>
+                <Td right>  <Img hide alt='classe' src={selectImg(driver.Class)} /> </Td>
               </Tr>
               )
             }
@@ -121,8 +121,10 @@ const Img = styled.img`
   @media ${device.laptop}{
   display: block;
   }
+  margin: 0 auto;
 `
 const UserLink = styled(Link)`
+  font-weight: bold;
   color: black
   text-decoration: none
 `

@@ -38,7 +38,7 @@ export const Td = styled.td`
   }
   @media ${device.laptop}{
     font-size: 1em;
-    padding: 0.5em 0.8em;
+    padding: 0.5em 0.2em;
     display: table-cell;
   }
   text-align: center;
@@ -53,7 +53,7 @@ export const Th = styled.th`
   @media ${device.laptop}{
     display: table-cell;
     font-size: 1em;
-    padding: 0.5em 0.8em;
+    padding: 0.5em 0.2em;
   }
   vertical-align: bottom;
   text-align: center;
@@ -63,8 +63,8 @@ export const Th = styled.th`
 export const Tr = styled.tr`
   cursor: default;
   ${props => props.cdc
-  ? 'background: #CFB53B'
-  : 'background: white;&:nth-child(odd){ background: #f2f2f2; }'
+    ? 'background: #CFB53B'
+    : 'background: white;&:nth-child(odd){ background: #f2f2f2; }'
   }
   &:hover{
     ${props => props.hover ? 'background:'+ mainColor +'; color: white;' : null}
