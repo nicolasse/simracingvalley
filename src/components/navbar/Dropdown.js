@@ -27,7 +27,7 @@ class Dropdown extends Component {
           <Links hide={this.state.hide}> 
           { this.props.links.map((link, index) => {
             if(link.external){
-             return <ExternalLink dropdown={1} key={index} href={link.path}>{link.name}</ExternalLink>
+             return <ExternalLink dropdown={1} key={index} href={link.path}> {link.name}{link.icon}</ExternalLink>
             }
             else{
               return <StyledLink dropdown={1} key={index} to={link.path}>{link.name}</StyledLink>
@@ -54,8 +54,9 @@ const ExternalLink = styled.a`
   padding: 10px;
   transition: all .2s ease-in;
   display: block;
-  justify-content: center;
-  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row nowrap;
   flex: 1 0.5 100%
   &:hover {
     background: ${boldColor};
@@ -71,7 +72,7 @@ const ExternalLink = styled.a`
 const Links = styled.div`
   transition: opacity .2s ease-in;
   &:appear {
-    opacity: 1;
+    opacity: 0;
   }
   @media ${device.mobileS}{
     width: 100%;
@@ -81,7 +82,7 @@ const Links = styled.div`
   @media ${device.laptop}{
     ${props => props.hide
      ? 'display:none;opacity: 0 '
-      : 'display: block; opacity: 1'
+     : 'display: block; opacity: 1'
     }
     flex-flow: column nowrap;
     width: auto;

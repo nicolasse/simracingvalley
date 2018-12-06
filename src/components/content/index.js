@@ -8,6 +8,7 @@ import RaceContainer from '../raceContainer'
 import Race from '../race'
 import UserForm from '../userForm'
 import Records from '../records'
+import Schedule from '../schedule'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { device } from '../../device'
@@ -22,6 +23,7 @@ class Content extends Component {
           <Switch>
             <Route exact path='/' component={ Home } />
             <Route path='/ranking' component={ Ranking } />
+            <Route path='/agenda' component={ Schedule } />
             <Route path='/resultados' component={ Home } />
             <Route path='/ligasecopas' component={ Home } />
             <Route path='/social' component={ Home } />
