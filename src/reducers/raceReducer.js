@@ -8,6 +8,7 @@ import {
 
 const INITIAL_STATE = {
   race: {
+    _id: '',
     practice: [],
     qualify: [],
     race: [],

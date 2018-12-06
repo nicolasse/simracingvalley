@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { device } from '../../device'
 import styled from 'styled-components'
 import StyledLink from './StyledLink'
-import {boldColor, lightColor} from '../commons/style'
+import {mainColor, boldColor, lightColor} from '../commons/style'
 class Dropdown extends Component {
   state={
     hide: true
   }
 
-  handleOver = () =>{
+  handleOver = (e) =>{
+    e.stopPropagation()
     this.setState({hide: false})
   }
 
@@ -16,14 +17,14 @@ class Dropdown extends Component {
     this.setState({hide: true})
   }
 
-  halndleClick = () => {
-    this.setState({hide: false})
+  handleClick = (e) => {
+    e.stopPropagation()
   }
   render(){
     return(
-      <Dropbutton onMouseLeave={this.handleLeave} onMouseOver={this.handleOver} onClick={this.handleClick}> 
-          <Title> {this.props.name} </Title>
-        <Links hide={this.state.hide}> 
+      <Dropbutton onMouseLeave={this.handleLeave} onMouseOver={this.handleOver} > 
+          <Title  onClick={ this.handleClick }> {this.props.name} </Title>
+          <Links hide={this.state.hide}> 
           { this.props.links.map((link, index) => {
             if(link.external){
              return <ExternalLink dropdown={1} key={index} href={link.path}>{link.name}</ExternalLink>
@@ -59,10 +60,6 @@ const ExternalLink = styled.a`
   &:hover {
     background: ${boldColor};
   }
-  &.active {
-    background: #bed0d1;
-    color: black;
-  }
   display: ${ props => props.home ? 'block' : 'flex' }
     @media ${device.laptop}{
   ${props => props.dropdown
@@ -72,17 +69,29 @@ const ExternalLink = styled.a`
   }
 `
 const Links = styled.div`
+  transition: opacity .2s ease-in;
+  &:appear {
+    opacity: 1;
+  }
   @media ${device.mobileS}{
-    flex-flow: column nowrap
     width: 100%;
+    ${props => props.hide ? 'display: none' :  'display: block;'}
+    flex-flow: column nowrap
   }
   @media ${device.laptop}{
-  ${props => props.hide ? 'visibility: hidden; opacity: 0;   transition:all 0.3s linear;' : 'transition:all 0.3s linear;opacity: 1; visibility: visible'}
-  flex-flow: column nowrap;
+    ${props => props.hide
+     ? 'display:none;opacity: 0 '
+      : 'display: block; opacity: 1'
+    }
+    flex-flow: column nowrap;
     width: auto;
   }
 `
 const Title = styled.a`
+  &:hover {
+    background: ${boldColor};
+    flex-direction: column;
+  }
   z-index: 2;
   text-align: center;
   text-decoration: none;
@@ -94,33 +103,27 @@ const Title = styled.a`
   cursor: default;
   flex-direction: column;
   min-width: 5em;
+  transition: background .2s ease-in;
 
   display: ${ props => props.home ? 'block' : 'flex' }
   @media ${ device.mobileS }{
-    display: none;
+    display: flex;
   }
   @media ${device.laptop}{
-  display: flex;
-  float: left;
-  &:hover {
-  background: ${boldColor};
-  }
+    display: flex;
+    float: left;
   }
 `
 
 const Dropbutton = styled.li`
+  &:hover {
+    background: ${boldColor};
+  }
+  transition: background .2s ease-in;
   background: #333;
-   list-style-type: none;
+  list-style-type: none;
   text-decoration: none;
   text-align: center;
-    &:hover {
-    background: ${boldColor};
-    flex-direction: column;
-  }
-  &.active {
-    background: white;
-    color: ${boldColor};
-  }
   @media ${device.mobileS}{
     width: 100%;
   }

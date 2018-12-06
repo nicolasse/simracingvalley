@@ -14,7 +14,7 @@ const StyledLink = style(NavLink)`
   height: 30px;
   font-size: 15px;
   padding: 10px;
-  transition: all .2s ease-in;
+  transition: background .2s ease-in;
   display: block;
   justify-content: center;
   flex-direction: column;
@@ -27,10 +27,10 @@ const StyledLink = style(NavLink)`
     color: black;
   }
   display: ${ props => props.home ? 'block' : 'flex' }
-    @media ${device.laptop}{
+  @media ${device.laptop}{
   ${props => props.dropdown
-  ? 'background: ' +lightColor+'; color: black; float: none;'
-  : 'background: #333; color: white; float: left'
+    ? 'background: ' +lightColor+'; color: black; float: none;'
+    : 'background: #333; color: white; float: left'
   }
   }
 `
