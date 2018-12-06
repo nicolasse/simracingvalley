@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   padding: 1em;
+  height: 2.5em;
 }
 
 .pageLi{
@@ -15,6 +16,7 @@
   width: 40px;
   list-style-type: none;
   justify-content: center;
+  align-items: center;
 
 }
 .pageLi:last-child{

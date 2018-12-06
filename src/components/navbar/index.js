@@ -7,6 +7,7 @@ import StyledLink from './StyledLink'
 import Logo from './Logo'
 import Dropdown from './Dropdown'
 import styled from 'styled-components'
+import FontAwesome from 'react-fontawesome'
 
 import { device } from '../../device'
 
@@ -51,19 +52,38 @@ class NavBar extends Component {
       <Menu onClick={() => this.handleMenu()}>Menu</Menu>
       <Nav onClick={() => this.handleChange()} visible={this.state.visible}>
       <StyledLink home={'true'} exact to='/'><Logo alt='SIMRACING VALLEY' src={logo} /></StyledLink>
-        <StyledLink to='/ranking'>Ranking</StyledLink>
+      <StyledLink to='/ranking'>Ranking</StyledLink>
+      <StyledLink to='/agenda'>Agenda</StyledLink>
       <Dropdown
         name='Resultados'
         links={[
-          {path: '/races', name:'Races', external: false},
-          {path:'/records', name:'Records', external: false}
+          {
+            path: '/races',
+            name:'Races',
+            external: false
+          },
+          {
+            path:'/records',
+            name:'Records',
+            external: false
+          }
         ]}
       />
       <Dropdown
         name='Outros'
         links={[
-          {path: '/static/others/Manual_SV.pdf', name:'Manual', external: true},
-          {path:'/static/others/Automobilista_DAQ.rar', name:'Plugin', external: true}
+          {
+            path: '/static/others/Manual_SV.pdf',
+            name:'Manual',
+            icon:<FontAwesome name='download' /> ,
+            external: true
+          },
+          {
+            path:'/static/others/Automobilista_DAQ.rar',
+            name:'Plugin',
+            icon: <FontAwesome name='download' />,
+            external: true
+          }
         ]} />
         { this.props.user.logged ?
           <React.Fragment>

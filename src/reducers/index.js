@@ -7,6 +7,7 @@ import userReducer from './userReducer'
 import driverReducer from './driverReducer'
 import recordsReducer from './recordsReducer'
 import voteReducer from './voteReducer'
+import scheduleReducer from './scheduleReducer'
 
 const rootReducer = combineReducers({
   rankingReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   userReducer,
   driverReducer,
   recordsReducer,
-  voteReducer
+  voteReducer,
+  scheduleReducer,
 })
 
 export default rootReducer
