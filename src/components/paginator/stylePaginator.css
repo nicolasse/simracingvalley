@@ -30,7 +30,9 @@
 .linkA{
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: 20px;
+  height: 2.5em;
   width: 100%;
 
 }

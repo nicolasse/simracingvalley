@@ -26,17 +26,19 @@ const P = styled.div`
 `
 const Close = styled.div`
   margin-left: auto;
+  cursor: pointer;
 
 `
 const Container = styled.div`
-  z-index: 2;
+  z-index: 1;
   justify-content: center;
   align-items: center;
   display: flex;
   padding: 1em;
   background:  #ff8080;
   position: fixed;
-  top: 50px;
+  top: 0;
+  margin-top: 50px;
   left: 0;
   right: 0;
   ${props => props.hidden ? 'visibility: hidden; opacity: 0;   ' : 'opacity: 1; visibility: visible'}

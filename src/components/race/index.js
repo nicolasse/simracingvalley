@@ -5,7 +5,7 @@ import { clearStats, fetchRace } from '../../actions/getRace'
 import Event from '../event'
 import Stats from '../stats'
 import { device } from '../../device'
-import { mainColor } from '../commons/style'
+import { mainBlue } from '../commons/style'
 
 class Race extends Component {
   state = {
@@ -56,7 +56,7 @@ class Race extends Component {
         <Col>
        <Title>{ this.state.filter.toUpperCase() }</Title>
 
-      { state.loading ? 'Loading':
+      { 
         this.state.filter === 'info'
         ? <Info>
           { srvsettings.cdc ? <Config style={{ background: 'goldenrod', 'border-radius': '5px', 'text-align': 'center' }}> Corrida dos Campeões</Config>: null }
@@ -143,7 +143,7 @@ const Title = styled.h1`
 
 const ButtonEvent = styled.button`
   ${ props => props.activated
-  ? 'color: white; background:' +mainColor 
+  ? 'color: white; background:' +mainBlue 
   : 'color: black; background: white' };
   @media${device.mobileS}{
     font-size: 1em;
@@ -157,7 +157,7 @@ const ButtonEvent = styled.button`
   padding: 1em;
 
   &:active, &:hover {
-   background: ${ mainColor };
+   background: ${ mainBlue };
    color: white;
   }
 

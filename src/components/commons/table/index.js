@@ -1,6 +1,6 @@
 import { device } from '../../../device'
 import styled from 'styled-components'
-import {mainColor} from '../style'
+import {mainBlue, thinBlue} from '../style'
 
 export const Table = styled.table`
   width: 100%;
@@ -64,10 +64,10 @@ export const Tr = styled.tr`
   cursor: default;
   ${props => props.cdc
     ? 'background: #CFB53B'
-    : 'background: white;&:nth-child(odd){ background: #f2f2f2; }'
+    : 'background: white;&:nth-child(odd){ background:' + thinBlue+'; }'
   }
   &:hover{
-    ${props => props.hover ? 'background:'+ mainColor +'; color: white;' : null}
+    ${props => props.hover ? 'background:'+ mainBlue +'; color: white;' : null}
   }
 
 `

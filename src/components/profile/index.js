@@ -8,9 +8,11 @@ import {
 import Chart from '../chart'
 import { STATES } from '../../statesBr'
 import { device } from '../../device'
-import { mainColor } from '../commons/style'
+import { mainBlue } from '../commons/style'
 import { selectImg } from '../../helpers/switchClassImage'
 import Achievements from './achievements'
+import FontAwesome from 'react-fontawesome'
+import Loading from '../loading'
 
 const gender = {
   M: 'Homem',
@@ -33,7 +35,7 @@ class Profile extends Component{
     let driver = this.props.driver
     let user = this.props.user
     if(this.props.loading){
-      return(<div>LOADING</div>)
+      return(<Loading />)
     }
     else
     return(
@@ -52,6 +54,7 @@ class Profile extends Component{
                   <Th>Corridas</Th>
                   <Th>Top3</Th>
                   <Th>Vitórias</Th>
+                  <Th hide><FontAwesome name='thumbs-up' /></Th>
                 </tr>
               </Thead>
               <Tbody>
@@ -63,6 +66,7 @@ class Profile extends Component{
                   <Td> {driver.races_done}</Td>
                   <Td> {driver.top10[1] + driver.top10[2] + driver.top10[3]}</Td>
                   <Td> {driver.top10[1]}</Td>
+                  <Td hide> {driver.votes}</Td>
                 </tr>
               </Tbody>
             </Table>
@@ -158,12 +162,28 @@ const ImgClass = styled.img`
   max-width: 250px;
 `
 const Td = styled.td`
+  @media${ device.mobileS }{
+    ${props => props.hide 
+    ? 'display: none'
+    : 'display: table-cell'}
+  }
+  @media ${ device.laptop }{
+    display: table-cell;
+  }
   margin: 10px;
   padding: 5px;
   text-align: center;
 `
 
 const Th = styled.th`
+  @media${ device.mobileS }{
+    ${props => props.hide 
+    ? 'display: none'
+    : 'display: table-cell'}
+  }
+  @media ${ device.laptop }{
+    display: table-cell;
+  }
   margin: 1vw auto;
   padding: 0.5vw;
 `
@@ -173,8 +193,8 @@ const Table = styled.table`
   padding: 0.5vw;
   font-size: 1em;
   width: 100%;
-  background: ${mainColor}
-  color: black;
+  background: ${mainBlue}
+  color: white;
 
 `
 

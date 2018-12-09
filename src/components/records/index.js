@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { fetchTracks, fetchCars, fetchRecords } from '../../actions/getRecords'
 import { device } from '../../device'
 import { Table, Thead, Tbody, Td, Th, Tr } from '../commons/table'
-import { mainColor } from '../commons/style'
+import { mainBlue } from '../commons/style'
 import { Link } from 'react-router-dom'
 
 class Records extends Component {
@@ -56,7 +56,7 @@ class Records extends Component {
     let records = this.props.state.records
     if(records){
        return records.reverse().map((record, index) => {
-         let color = index === 0 ? mainColor : 'white'
+         let color = index === 0 ? mainBlue : 'white'
         return(
             <Tr key={index} style={{ background: color }}>
               <Td><StyledLink record={index === 0} to={'races/'+ record.resultid}>{record.racedate}</StyledLink></Td>
@@ -110,7 +110,7 @@ const StyledLink = styled(Link)`
   color: black;
   ${props => props.record
   ?'&:hover{color: white; }'
-  : '&:hover{ color:'+ mainColor}
+  : '&:hover{ color:'+ mainBlue}
 
 `
 const Wrapper = styled.div`

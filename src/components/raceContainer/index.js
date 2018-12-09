@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchRaces } from '../../actions/getRaces'
 import Paginator from '../paginator'
 import { Table, Thead, Tbody, Td, Th, Tr  } from '../commons/table/index.js'
+import Loading from '../loading'
 
 import styled from 'styled-components'
 import { device } from '../../device'
@@ -26,9 +27,11 @@ class RaceContainer extends Component {
 
 render (){
   let totalPages = this.props.pages
+
   return(
     <Wrapper>
-    <Table>
+    { this.props.loading ? <Loading />
+    : <Table>
       <Thead>
         <Tr style={{background: 'white'}}>
           <Th>Car</Th>
@@ -46,6 +49,7 @@ render (){
       )} 
       </Tbody>
       </Table>
+    }
       <Paginator 
         pageCount={ this.props.pages }
         pageRangeDisplayed={ 3 }
@@ -72,7 +76,7 @@ const Wrapper = styled.div`
   }
 `
 
-const mapStateToProps = state => ({ races: state.racesReducer.races, pages: state.racesReducer.pages })
+const mapStateToProps = state => ({loading: state.racesReducer.loading, races: state.racesReducer.races, pages: state.racesReducer.pages })
 const mapDispatchToProps = dispatch => ({
   fetchRaces: (page) => {
     dispatch( fetchRaces(page))

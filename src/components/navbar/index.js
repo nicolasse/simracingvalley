@@ -5,7 +5,7 @@ import { logout } from '../../actions/userActions'
 import Nav from './Nav'
 import StyledLink from './StyledLink'
 import Logo from './Logo'
-import Dropdown from './Dropdown'
+import Dropdown from './dropdown'
 import styled from 'styled-components'
 import FontAwesome from 'react-fontawesome'
 
@@ -97,7 +97,7 @@ class NavBar extends Component {
             </StyledLink>
           </React.Fragment>
         :
-          <Steam href='/api/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam> 
+          <Steam href='http://localhost:8080/api/auth/steam'><img style={{margin: '0 auto'}} alt='steam' src='https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png' /></Steam> 
         }
       </Nav>
       </React.Fragment>

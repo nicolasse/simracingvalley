@@ -7,9 +7,10 @@ import styled from 'styled-components'
 import { device } from '../../device'
 import Paginator from '../paginator'
 import { Table, Thead, Tbody, Td, Th, Tr  } from '../commons/table/index.js'
-import Loading from '../commons/loading'
+import Loading from '../loading'
 import {selectImg} from '../../helpers/switchClassImage' 
 import FilterName from './filter'
+import FontAwesome from 'react-fontawesome'
 
 
 const first = require('../../images/position/1st.png')
@@ -56,6 +57,7 @@ class Ranking extends Component {
               <Th hide><img src={third}/></Th>
               <Th hide><img src={fourth}/></Th>
               <Th hide><img src={fifth}/></Th>
+              <Th hide><FontAwesome name='thumbs-up' /></Th>
               <Th>Corridas</Th>
               <Th>Incidentes</Th>
               <Th center hide>Classe</Th>
@@ -72,6 +74,7 @@ class Ranking extends Component {
                 <Td right hide> { driver.Third } </Td>
                 <Td right hide> { driver.Fourth } </Td>
                 <Td right hide> { driver.Fifth } </Td>
+                <Td right hide> { driver.votes }</Td>
                 <Td right> { driver.Races } </Td>
                 <Td right> { driver.Incidents } </Td>
                 <Td right>  <Img hide alt='classe' src={selectImg(driver.Class)} /> </Td>
