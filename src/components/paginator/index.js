@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { mainColor, boldColor } from '../commons/style'
+import { mainBlue, boldBlue } from '../commons/style'
 import ReactPaginate from 'react-paginate'
 import stylePaginator from './stylePaginator.css'
 
@@ -37,7 +37,7 @@ const Container = styled.div`
 
 const NumberPage = styled.button`
   ${props => props.current
-  ? 'background:' + mainColor
+  ? 'background:' + mainBlue
   : 'background: white;'}
   ${props => props.hide
   ? 'display: none'
@@ -48,7 +48,7 @@ const NumberPage = styled.button`
   border-right: 1px solid black;
   &:hover{
     color: white;
-    background: ${boldColor}
+    background: ${boldBlue}
   };
   width: 40px;
   justify-content: center; 

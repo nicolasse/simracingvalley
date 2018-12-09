@@ -4,34 +4,46 @@ import { selectStats } from '../../actions/getRace'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { device } from '../../device'
-import { mainColor, boldColor } from '../commons/style'
+import { mainBlue, boldBlue, mainGreen } from '../commons/style'
 import FontAwesome from 'react-fontawesome'
 import {voteDriver} from '../../actions/voteActions'
 import StyledError from '../error'
+import Loading from '../loading'
 
 class Event extends Component {
+  state={
+    error: ''
+  }
 
   handleVote = (e, driver) => {
     e.stopPropagation()
-    let raceId = this.props.raceId
-    this.props.voteDriver( raceId, driver )
+    let user = this.props.user
+    if(user.logged){
+      if( this.props.race.race.find( player => { return player.userid === user.userId } )){
+      
+      if(user.userId !== driver){
+        let raceId = this.props.raceId
+        this.props.voteDriver( raceId, driver, user.token )
+      }else{
+        this.setState({error: 'Não pode votar em si mesmo'})
+      }
+      }else{
+        this.setState({ error: 'Não participou da corrida' })
+      }}else{
+      this.setState({error: 'User not logged'})
+    }
   }
 
-
-  getQualyPos = (steamID) => {
-    let player = this.props.race.qualify.find( player => {
-      return player.steamID === steamID
-    } )
-    return player ? player.position : ''
-  }
 
   render() {
     return(
       <React.Fragment>
       { this.props.voteError && <StyledError hide={!this.props.voteError} message={this.props.voteError} />}
-      <Table hide={this.props.shouldMobileHide}>
+      { this.state.error && <StyledError hide={!this.state.error} message={this.state.error} />}
+      { this.props.loading ? <Loading />
+      : <Table hide={this.props.shouldMobileHide}>
         <Thead>
-          <tr>
+          <Tr style={{background: 'white'}}>
             <Th>Pos</Th>
             <Th hide={!this.props.isRace}>Grid</Th>
             <Th>Piloto</Th>
@@ -41,7 +53,7 @@ class Event extends Component {
             <Th hide={!this.props.isRace}>Total</Th>
             <Th hide={this.props.isRace}>Melhor</Th>
             <Th hide={!this.props.isRace}></Th>
-          </tr>
+          </Tr>
         </Thead>
         <Tbody>
        {this.props.event.map((result, index) =>
@@ -67,14 +79,14 @@ class Event extends Component {
                 : result.upvotes && result.upvotes.length > 0
                   ? <FontAwesome 
                       onClick={ (e) => this.handleVote(e, result.userid) }
-                      name='thumbs-up' 
-                      style={{ color: '#87e29e' }}
+                      name='thumbs-up'
+                      style={result.upvotes.find( vote => vote.voterid === this.props.user.userId ) ? {color: boldBlue} : {color: mainGreen }}
                       title={ result.upvotes.map( vote => { return ('' + vote.username) } )}
                     />
                   : <FontAwesome
                       onClick={(e) => this.handleVote(e, result.userid) }
                       name='thumbs-o-up'
-                      style={{ color: '#87e29e' }}
+                      style={{ color: mainGreen }}
                     />
              }
              </Td> 
@@ -83,6 +95,7 @@ class Event extends Component {
       )}
         </Tbody>
       </Table>
+      }
       </React.Fragment>
     )
   }
@@ -159,22 +172,22 @@ const Th = styled.th`
 const Tr = styled.tr`
   background: white;
   &:nth-child(odd){
-    background: #f2f2f2;
+    background:  #f0f5f5;
   }
   &:hover{
-    background: ${ mainColor };
+    background: ${ mainBlue };
     color: white;
   }
 `
 
-const mapStateToProps = state => ({race : state.raceReducer.race, voteError: state.voteReducer.error})
+const mapStateToProps = state => ({loading: state.raceReducer.loading, race : state.raceReducer.race, voteError: state.voteReducer.error, user: state.userReducer})
 
 const mapDispatchToProps = dispatch => ({
   selectStats: (stats) => {
     dispatch( selectStats( stats ) )
   },
-  voteDriver: (race, driver) => {
-    dispatch( voteDriver( race, driver ) )
+  voteDriver: (race, driver, token) => {
+    dispatch( voteDriver( race, driver, token ) )
   }
 })
 

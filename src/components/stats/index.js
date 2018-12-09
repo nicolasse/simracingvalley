@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { clearStats } from '../../actions/getRace'
 import { connect } from 'react-redux'
 import { device } from '../../device'
-import { mainColor, boldColor } from '../commons/style'
+import { mainBlue, boldBlue, mainGreen } from '../commons/style'
 
 const logo = require('../../images/logoWhite.png')
 class Stats extends Component {
@@ -82,7 +82,7 @@ const Content = styled.div`
 const Img = styled.div`
   width: 100%;
   height: 100%;
-  background: ${ mainColor };
+  background: ${ mainBlue };
   box-sizing: border-box;
 
   @media ${device.mobileS}{
@@ -119,7 +119,7 @@ const Td = styled.td`
   box-sizing: border-box;
   text-align: ${props => props.right ? 'right' : 'left'};
   vertical-align: top;
-  color: ${props => props.best ? 'green' : 'black'}
+  color: ${props => props.best ? mainGreen : 'black'}
   font-weight: ${props => props.best ? 'bold' : 'normal'}
   @media ${device.mobileS}{
     font-size: ${props => props.hideOnMobile ? '0px' : '1em'};

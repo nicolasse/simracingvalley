@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Radar, Line } from 'react-chartjs-2'
 import styled from 'styled-components'
 import { device } from '../../device'
-import { mainColor, boldColor } from '../commons/style'
+import { mainBlue, boldBlue, mainGreen } from '../commons/style'
 
 
 const radarLabels = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', 'Poles']
@@ -25,7 +25,7 @@ class Chart extends Component {
                       {
                         label: 'TOP10 & POLES',
                         data: [...jsonToArray(driver.top10), driver.pole],
-                        borderColor: mainColor 
+                        borderColor: mainBlue 
                       }
                     ]
                   }
@@ -53,7 +53,7 @@ class Chart extends Component {
                     datasets:[
                       { 
                         ...driver.ratingHistoric.datasets[0],
-                        borderColor: mainColor},
+                        borderColor: mainBlue},
                       { 
                         ...driver.ratingHistoric.datasets[1],
                         borderColor: '#7DFFF4'}
@@ -88,7 +88,7 @@ class Chart extends Component {
                     },
                     {
                       ...driver.incidentsHistoric.datasets[1],
-                      borderColor: mainColor,
+                      borderColor: mainBlue,
                     }
                   ]
                 }
@@ -116,7 +116,7 @@ class Chart extends Component {
             datasets: [
               { 
                 ...driver.rankingHistoric.datasets[0],
-                borderColor: '#87e29e'
+                borderColor: mainGreen
               }
             ]
         }

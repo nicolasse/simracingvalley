@@ -4,13 +4,19 @@ export const VOTE_DRIVER_STARTED = 'VOTE_DRIVER_STARTER'
 export const VOTE_DRIVER_SUCCESS = 'VOTE_DRIVER_SUCCESS'
 export const VOTE_DRIVER_FAILURE = 'VOTE_DRIVER_FAILURE'
 
-export const voteDriver = (race, driver) => {
+export const voteDriver = (race, driver, token) => {
+  let request = {
+    method: 'POST',
+    url: '/api/races/' + race +'/vote/' + driver,
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token
+    } 
+  }
+  
   return dispatch => {
     dispatch( voteDriverStarted() )
-    axios({
-      method: 'POST',
-      url: '/api/races/'+ race + '/vote/' + driver
-    })
+    axios( request )
       .then( res => {
         dispatch(voteDriverSuccess( res.data ))
       } )

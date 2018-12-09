@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { device } from '../../device'
+import { device } from '../../../device'
 import styled from 'styled-components'
-import StyledLink from './StyledLink'
-import {mainColor, boldColor, lightColor} from '../commons/style'
+import StyledLink from '../StyledLink'
+import {mainBlue, boldBlue, lightBlue} from '../../commons/style'
 class Dropdown extends Component {
   state={
     hide: true
@@ -27,10 +27,29 @@ class Dropdown extends Component {
           <Links hide={this.state.hide}> 
           { this.props.links.map((link, index) => {
             if(link.external){
-             return <ExternalLink dropdown={1} key={index} href={link.path}> {link.name}{link.icon}</ExternalLink>
+             return (
+               <ExternalLink 
+                 dropdown={1}
+                 key={index}
+                 target='_blank' 
+                 href={link.path}
+               >
+                  { link.name }
+                  <Icon>{link.icon}</Icon>
+               </ExternalLink>
+             )
             }
             else{
-              return <StyledLink dropdown={1} key={index} to={link.path}>{link.name}</StyledLink>
+              return (
+                <StyledLink
+                  dropdown={1}
+                  key={index}
+                  to={link.path}
+                >
+                  {link.name}
+                  <Icon>{link.icon}</Icon>
+                </StyledLink>
+              )
             }
           }
           )}
@@ -41,11 +60,11 @@ class Dropdown extends Component {
   }
 }
 
+const Icon = styled.div`
+  margin-left: 1em
+`
+
 const ExternalLink = styled.a`
-  @media ${device.mobileS}{
-   background: #333;
-   color: white;
-  }
   min-width: 5em;
   text-align: center;
   text-decoration: none;
@@ -55,19 +74,16 @@ const ExternalLink = styled.a`
   transition: all .2s ease-in;
   display: block;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-flow: row nowrap;
   flex: 1 0.5 100%
   &:hover {
-    background: ${boldColor};
+    background: ${boldBlue};
   }
   display: ${ props => props.home ? 'block' : 'flex' }
     @media ${device.laptop}{
-  ${props => props.dropdown
-  ? 'background: ' +lightColor+'; color: black; float: none;'
-  : 'background: #333; color: white; float: left'
-  }
-  }
+  background: #333;
+  color: white;
 `
 const Links = styled.div`
   transition: opacity .2s ease-in;
@@ -90,7 +106,7 @@ const Links = styled.div`
 `
 const Title = styled.a`
   &:hover {
-    background: ${boldColor};
+    background: ${boldBlue};
     flex-direction: column;
   }
   z-index: 2;
@@ -118,7 +134,7 @@ const Title = styled.a`
 
 const Dropbutton = styled.li`
   &:hover {
-    background: ${boldColor};
+    background: ${boldBlue};
   }
   transition: background .2s ease-in;
   background: #333;

@@ -5,18 +5,17 @@ export const FETCH_SCHEDULE_SUCCESS = 'FETCH_SCHEDULE_SUCCESS'
 export const FETCH_SCHEDULE_FAILURE = 'FETCH_SCHEDULE_FAILURE'
 
 export const fetchSchedule = (token) => {
-  return dispatch => {
-    dispatch(fetchScheduleStarted())
-    axios({
-      method: 'GET',
-      url: '/api/schedule',
-      if(token){
-      return({headers: {
+  let request = { method: 'GET', url: '/api/schedule' }
+  if(token) {
+    request.headers = {
         'Content-Type': 'application/json',
         'x-access-token': token
-        }})
-      }
-    })
+    }
+  }
+  
+  return dispatch => {
+    dispatch(fetchScheduleStarted())
+    axios( request )
       .then( res =>{ 
         dispatch(fetchScheduleSuccess(res.data)) 
       } )

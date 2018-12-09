@@ -12,6 +12,7 @@ import Schedule from '../schedule'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { device } from '../../device'
+import Social from '../social'
 
 class Content extends Component {
   render(){
@@ -20,6 +21,7 @@ class Content extends Component {
         <React.Fragment>
         <Navbar />
         <Wrapper>
+          <Social />
           <Switch>
             <Route exact path='/' component={ Home } />
             <Route path='/ranking' component={ Ranking } />
