@@ -4,6 +4,7 @@ import style from 'styled-components'
 import { connect } from 'react-redux'
 import { STATES } from '../../statesBr'
 import { fetchUser } from '../../actions/userActions'
+import { device } from '../../device'
 
 class UserForm extends Component {
 
@@ -16,6 +17,7 @@ class UserForm extends Component {
     city = React.createRef()
     state = React.createRef()
     birthday = React.createRef()
+    avatar = React.createRef()
 
   handleSubmit = (e) =>{
     let userData = {
@@ -28,6 +30,7 @@ class UserForm extends Component {
       city: this.city.current.value,
       state: this.state.current.value,
       birthday: this.birthday.current.value,
+      avatar: this.avatar.current.value,
     }
     e.preventDefault()
     fetch('/api/users/' + this.props.user.userId , {
@@ -131,6 +134,10 @@ class UserForm extends Component {
               <Text>Cidade</Text>
             <Input name='city' type='text' defaultValue={user.city} innerRef={this.city}/>
               </Field>
+              <Field>
+                <Text>Avatar URL</Text>
+                <Input name='avatar' type='text' innerRef={this.avatar} defaultValue={user.avatar} />
+              </Field>
             <Button  value='Entrar'/>
           </Form>
         </Inner>
@@ -140,10 +147,14 @@ class UserForm extends Component {
 }
 
 const Field = style.div`
-  margin: 0.5em;
   display: flex;
-  flex: 30%;
   flex-direction: column;
+  @media ${device.mobileS}{
+  flex: 100%;
+  }
+  @media ${device.laptop}{
+    flex: 50%;
+  }
 `
 const Text = style.label`
   text-size: 20px;
@@ -161,7 +172,12 @@ const Inner = style.div`
 `
 
 const Form = style.form`
-  padding: 5em;
+  @media ${device.mobileS}{
+    padding: 0;
+  }
+  @media ${ device.laptop }{
+    padding: 5em;
+  }
   display: flex;
   flex-flow: row wrap;
 `

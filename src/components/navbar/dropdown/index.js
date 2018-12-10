@@ -65,7 +65,6 @@ const Icon = styled.div`
 `
 
 const ExternalLink = styled.a`
-  min-width: 5em;
   text-align: center;
   text-decoration: none;
   height: 30px;
@@ -76,20 +75,17 @@ const ExternalLink = styled.a`
   align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
-  flex: 1 0.5 100%
+  color: white;
   &:hover {
     background: ${boldBlue};
   }
   display: ${ props => props.home ? 'block' : 'flex' }
     @media ${device.laptop}{
   background: #333;
-  color: white;
+  }
 `
 const Links = styled.div`
   transition: opacity .2s ease-in;
-  &:appear {
-    opacity: 0;
-  }
   @media ${device.mobileS}{
     width: 100%;
     ${props => props.hide ? 'display: none' :  'display: block;'}
@@ -101,7 +97,6 @@ const Links = styled.div`
      : 'display: block; opacity: 1'
     }
     flex-flow: column nowrap;
-    width: auto;
   }
 `
 const Title = styled.a`
@@ -146,7 +141,7 @@ const Dropbutton = styled.li`
   }
   @media ${device.laptop}{
     height: 50px;
-    width: auto;
+    width: 95px;
     float: left;
     display: block;
   }
