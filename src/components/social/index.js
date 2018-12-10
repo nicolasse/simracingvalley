@@ -30,10 +30,12 @@ const Social = () => {
 
 const Container = styled.div`
   @media ${ device.mobileS }{
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     width: 5em;
+    z-index: 3;
+    display: none;
 
   } 
   @media ${ device.laptop }{
@@ -44,9 +46,8 @@ const Container = styled.div`
     display: flex;
     flex-flow: column nowrap
     justify-content: space-between;
-    
+    height: 5em;
   }
-  height: 5em;
 
 `
 
