@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchRanking } from '../../actions/getRanking'
 import { toggleLoading } from '../../actions/navbarActions'
-import styled from 'styled-components'
-import { device } from '../../device'
-import Paginator from '../paginator'
+import Paginator from '../commons/paginator'
 import { Table, Thead, Tbody, Td, Th, Tr  } from '../commons/table/index.js'
-import Loading from '../loading'
+import Loading from '../commons/loading'
 import {selectImg} from '../../helpers/switchClassImage' 
 import FilterName from './filter'
 import FontAwesome from 'react-fontawesome'
+import { Wrapper, Img, UserLink } from './style'
 
 
 const first = require('../../images/position/1st.png')
@@ -95,16 +93,6 @@ class Ranking extends Component {
   }
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  @media${device.mobileS }{
-    flex: 0 0 100%;
-  }
-  @media${device.laptop }{
-    flex: 0 0 auto;
-  }
-`
 const mapStateToProps = state => ({state: state.rankingReducer})
 
 const mapDispatchToProps = dispatch => ({
@@ -116,18 +104,3 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking)
 
-const Img = styled.img`
-  width: 300px;
-  @media ${device.mobileS}{
-    display: ${props => props.hide ? 'none' : 'inline'}
-  }
-  @media ${device.laptop}{
-  display: block;
-  }
-  margin: 0 auto;
-`
-const UserLink = styled(Link)`
-  font-weight: bold;
-  color: black
-  text-decoration: none
-`

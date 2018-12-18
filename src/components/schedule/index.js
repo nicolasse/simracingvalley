@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSchedule } from '../../actions/scheduleActions'
 import { Table, Tbody, Thead, Td, Th, Tr } from '../commons/table'
-import Loading from '../loading'
+import Loading from '../commons/loading'
 import Img from './img'
+import { Date } from './style'
 
-import styled from 'styled-components'
 
 class Schedule extends Component {
   componentDidMount(){
@@ -35,10 +35,6 @@ class Schedule extends Component {
   }
 }
 
-const Date = styled.span`
-  font-size: 1.5em;
-  text-decoration: underline;
-`
 
 const mapStateToProps = state => ({ state: state.scheduleReducer, user: state.userReducer }) 
 const mapDispatchToProps = dispatch => ({

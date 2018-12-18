@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import { fetchTracks, fetchCars, fetchRecords } from '../../actions/getRecords'
-import { device } from '../../device'
 import { Table, Thead, Tbody, Td, Th, Tr } from '../commons/table'
 import { mainBlue } from '../commons/style'
-import { Link } from 'react-router-dom'
+import { StyledLink, Wrapper, Select } from './style'
 
 class Records extends Component {
   state ={
@@ -104,40 +102,6 @@ class Records extends Component {
   }
 }
 
-const StyledLink = styled(Link)`
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-  ${props => props.record
-  ?'&:hover{color: white; }'
-  : '&:hover{ color:'+ mainBlue}
-
-`
-const Wrapper = styled.div`
-  position: relative;
-  text-align: center;
-  @media ${device.mobileS}{
-    width: 100%;
-  }
-  @media ${device.laptop}{
-    width: 75%;
-  }
-  margin: 0 auto;
-  min-height: 80vh;
-  
-`
-
-const Select = styled.select`
-  width: 100%;
-  background: transparent;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  appearance:none;
-`
 const mapStateToProps = state => ({state: state.recordsReducer })
 
 const mapDispatchToProps = dispatch => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import cookie from 'react-cookies'
 import Content from './components/content'
-import Footer from './components/footer'
+import Footer from './components/commons/footer'
 import { login } from './actions/userActions'
 import styled from 'styled-components'
 

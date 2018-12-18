@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { searchDriver } from '../../../actions/getRanking'
 import { connect } from 'react-redux'
-import Input from './Input'
+import { Input } from './style'
 
 class FilterName extends Component {
 
