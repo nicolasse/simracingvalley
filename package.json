@@ -13,8 +13,6 @@
     "bootstrap-less": "^3.3.8",
     "chart.js": "^2.7.2",
     "font-awesome": "^4.7.0",
-    "i": "^0.3.6",
-    "npm": "^6.4.1",
     "rc-pagination": "^1.17.3",
     "react": "^16.4.2",
     "react-chartjs-2": "^2.7.4",
