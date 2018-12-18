@@ -1,23 +1,20 @@
-import styled from 'styled-components'
-import React, { Component } from 'react'
+import React from 'react'
+import ReactLoading from 'react-loading'
+import { mainBlue } from '../style'
+import { Container } from './style'
 
-class Loading extends Component {
-  render(){
-    return(
-    <Content>
-      <span>Loading...</span>
-    </Content>
-    )
-  }
+const Loading = () => {
+  return (
+    <Container>
+    <ReactLoading
+      type='spin'
+      delay={100}
+      width={'40px'}
+      color={mainBlue}
+    />
+    </Container>
+  )
 }
 
-const Content = styled.div`
-  display: block;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
 
-
-`
-
+export default Loading
