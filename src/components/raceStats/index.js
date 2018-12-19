@@ -23,6 +23,7 @@ class Race extends Component {
   componentDidMount(){
     let raceId = this.props.id
     this.props.fetchRace( raceId )
+    this.props.clearStats()
   }
 
   eventFilter(e){

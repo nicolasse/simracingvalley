@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { device } from '../../../../device'
-import {mainBlue, boldBlue, lightBlue} from '../../style'
+import { boldBlue} from '../../style'
 
 export const Icon = styled.div`
   margin-left: 1em

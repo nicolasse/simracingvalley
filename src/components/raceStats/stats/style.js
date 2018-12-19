@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { device } from '../../../device'
-import { mainBlue, boldBlue, mainGreen } from '../../commons/style'
+import { mainBlue, mainGreen } from '../../commons/style'
 
 export const ButtonClose = styled.button`
   border: 1px solid black;

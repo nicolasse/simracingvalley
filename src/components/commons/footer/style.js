@@ -45,10 +45,6 @@ export const Foot = styled.footer`
     flex-flow: row wrap;
   }
 `
-export const CopyRight = styled.div`
-  self-align: flex-end;
-  color: white;
-`
 
 export const Ul = styled.ul`
   list-style-type: none;

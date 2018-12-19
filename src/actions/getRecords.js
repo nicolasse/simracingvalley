@@ -13,8 +13,6 @@ export const FETCH_RECORDS_SUCCESS = 'FETCH_RECORDS_SUCCESS'
 export const FETCH_RECORDS_FAILURE = 'FETCH_RECORDS_FAILURE'
 
 
-const ROOT_URL = 'HTTP://localhost:8080'
-
 export const fetchTracks = () => {
   return dispatch => {
     dispatch(fetchTracksStarted())

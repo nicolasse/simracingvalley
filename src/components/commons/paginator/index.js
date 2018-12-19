@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactPaginate from 'react-paginate'
-import stylePaginator from './stylePaginator.css'
+import './stylePaginator.css'
 
 class Paginator extends Component {
   render() {

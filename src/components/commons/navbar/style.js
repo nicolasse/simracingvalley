@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { device } from '../../../device'
 import { NavLink } from 'react-router-dom'
-import {mainBlue, boldBlue, lightBlue} from '../style'
+import { boldBlue, lightBlue} from '../style'
 
 export const Logo = styled.img`
   height: 30px

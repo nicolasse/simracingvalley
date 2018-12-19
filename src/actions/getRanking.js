@@ -7,10 +7,6 @@ export const SEARCH_DRIVER_STARTED = 'SEARCH_DRIVER_STARTED'
 export const SEARCH_DRIVER_SUCCESS = 'SEARCH_DRIVER_SUCCESS'
 export const SEARCH_DRIVER_FAILURE = 'SEARCH_DRIVER_FAILURE'
 
-//const ROOT_URL = 'http://simracingvalley.us-east-2.elasticbeanstalk.com'
-const ROOT_URL = 'http://localhost:8080'
-//const ROOT_URL = 'HTTP://192.168.0.12:8080'
-
 
 export const fetchRanking = (page) => {
   return dispatch => {
