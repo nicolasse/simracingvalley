@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Radar, Line } from 'react-chartjs-2'
-import styled from 'styled-components'
-import { mainBlue, boldBlue, mainGreen } from '../../commons/style'
+import { mainBlue,  mainGreen } from '../../commons/style'
 import { Wrapper, Content } from './style'
 
 

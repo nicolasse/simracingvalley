@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSchedule } from '../../actions/scheduleActions'
-import { Table, Tbody, Thead, Td, Th, Tr } from '../commons/table'
 import Loading from '../commons/loading'
 import Img from './img'
 import { Date } from './style'

@@ -5,7 +5,6 @@ import ComoFunciona from './comoFuncionaContainer'
 import { 
   MailTo,
   Foot,
-  CopyRight,
   Ul,
   Title,
   Li,

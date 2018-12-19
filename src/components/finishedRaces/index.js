@@ -24,7 +24,6 @@ class RaceContainer extends Component {
   }
 
 render (){
-  let totalPages = this.props.pages
 
   return(
     <Wrapper>

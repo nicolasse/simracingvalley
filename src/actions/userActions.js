@@ -6,10 +6,6 @@ export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE'
 export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 
-const ROOT_URL = 'http://localhost:8080'
-//const ROOT_URL = 'HTTP://192.168.0.12:8080'
-
-
 export const fetchUser = (id) => {
   return dispatch => {
     dispatch(fetchUserStarted())

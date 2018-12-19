@@ -6,7 +6,7 @@ import {voteDriver} from '../../../actions/voteActions'
 import StyledError from '../../commons/error'
 import Loading from '../../commons/loading'
 import { Tr, Td, Th, Tbody, Thead, Table, UserLink  } from './style'
-import { lightBlue, mainBlue, boldBlue, mainGreen } from '../../commons/style'
+import { boldBlue, mainGreen } from '../../commons/style'
 
 class Event extends Component {
   state={

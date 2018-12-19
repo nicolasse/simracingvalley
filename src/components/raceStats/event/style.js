@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { device } from '../../../device'
 import { Link } from 'react-router-dom'
-import { lightBlue, mainBlue, boldBlue, mainGreen } from '../../commons/style'
+import { lightBlue, mainBlue } from '../../commons/style'
 
 export const UserLink = styled(Link)`
   font-weight: bold;
