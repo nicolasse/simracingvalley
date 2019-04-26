@@ -66,12 +66,14 @@ export const Col = styled.div`
   @media ${device.mobileS}{
     width: 100%
     display: block;
+    flex: 1 0 auto;
   }
   @media ${ device.laptop }{
     width: 50%;
     float: left;
     display: flex;
     flex-flow: column;
+    flex: 1 0 auto
   }
   margin: 0;
 `

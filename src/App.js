@@ -19,6 +19,7 @@ class App extends Component {
         username: cookie.load('username'),
         userId: cookie.load('userId'),
         token: cookie.load('token'),
+        sponsor: cookie.load('sponsor'),
         email_confirmed: cookie.load('email_confirmed')
       }
     this.props.login(user)
@@ -26,6 +27,7 @@ class App extends Component {
     cookie.remove('username',  {path: '/'})
     cookie.remove('userId',  {path: '/'})
     cookie.remove('email_confirmed', {path: '/'})
+    cookie.remove('sponsot', { path: '/' })
     }
   }
 

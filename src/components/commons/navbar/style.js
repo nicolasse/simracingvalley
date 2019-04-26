@@ -48,7 +48,7 @@ export const StyledLink = styled(NavLink)`
 export const Nav = styled.nav`
   background: #333;
   width: 100%;
-  z-index: 2;
+  z-index: 100;
   height: 50px;
   justify-content: center;
   @media ${device.mobileS}{
@@ -69,7 +69,7 @@ export const Nav = styled.nav`
 export const Menu = styled.button`
   text-align: right;
   border: 0;
-  z-index: 3;
+  z-index: 300;
   width: 100%;
   position: absolute;
   top: 0;

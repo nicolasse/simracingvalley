@@ -8,22 +8,38 @@ import {
   P,
   Iframe
 } from './style'
+import { Parallax } from 'react-parallax'
+import { AnimatedText } from './header/style'
 
-let imageHead = null
+let imageHead1 = null
+let imageHead2 = null
 
 class Home extends Component {
   componentWillMount(){
-    imageHead = require('../../images/home.jpg')
+    imageHead1 = require('../../images/home.jpg')
+    imageHead2 = require('../../images/home2.jpg')
   }
 
   render (){
     return(
+      <>
+      <div style={{ position: 'absolute', left: 0,'zIndex': 10, width: '100%'  }}>
+        <Parallax 
+          bgImage={ imageHead2 }
+          bgImageAlt="Header"
+          strength={300}
+        >
+        <div style={{ 'justify-content': 'center',display: 'flex','align-items': 'center', width: 'auto', height: '50vh' }}>
+          <h1 style={{'font-size': '10em','font-style': 'italic', color: 'white', 'margin-left': '1em' }}>SIMRACING VALLEY</h1>
+        </div>
+        </Parallax>
+      </div>
       <Wrapped>
-      <Header
+      {/* <Header
         title='Participe de corridas'
         text='TODOS OS DIAS'
         image={ imageHead }>
-      </Header>
+      </Header>*/}
       <Content>
         <Section>
           <Title big>
@@ -57,11 +73,12 @@ class Home extends Component {
             dose de adrenalina, enquanto disputa contra outros usuários!
           </P>
         </Section>
+      </Content>
         <Iframe
             src="https://store.steampowered.com/widget/431600/"
         />
-      </Content>
       </Wrapped>
+      </>
     )
   }
 }

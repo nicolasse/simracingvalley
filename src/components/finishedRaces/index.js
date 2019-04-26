@@ -31,6 +31,7 @@ render (){
     : <Table>
       <Thead>
         <Tr style={{background: 'white'}}>
+          <Th></Th>
           <Th>Car</Th>
           <Th>Track</Th>
           <Th>Date</Th>
@@ -39,6 +40,7 @@ render (){
     <Tbody>
     {this.props.races.map((race) => 
         <Tr onClick={() => this.handleClickRace(race._id)} hover key={race._id} cdc={race.srvsettings.cdc} >
+          <Td>{race.srvsettings.official ? 'OFICIAL' : race.srvsettings.user.username}</Td>
           <Td> {race.srvsettings.cars[0]} </Td>
           <Td>{race.srvsettings.tracks[0]} </Td>
           <Td>{race.srvsettings.date}</Td>

@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { device } from '../../device'
 
 export const Iframe = styled.iframe`
-  margin-top: 5em;
+  position: fixed;
   height: 190px;
   border: 0;
-  margin: 5em auto;
+  top: 40vh;
   @media ${device.mobileS}{
   width: 100%
   }
@@ -36,7 +36,7 @@ export const Wrapped = styled.div`
   }
   @media ${device.laptop}{
     width: 100%;
-    margin: 0vh auto 0 auto; 
+    margin: 50vh auto 30vh auto; 
   }
   background: white;
 `

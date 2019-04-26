@@ -18,10 +18,9 @@ export const Password = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  object-fit: cover;
-  height: 100%;
-  filter: blur(1px);
-  z-index: 0;
+  object-fit: scale-down;
+  ${ props => props.front ?
+  'position: relative; z-index: 2' : 'position: absolute; z-index: 1' };
 `
 export const Background = styled.div`
   background: black;
@@ -33,20 +32,8 @@ export const Background = styled.div`
 `
 
 export const Content = styled.div`
-  flex: 1 1 100%;
-  height: 20vh;
-  display: flex;
-  font-weight: bold;
-  font-style: italic;
   position: relative;
   justify-content: center;
-  @media ${ device.mobileS }{
-    font-size: 1.5em;
-  }
-  @media ${ device.laptop }{
-    font-size: 3em;
-  }
-  margin: 0.5em 0;
 `
 
 export const Time = styled.div`

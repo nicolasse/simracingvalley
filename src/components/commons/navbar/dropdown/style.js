@@ -46,7 +46,7 @@ export const Title = styled.a`
     background: ${boldBlue};
     flex-direction: column;
   }
-  z-index: 2;
+  z-index: 200;
   text-align: center;
   text-decoration: none;
   color: white;

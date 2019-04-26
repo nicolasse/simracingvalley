@@ -63,7 +63,7 @@ export const Th = styled.th`
 export const Tr = styled.tr`
   cursor: default;
   ${props => props.cdc
-    ? 'background: #CFB53B'
+    ? 'background: linear-gradient(to right,#333333 0%,  #ffc800 30%,#333333 100%);color: white;'
     : 'background: white;&:nth-child(odd){ background:' + thinBlue+'; }'
   }
   &:hover{

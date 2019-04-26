@@ -97,7 +97,7 @@ export const Table = styled.table`
   padding: 0.5vw;
   font-size: 1em;
   width: 100%;
-  background: ${mainBlue}
+  background: ${ props => !props.sponsor ? 'rgba(255,255,255, 0.3)' : mainBlue};
   color: white;
 
 `
@@ -121,6 +121,7 @@ export const Information = styled.ul`
   flex-flow:row wrap;
   list-style-type: none
   margin-top: 5px;
+  color: ${ props => !props.sponsor ? 'white' : 'black' };
 `
 export const Li = styled.li`
   @media ${device.mobileS}{
@@ -133,14 +134,15 @@ export const Li = styled.li`
   font-size: 0.9em;
 `
 
-export const Wrapper = styled.div`
+
+export const Content = styled.div`
   @media ${device.mobileS}{
   }
   @media ${device.laptop}{
     margin-top: 90px
     margin: 0 auto;
   }
-  background: #f4f4f4
+  
 `
 
 export const ProfileBox = styled.div`
@@ -156,13 +158,14 @@ export const ProfileBox = styled.div`
     max-height: 350px;
   }
   box-shadow:  0 0 10px 5px rgba(0, 0, 0, 0.19);
-  background: white
+  background: ${ props => !props.sponsor ? 'linear-gradient(to bottom, #ffc800 0%,#000000 95%)': '#f4f4f4' };
   padding: 5px
   border-radius: 5px
   display: flex;
 `
 export const Avatar = styled.img`
   background: #f0f0f0;
+  object-fit: cover
   @media ${device.mobileS}{
   width: 200px;
   margin: 0 auto;

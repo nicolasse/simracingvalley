@@ -20,7 +20,6 @@ class Content extends Component {
         <React.Fragment>
         <Navbar />
         <Wrapper>
-          <SocialLinks />
           <Switch>
             <Route exact path='/' component={ Home } />
             <Route path='/ranking' component={ Ranking } />
@@ -40,6 +39,7 @@ class Content extends Component {
                )}
             />
           </Switch>
+          <SocialLinks />
         </Wrapper>
         </React.Fragment>
       </Router>

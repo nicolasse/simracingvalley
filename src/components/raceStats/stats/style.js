@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { device } from '../../../device'
-import { mainBlue, mainGreen } from '../../commons/style'
+import { mainBlue, mainGreen, lightBlue } from '../../commons/style'
 
 export const ButtonClose = styled.button`
   border: 1px solid black;
@@ -19,12 +19,13 @@ export const Content = styled.div`
     display: ${props => props.hide ? 'none' : 'block'}
   }
   @media ${device.laptop}{
-    display: block;
+    display: ${props => props.hide ? 'none' : 'block'}
     position: relative
   }
   height: 100%;
-  width: 100%;
+  flex: 1 0 auto;
   background: white;
+  position: absolute;
 `
 
 export const Img = styled.div`
@@ -46,10 +47,11 @@ export const Table = styled.table`
   width: 100%;
   @media ${device.mobileS}{
     border-left: 0;
-    font-size: 0.77em;
+    font-size: 1em;
   }
   @media ${device.laptop}{
     border-left: 5px solid black;
+    border-right: 5px solid black;
     font-size: 1em;
   }
   box-sizing: border-box;
@@ -66,7 +68,6 @@ export const Tbody = styled.tbody`
 export const Td = styled.td`
   box-sizing: border-box;
   text-align: ${props => props.right ? 'right' : 'left'};
-  vertical-align: top;
   color: ${props => props.best ? mainGreen : 'black'}
   font-weight: ${props => props.best ? 'bold' : 'normal'}
   @media ${device.mobileS}{
@@ -88,9 +89,12 @@ export const Th = styled.th`
     font-size: 1em;
   padding: 0.8em 0.5em;
   }
+  background: ${ mainBlue }
+  border-top: 1px solid black;
 
 `
 
 export const Tr = styled.tr`
   background: white;
+  border-bottom: 1px solid grey;
 `
