@@ -12,7 +12,7 @@ import Loading from '../commons/loading'
 import {
   Avatar,
   ProfileBox,
-  Wrapper,
+  Content,
   Li, 
   Information,
   StatsSection,
@@ -54,12 +54,12 @@ class Profile extends Component{
     }
     else
     return(
-      <Wrapper>
-        <ProfileBox>
+      <Content>
+        <ProfileBox sponsor = {driver.sponsor}>
           <Avatar src={driver.avatar} alt='Avatar not loaded' />
-          <StatsSection>
+          <StatsSection sponsor={ driver.sponsor }>
             <Name>{driver.unique_name}</Name>
-            <Table>
+            <Table sponsor={ driver.sponsor }>
               <Thead>
                 <tr>
                   <Th>Pos</Th>
@@ -86,7 +86,7 @@ class Profile extends Component{
               </Tbody>
             </Table>
             <Title>Informação</Title>
-            <Information>
+            <Information sponsor={ driver.sponsor }>
               <Li><Data>Nome, Sobrenome:</Data> {driver.name}, {driver.lastname}</Li>
               <Li><Data>Sexo:</Data> { gender[driver.gender] }</Li>
               <Li><Data>Data de Nascimento:</Data> {driver.birthday}</Li>
@@ -109,7 +109,7 @@ class Profile extends Component{
         ? <Achievements achievements={driver.achievements}/>
         : null }
         {driver.steam_id ? <Chart driver={driver}/>: 'LOADING..' }
-      </Wrapper>
+        </Content>
     )
   }
 }

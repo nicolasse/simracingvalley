@@ -24,22 +24,28 @@ class Stats extends Component {
   }
   render(){
     var stats = this.props.stats || []
+    console.log(this.props.show + " aver") 
+    if(this.props.show ){
+    
     return(
-      <Content hide={stats.length === 0}>
+      <React.Fragment>
+      {/*<Content hide={stats.length === 0}>
       <ButtonClose onClick={() => this.props.clearStats()}> Back </ButtonClose>
       { stats.length === 0 ?  <Img><img style={{margin: '50% auto'}}alt='SIM RACING VALLEY' src={ logo }/></Img>
-      : <Table>
+      :
+      <Table>
         <Thead>
-          <tr>
+      */}
+      <Tr>
+      <Table style={ {width: '100%' }}>
+          <Tr>
             <Th>Pos</Th>
             <Th hideOnMobile>Carga</Th>
             <Th>S1</Th>
             <Th>S2</Th>
             <Th>S3</Th>
             <Th>Tempo</Th>
-          </tr>
-        </Thead>
-        <Tbody>
+          </Tr>
           {stats.map((lap, index) =>
             <Tr key={index}>
               <Td>{lap.position}</Td>
@@ -50,22 +56,29 @@ class Stats extends Component {
               <Td best={lap.bestlap}> { getString(lap.laptime) }</Td>
             </Tr>
           )}
+      </Table>
+      </Tr>
+      {/*}
         </Tbody>
       </Table>
-      }
-      </Content>
+      </Content>*/}
+      </React.Fragment>
     )
+
   }
-}
+    else{
+      return(<></>)
+    }
+}}
 
 const getString = time => {
   return time.search('ALERTA') === -1 ? time :  '--:--:--:---'
 }
 
-const mapStateToProps = state => ({ stats: state.raceReducer.stats })
+//const mapStateToProps = state => ({ stats: state.raceReducer.stats })
 
 const mapDispatchToProps = dispatch => ({
   clearStats: () => dispatch(clearStats())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Stats)
+export default connect(null, mapDispatchToProps)(Stats)

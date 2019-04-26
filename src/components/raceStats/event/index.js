@@ -7,10 +7,13 @@ import StyledError from '../../commons/error'
 import Loading from '../../commons/loading'
 import { Tr, Td, Th, Tbody, Thead, Table, UserLink  } from './style'
 import { boldBlue, mainGreen } from '../../commons/style'
+import Stats from '../stats'
 
 class Event extends Component {
   state={
-    error: ''
+    error: '',
+    stats: [],
+    show: null,
   }
 
   handleVote = (e, driver) => {
@@ -32,6 +35,15 @@ class Event extends Component {
     }
   }
 
+   handleShow = (userid) => {
+     if( userid === this.state.show ){
+       this.setState({show: null})
+     }
+     else{
+       this.setState({ show: userid })
+     }
+   }
+
 
   render() {
     return(
@@ -44,7 +56,7 @@ class Event extends Component {
           <Tr style={{background: 'white', color: 'black'}}>
             <Th>Pos</Th>
             <Th hide={!this.props.isRace}>Grid</Th>
-            <Th>Piloto</Th>
+            <Th flex2>Piloto</Th>
             <Th small={this.props.isRace}>Voltas</Th>
             <Th small hide={!this.props.isRace}>Lideradas</Th>
             <Th small hide={!this.props.isRace}>Incidentes</Th>
@@ -54,14 +66,15 @@ class Event extends Component {
           </Tr>
         </Thead>
         <Tbody>
-       {this.props.event.map((result, index) =>
+       {this.props.event.map((result, index) =>{
+         return(
+           <React.Fragment key={index}>
          <Tr
-           key={index}
            onDoubleClick= { () => this.props.voteDriver( result.userid ) }
-           onClick={() => this.props.selectStats(result.laps)} >
+           onClick= { () => { this.handleShow(result.userid)  }} >
           <Td>{ result.position }</Td>
           <Td hide={!this.props.isRace}>{ result.st_position }</Td>
-          <Td><UserLink to={'../drivers/' + result.userid}>{ result.driver }</UserLink></Td>
+          <Td flex2><UserLink to={'../drivers/' + result.userid}>{ result.driver }</UserLink></Td>
           <Td>{ result.laps.length }</Td>
           <Td hide={!this.props.isRace}>{ result.lapsled }</Td>
           <Td hide={!this.props.isRace}> {result.incidents}</Td>
@@ -75,12 +88,12 @@ class Event extends Component {
                !result.userid
                 ? <FontAwesome name='thumbs-up' style={{color: 'black'}}/>
                 : result.upvotes && result.upvotes.length > 0
-                  ? <FontAwesome 
+                  ? <div style={{ color: mainGreen }}><FontAwesome 
                       onClick={ (e) => this.handleVote(e, result.userid) }
                       name='thumbs-up'
                       style={result.upvotes.find( vote => vote.voterid === this.props.user.userId ) ? {color: boldBlue} : {color: mainGreen }}
                       title={ result.upvotes.map( vote => { return ('' + vote.username) } )}
-                    />
+                    />{" ("+result.upvotes.length+ ")"}</div>
                   : <FontAwesome
                       onClick={(e) => this.handleVote(e, result.userid) }
                       name='thumbs-o-up'
@@ -90,6 +103,9 @@ class Event extends Component {
              </Td> 
              : null}
          </Tr>
+           <Stats show={ this.state.show === result.userid } stats={result.laps} />
+           </React.Fragment>
+         )}
       )}
         </Tbody>
       </Table>

@@ -129,6 +129,7 @@ class Chart extends Component {
                   scales: {
                     yAxes: [{
                       ticks: {
+                        reverse: true,
                         maxTicksLimit: 20,
                         stepSize:1,
 			 callback: (tickValue, index, ticks) => {

@@ -6,9 +6,9 @@ class Header extends Component {
   render() {
     return(
       <Content>
-        <AnimatedText small>{this.props.title}</AnimatedText>
-        <AnimatedText>{this.props.text}</AnimatedText>
-        <Image src={this.props.image} />
+          <AnimatedText small>{this.props.title}</AnimatedText>
+          <AnimatedText>{this.props.text}</AnimatedText>
+          <Image src={this.props.image} />
       </Content>
     )
   }

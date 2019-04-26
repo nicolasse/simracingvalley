@@ -45,6 +45,7 @@ export const Td  = styled.td`
   @media${device.laptop}{
     padding: 0.8em 0.5em;
   }
+  flex: ${ props => props.flex2 ? '2': '1' };
 `
 export const Th = styled.th`
   font-size: ${props => props.small ? '0.75em' :  '1em'};
@@ -57,6 +58,7 @@ export const Th = styled.th`
   @media${device.laptop}{
     padding: 0.8em 0.5em;
   }
+  flex: ${ props => props.flex2 ? '2': '1' };
 `
 
 export const Tr = styled.tr`
@@ -72,4 +74,5 @@ export const Tr = styled.tr`
     background: ${lightBlue};
     color: white;
   }
+  display: flex;
 `

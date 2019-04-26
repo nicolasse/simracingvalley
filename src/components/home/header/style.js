@@ -13,7 +13,7 @@ export const AnimatedText = styled.h1`
     font-size: ${props => props.small ? '1.1em' : '2.2em'};
   }
   @media ${device.laptop}{
-    font-size: ${props => props.small ? '1.5em' : '3em'};
+    font-size: ${props => props.small ? '1.5em' : '4em'};
   }
   color: white;
   text-align: center;

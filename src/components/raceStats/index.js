@@ -101,10 +101,10 @@ class Race extends Component {
           />
       }
         </Col>
-        <Col>
+      {/*<Col >
           <Title hideOnMobile>STATS</Title>
           <Stats />
-        </Col>
+        </Col>*/}
         </Content>
       </Wrapper>
       )

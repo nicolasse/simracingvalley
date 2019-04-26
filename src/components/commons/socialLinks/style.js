@@ -7,7 +7,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     width: 5em;
-    z-index: 3;
+    z-index: 0;
     display: none;
 
   } 
