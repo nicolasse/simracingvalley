@@ -5,6 +5,7 @@ import {
   Content,
   Section,
   Title,
+  H1,
   P,
   Iframe
 } from './style'
@@ -30,7 +31,7 @@ class Home extends Component {
           strength={300}
         >
         <div style={{ 'justify-content': 'center',display: 'flex','align-items': 'center', width: 'auto', height: '50vh' }}>
-          <h1 style={{'font-size': '10em','font-style': 'italic', color: 'white', 'margin-left': '1em' }}>SIMRACING VALLEY</h1>
+          <H1>SIMRACING VALLEY</H1>
         </div>
         </Parallax>
       </div>

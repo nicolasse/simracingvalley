@@ -1,16 +1,30 @@
 import styled from 'styled-components'
 import { device } from '../../device'
 
+export const H1 = styled.h1`
+  font-size: 3em;
+  @media${device.laptop}{
+    font-size: 10em;
+  }
+  font-style: italic;
+  color: white;
+  margin-left: 1em;
+`
+
 export const Iframe = styled.iframe`
-  position: fixed;
-  height: 190px;
   border: 0;
-  top: 40vh;
   @media ${device.mobileS}{
-  width: 100%
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-top: 1em;
   }
   @media ${device.laptop}{
-  width: 80%;}
+    top: 40vh;
+    position: fixed;
+    width: 80%;
+    height: 190px;
+  }
 `
 
 export const Title = styled.h1`
